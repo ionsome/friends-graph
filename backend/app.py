@@ -7,6 +7,10 @@ app = Flask(__name__)
 def test():
     return "response"
 
+@app.route("/")
+def index():
+    return "index"
+
 if __name__ == '__main__':
     app.config.from_pyfile("config.cfg")
     app.run(host='0.0.0.0', port=80)
