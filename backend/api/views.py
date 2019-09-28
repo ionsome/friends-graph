@@ -15,7 +15,7 @@ class AuthView(MethodView):
     def post(self):
         act = request.args.get('act', None)
         if act == 'login':
-            session['id'] = random.random(0, 9999)
+            session['id'] = random.randint(0, 9999)
             return 'success'
 
 bp_api.add_url_rule('auth', view_func=AuthView.as_view('auth'))
