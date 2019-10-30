@@ -14,7 +14,7 @@ app.config.from_pyfile("config.cfg")
 @app.route('/')
 def index():
     try:
-        respond = requests.get('http://localhost:31337/').text]
+        respond = requests.get('http://localhost:31337/').text
     except:
         respond = 'No connection :('
     return respond
