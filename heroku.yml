@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile.backend
 run:
-  web: gunicorn -b 0.0.0.0:$PORT --worker-class gevent --worker-connections 1024 app:app
+  web: cd /backend && gunicorn -b 0.0.0.0:$PORT --worker-class gevent --worker-connections 1024 app:app
