@@ -13,7 +13,11 @@ app.config.from_pyfile("config.cfg")
 
 @app.route('/')
 def index():
-    return requests.get('http://localhost:31337/').text
+    try:
+        respond = requests.get('http://localhost:31337/').text]
+    except:
+        respond = 'No connection :('
+    return respond
 
 app.register_blueprint(bp_api, url_prefix="/api")
 
