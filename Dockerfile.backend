@@ -4,8 +4,6 @@ FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED=1
 
 RUN apk add gcc musl-dev
-RUN apk add mariadb-dev build-base
-
 
 ADD ./backend /backend
 WORKDIR /backend
