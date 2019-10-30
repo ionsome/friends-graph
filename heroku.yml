@@ -1,5 +1,5 @@
 build:
   docker:
-    backend: Dockerfile.backend
+    web: Dockerfile.backend
 run:
-  backend: /entrypoint.sh
+  web: /entrypoint.sh
