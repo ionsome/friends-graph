@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 RUN apk add gcc musl-dev
 
-ADD ./test /test
+ADD ./frontend /test
 WORKDIR /test
 
 RUN pip install gunicorn gevent
