@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile.backend
 run:
-  web: /entrypoint.sh
+  web: gunicorn -b 0.0.0.0:$PORT --worker-class gevent --worker-connections 1024 app:app
