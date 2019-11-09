@@ -1,5 +1,5 @@
 from flask import Blueprint
-from .views import AuthView
+from api.views import AuthView
 
 bp_api = Blueprint('api', __name__)
 bp_api.json_encoder = None

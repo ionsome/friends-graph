@@ -1,5 +1,4 @@
 build:
   docker:
-    backend: Dockerfile.backend
-run:
-  backend: /entrypoint.sh
+    web: Dockerfile.backend
+    worker: Dockerfile.test
