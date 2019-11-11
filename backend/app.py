@@ -5,6 +5,7 @@ import os
 from flask import Flask
 
 from api import bp_api
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
@@ -12,14 +13,15 @@ app.config.from_pyfile('config.cfg')
 if os.environ.get('SECRET_KEY'):
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
-
+CORS(app)
 @app.route('/')
 def index():
     """Позволяет проверить работоспособность приложения."""
     return 'Backend: working fine!'
 
 
-app.register_blueprint(bp_api, url_prefix='/api')
+app.register_blueprint(bp_api, url_prefix='/api/')
+
 
 if __name__ == '__main__':
     app.run()
