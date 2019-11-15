@@ -8,8 +8,8 @@ class App extends Component {
 
     render() {
         return (
-            <div className="main h-100 d-flex flex-column">
-                <Router>
+            <Router>
+                <div className="main h-100 d-flex flex-column">
                     <Navbar/>
                     <div className="container-fluid d-flex flex-fill">
                         <Route
@@ -19,8 +19,8 @@ class App extends Component {
                             path="/auth"
                             render={(props) => <AuthPage {...props} />}/>
                     </div>
-                </Router>
-            </div>
+                </div>
+            </Router>
         );
     }
 }
