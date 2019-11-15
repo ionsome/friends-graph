@@ -1,4 +1,4 @@
 build:
   docker:
     web: Dockerfile.backend
-    worker: Dockerfile.test
+    #worker: Dockerfile.frontend

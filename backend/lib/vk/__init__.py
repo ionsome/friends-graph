@@ -11,14 +11,4 @@ https://oauth.vk.com/access_token?client_id=7154329&client_secret=MjO5VbOZkFjzOc
 Пример code: b2a87c53944c1cfe46
 """
 
-import json
-
-import requests
-
-import urls
-
-
-def get_friends_by_id(user_id, access_token):
-    url = urls.FRIENDS_GET.format(user_id, access_token)
-    req = requests.get(url)
-    return json.loads(req.text)
+from .methods import *

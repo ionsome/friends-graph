@@ -1,0 +1,10 @@
+FROM node:lts-slim
+
+WORKDIR /frontend
+COPY ./frontend ./
+
+RUN npm install --silent
+RUN npm install react-scripts --silent
+RUN npm install node-sass --silent
+
+CMD ["npm", "start"]
