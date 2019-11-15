@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AuthPage from './pages/AuthPage';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 
 class App extends Component {
 
@@ -10,7 +10,7 @@ class App extends Component {
         return (
             <Router>
                 <div className="main h-100 d-flex flex-column">
-                    <Navbar/>
+                    <Header/>
                     <div className="container-fluid d-flex flex-fill">
                         <Route
                             exact path="/"
