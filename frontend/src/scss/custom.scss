@@ -2,4 +2,12 @@ $theme-colors: (
   primary: #00b2ff
 );
 
+html, body, #root {
+  height: 100%;
+}
+
+#sidebar {
+  min-height: 100vh;
+}
+
 @import '~bootstrap/scss/bootstrap';

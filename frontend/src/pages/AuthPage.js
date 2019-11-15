@@ -37,8 +37,8 @@ class AuthPage extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.loginButtonClickHandler} type="button" class="btn btn-primary">Войти в вк</button>
-                <button onClick={this.statusButtonClickHandler} type="button" class="btn btn-primary">Статус</button>
+                <button onClick={this.loginButtonClickHandler} type="button" class="btn btn-primary">Log in</button>
+                <button onClick={this.statusButtonClickHandler} type="button" class="btn btn-primary">Status</button>
             </div>
         );
     }
