@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
-import {Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 class MainPage extends Component {
 
@@ -10,7 +10,7 @@ class MainPage extends Component {
             <Row className="flex-fill">
                 <Sidebar/>
                 <div>
-                    <p>Hello World!</p>
+                    <p>Page content</p>
                 </div>
             </Row>
         );

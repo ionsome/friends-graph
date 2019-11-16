@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
-import {ListGroupItem, FormControl, ListGroup} from "react-bootstrap";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { FormControl } from "react-bootstrap";
+import ListView from "./ListView";
 
 class Sidebar extends Component {
 
@@ -8,14 +9,7 @@ class Sidebar extends Component {
         return (
             <div className="bg-light border-right">
                 <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/>
-                <ListGroup>
-                    <ListGroupItem action={true} bg="light">Test #1</ListGroupItem>
-                    <ListGroupItem action={true} bg="light">Test #2</ListGroupItem>
-                    <ListGroupItem action={true} bg="light">Test #3</ListGroupItem>
-                    <ListGroupItem action={true} bg="light">Test #4</ListGroupItem>
-                    <ListGroupItem action={true} bg="light">Test #5</ListGroupItem>
-                    <ListGroupItem action={true} bg="light">Test #6</ListGroupItem>
-                </ListGroup>
+                <ListView/>
             </div>
         );
     }
