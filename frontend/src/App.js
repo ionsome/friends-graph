@@ -14,10 +14,8 @@ class App extends Component {
 
         if (this.props.isInProduction) {
             VK.init({ apiId: 7154329 });
-             VK.Auth.getLoginStatus((resp) => {
+            await VK.Auth.getLoginStatus((resp) => {
                 auth_response = resp;
-                console.log('responde reseived:');
-                console.log(auth_response);
             });
             console.log('setting prop');
             this.props.isAuthorized = auth_response.status === 'connected';
