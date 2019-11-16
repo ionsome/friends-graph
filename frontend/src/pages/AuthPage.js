@@ -8,7 +8,6 @@ class AuthPage extends Component {
 
     constructor(props) {
         super(props);
-        VK.init({ apiId: 7154329 });
     }
 
      loginButtonClickHandler = () => {
