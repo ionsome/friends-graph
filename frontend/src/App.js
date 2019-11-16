@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 import AuthPage from './pages/AuthPage';
 import Header from './components/Header';
 
-const VK = window.VK
+const VK = window.VK;
 
 class App extends Component {
 
@@ -13,14 +13,10 @@ class App extends Component {
         if (this.props.isOnHeroku) {
             VK.init({ apiId: 7154329 });
             VK.Auth.getLoginStatus(function (response) {
-                if (response.status === 'connected') {
-                    this.props.connected = true;
-                } else {
-                    this.props.connected = false;
-                }
+                this.props.connected = response.status === 'connected';
             });
         }
-        if (this.props.isOnHeroku && this.props.connected || !this.props.isOnHeroku) {
+        if ((this.props.isOnHeroku && this.props.connected) || !this.props.isOnHeroku) {
             pageContent = <Route
                 path="/"
                 render={(props) => <MainPage {...props} />} />
