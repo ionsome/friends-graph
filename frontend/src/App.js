@@ -7,22 +7,17 @@ import Header from './components/Header';
 const VK = window.VK;
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
 
     render() {
         let pageContent;
-        if (this.props.isOnHeroku) {
+        if (this.props.isInProduction) {
             VK.init({ apiId: 7154329 });
             VK.Auth.getLoginStatus(function (response) {
                 console.log(response);
                 this.props.connected = response.status === 'connected';
             });
         }
-        console.log(this.props.isOnHeroku);
-        if ((this.props.isOnHeroku && this.props.connected) || !this.props.isOnHeroku) {
+        if ((this.props.isInProduction && this.props.connected) || !this.props.isInProduction) {
             pageContent = <Route
                 path="/"
                 render={(props) => <MainPage {...props} />} />
