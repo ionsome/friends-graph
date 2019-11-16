@@ -17,9 +17,9 @@ class App extends Component {
              VK.Auth.getLoginStatus((resp) => {
                 auth_response = resp;
             });
-            this.props = auth_response.status === 'connected';
+            this.props.isAuthorized = auth_response.status === 'connected';
         }
-        if ((this.props.isInProduction && this.props.connected) || !this.props.isInProduction) {
+        if ((this.props.isInProduction && this.props.isAuthorized) || !this.props.isInProduction) {
             pageContent = <Route
                 path="/"
                 render={(props) => <MainPage {...props} />} />
