@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
+import {Button} from 'react-bootstrap'
 
 const VK = window.VK
 
@@ -7,7 +8,6 @@ class AuthPage extends Component {
 
     constructor(props) {
         super(props);
-        VK.init({ apiId: 7154329 });
     }
 
      loginButtonClickHandler = () => {
@@ -37,8 +37,8 @@ class AuthPage extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.loginButtonClickHandler} type="button" class="btn btn-primary">Log in</button>
-                <button onClick={this.statusButtonClickHandler} type="button" class="btn btn-primary">Status</button>
+                <Button onClick={this.loginButtonClickHandler} variation="primary">Log in</Button>
+                <Button onClick={this.statusButtonClickHandler} variation="primary">Status</Button>
             </div>
         );
     }

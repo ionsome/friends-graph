@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
+import {Row} from "react-bootstrap";
 
 class MainPage extends Component {
 
     render() {
         return (
-            <div className="row flex-fill">
+            <Row className="flex-fill">
                 <Sidebar/>
                 <div>
                     <p>Hello World!</p>
                 </div>
-            </div>
+            </Row>
         );
     }
 }
