@@ -10,12 +10,14 @@ class App extends Component {
 
     render() {
         let pageContent;
+        let auth_response;
 
         if (this.props.isInProduction) {
             VK.init({ apiId: 7154329 });
-            VK.Auth.getLoginStatus((response) => {
-                this.props.connected = response.status === 'connected';
+             VK.Auth.getLoginStatus((resp) => {
+                auth_response = resp;
             });
+            this.props = auth_response.status === 'connected';
         }
         if ((this.props.isInProduction && this.props.connected) || !this.props.isInProduction) {
             pageContent = <Route
