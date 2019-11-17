@@ -21,7 +21,7 @@ class App extends Component {
     
     render() {
         let pageContent;
-        if (this.state.vk_state.status === 'connected') this.props.isAuthorized = true;
+        if (this.state.vk_state && this.state.vk_state.status === 'connected') this.props.isAuthorized = true;
 
         if ((this.props.isInProduction && this.props.isAuthorized) || !this.props.isInProduction) {
             pageContent = <Route
