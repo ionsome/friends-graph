@@ -8,18 +8,21 @@ const VK = window.VK;
 
 class App extends Component {
 
+    componentDidMount() {
+        if (this.props.isInProduction) {
+            new Promise((resolve) =>{
+                VK.init({ apiId: 7154329 });
+                VK.Auth.getLoginStatus((response) => {
+                    resolve(response);
+                })
+            }).then((response) => this.setState({vk_state: response}));
+        }
+      }
+    
     render() {
         let pageContent;
-        let auth_response;
+        if (this.state.vk_state.status === 'connected') this.props.isAuthorized = true;
 
-        if (this.props.isInProduction) {
-            VK.init({ apiId: 7154329 });
-            await VK.Auth.getLoginStatus((resp) => {
-                auth_response = resp;
-            });
-            console.log('setting prop');
-            this.props.isAuthorized = auth_response.status === 'connected';
-        }
         if ((this.props.isInProduction && this.props.isAuthorized) || !this.props.isInProduction) {
             pageContent = <Route
                 path="/"
