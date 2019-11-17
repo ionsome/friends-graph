@@ -1,94 +1,66 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Graph } from "react-d3-graph";
+import Graph from "react-graph-vis";
 
-const data = {
-    nodes: [{ id: "Harry" }, { id: "Sally" }, { id: "Alice" }, { id: "Max" }, { id: "Bob"}],
-    links: [{ source: "Harry", target: "Sally" },
-        { source: "Max", target: "Alice" },
-        { source: "Sally", target: "Max"},
-        { source: "Max", target: "Bob"},
-        { source: "Sally", target: "Max"}],
+const graph = {
+    nodes: [
+        { id: 1, label: "Node 1", color: "#e04141"},
+        { id: 2, label: "Node 2", color: "#e09c41"},
+        { id: 3, label: "Node 3", color: "#e0df41"},
+        { id: 4, label: "Node 4", color: "#7be041"},
+        { id: 5, label: "Node 5", color: "#41e0c9"},
+        { id: 6, label: "Node 6", color: "#335ae0"},
+        { id: 7, label: "Node 7", color: "#e05fda"},
+        { id: 8, label: "Node 8", color: "#98c2e0"}
+    ],
+    edges: [
+        { from: 1, to: 2 },
+        { from: 1, to: 3 },
+        { from: 2, to: 4 },
+        { from: 2, to: 5 },
+        { from: 3, to: 6 },
+        { from: 3, to: 7 },
+        { from: 4, to: 8 }]
 };
 
-const onClickGraph = function() {
-    console.log(`Clicked the graph background`);
+const options = {
+    autoResize: true,
+    layout: {
+        hierarchical: false
+    },
+    nodes: {
+        shape: "dot"
+    },
+    edges: {
+        color: "#000000",
+        arrows: {
+            to: {
+                enabled: false
+            }
+        },
+        smooth: {
+            enabled: true
+        }
+    }
 };
 
-const onClickNode = function(nodeId) {
-    console.log(`Clicked node ${nodeId}`);
-};
-
-const onRightClickNode = function(event, nodeId) {
-    console.log(`Right clicked node ${nodeId}`);
-};
-
-const onMouseOverNode = function(nodeId) {
-    console.log(`Mouse over node ${nodeId}`);
-};
-
-const onMouseOutNode = function(nodeId) {
-    console.log(`Mouse out node ${nodeId}`);
-};
-
-const onClickLink = function(source, target) {
-    console.log(`Clicked link between ${source} and ${target}`);
-};
-
-const onRightClickLink = function(event, source, target) {
-    console.log(`Right clicked link between ${source} and ${target}`);
-};
-
-const onMouseOverLink = function(source, target) {
-    console.log(`Mouse over in link between ${source} and ${target}`);
-};
-
-const onMouseOutLink = function(source, target) {
-    console.log(`Mouse out link between ${source} and ${target}`);
-};
-
-const onNodePositionChange = function(nodeId, x, y) {
-    console.log(`Node ${nodeId} is moved to new position. New position is x= ${x} y= ${y}`);
+const events = {
+    select: function(event) {
+        var { nodes, edges } = event;
+        console.log("Selected nodes:");
+        console.log(nodes);
+        console.log("Selected edges:");
+        console.log(edges);
+    }
 };
 
 class FriendsGraph extends Component {
+    state = { network: {} };
 
     render() {
-        let config = {
-            nodeHighlightBehavior: true,
-            node: {
-                color: "lightgreen",
-                size: 500,
-                fontSize: 18,
-                highlightFontSize: 20,
-                highlightStrokeColor: "blue",
-            },
-            link: {
-                highlightColor: "lightblue",
-            },
-        };
-
-        config = Object.assign({}, config, {
-            height: window.innerHeight,
-            width: window.innerWidth,
-        });
-
         return (
-            <div className="position-fixed">
-                <Graph
-                    id="friends-graph"
-                    data={data}
-                    config={config}
-                    onClickNode={onClickNode}
-                    onRightClickNode={onRightClickNode}
-                    onClickGraph={onClickGraph}
-                    onClickLink={onClickLink}
-                    onRightClickLink={onRightClickLink}
-                    onMouseOverNode={onMouseOverNode}
-                    onMouseOutNode={onMouseOutNode}
-                    onMouseOverLink={onMouseOverLink}
-                    onMouseOutLink={onMouseOutLink}
-                    onNodePositionChange={onNodePositionChange}/>
+            <div className="position-fixed vw-100 vh-100">
+                <Graph graph={graph} options={options} events={events}/>
             </div>
         );
     }
