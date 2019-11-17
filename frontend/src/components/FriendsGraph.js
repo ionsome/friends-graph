@@ -35,7 +35,7 @@ const options = {
         color: "#000000",
         arrows: {
             to: {
-                enabled: false
+                enabled: false  
             }
         },
         smooth: {
