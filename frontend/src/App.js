@@ -7,6 +7,11 @@ import Header from './components/Header';
 const VK = window.VK;
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
 
     componentDidMount() {
         if (this.props.isInProduction) {
