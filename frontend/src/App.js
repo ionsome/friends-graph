@@ -6,17 +6,28 @@ import AuthPage from './pages/AuthPage';
 const VK = window.VK;
 
 class App extends Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {};
+    }
+
+    componentDidMount() {
+        if (this.props.isInProduction) {
+            new Promise((resolve) =>{
+                VK.init({ apiId: 7154329 });
+                VK.Auth.getLoginStatus((response) => {
+                    resolve(response);
+                })
+            }).then((response) => this.setState({vk_state: response}));
+        }
+      }
+    
     render() {
         let pageContent;
+        if (this.state.vk_state && this.state.vk_state.status === 'connected') this.props.isAuthorized = true;
 
-        if (this.props.isInProduction) {
-            VK.init({ apiId: 7154329 });
-            VK.Auth.getLoginStatus((response) => {
-                this.props.connected = response.status === 'connected';
-            });
-        }
-        if ((this.props.isInProduction && this.props.connected) || !this.props.isInProduction) {
+        if ((this.props.isInProduction && this.props.isAuthorized) || !this.props.isInProduction) {
             pageContent = <Route
                 path="/"
                 render={(props) => <MainPage {...props} />} />
