@@ -10,6 +10,7 @@ class App extends Component {
         super(props);
 
         this.state = { 'showMainPage': true };
+        this.isAuthorized = false;
     }
 
     componentDidMount() {
@@ -20,12 +21,9 @@ class App extends Component {
                     resolve(response);
                 })
             }).then((response) => {
-                this.props.isAuthorized = response && response.status === 'connected';
-                this.setState({ 'showMainPage': this.props.isAuthorized });
+                this.isAuthorized = response && response.status === 'connected';
+                this.setState({ 'showMainPage': this.isAuthorized });
             });
-        }
-        else{
-            this.props.isAuthorized = false;
         }
     }
 
