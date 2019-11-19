@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { Navbar, Button } from 'react-bootstrap'
 import logo from '../res/logo.svg';
 
@@ -25,4 +24,4 @@ class Header extends Component {
     }
 }
 
-export default withRouter(Header);
+export default Header;

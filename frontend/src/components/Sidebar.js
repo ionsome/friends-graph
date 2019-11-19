@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { Card, FormControl } from "react-bootstrap";
 import ListView from "./ListView";
+import Header from "./Header";
 
 class Sidebar extends Component {
 
@@ -9,6 +9,7 @@ class Sidebar extends Component {
         return (
             <div className="d-flex flex-fill">
                 <Card bg="light">
+                    <Header/>
                     <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/>
                     <ListView/>
                 </Card>
@@ -17,4 +18,4 @@ class Sidebar extends Component {
     }
 }
 
-export default withRouter(Sidebar);
+export default Sidebar;
