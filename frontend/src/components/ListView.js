@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { Accordion, Card } from "react-bootstrap";
 
 class ListView extends Component {
 
     render() {
         return (
-            <Accordion defaultActiveKey="-1">
+            <Accordion defaultActiveKey="-1" className="mb-auto">
                 <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="0">
                         Item #1
@@ -52,4 +51,4 @@ class ListView extends Component {
     }
 }
 
-export default withRouter(ListView);
+export default ListView;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import Graph from "react-graph-vis";
 
 const graph = {
@@ -66,4 +65,4 @@ class FriendsGraph extends Component {
     }
 }
 
-export default withRouter(FriendsGraph);
+export default FriendsGraph;

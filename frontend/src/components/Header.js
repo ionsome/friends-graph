@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { Navbar, Button } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import logo from '../res/logo.svg';
-
-const VK = window.VK;
+import hide from '../res/hide.svg'
 
 class Header extends Component {
-
-    logoutButtonClickHandler = () => {
-        VK.Auth.logout();
-        window.location.href = '/';
-    };
 
     render() {
         return (
@@ -19,10 +12,10 @@ class Header extends Component {
                     <img alt="" src={logo} width="30" height="30" className="d-inline-block align-top mr-2" />
                     Friends Graph
                 </Navbar.Brand>
-                <Button variant="primary" className="ml-auto" onClick={this.logoutButtonClickHandler}>Log out</Button>
+                <img alt="" src={hide} width="30" height="30" className="d-inline-block align-top ml-auto" />
             </Navbar>
         );
     }
 }
 
-export default withRouter(Header);
+export default Header;
