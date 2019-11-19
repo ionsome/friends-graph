@@ -8,7 +8,7 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="d-flex flex-fill">
-                <Card bg="light">
+                <Card bg="light" className="border-left-0 border-top-0 border-bottom-0">
                     <Header/>
                     <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/>
                     <ListView/>
