@@ -9,7 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 'showMainPage': true };
+        this.state = { 'showMainPage': false };
         this.isAuthorized = false;
     }
 
@@ -24,6 +24,9 @@ class App extends Component {
                 this.isAuthorized = response && response.status === 'connected';
                 this.setState({ 'showMainPage': this.isAuthorized });
             });
+        }
+        else {
+            this.setState({ 'showMainPage': true });
         }
     }
 
