@@ -9,38 +9,33 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = { 'showMainPage': true };
+        this.isAuthorized = false;
     }
 
     componentDidMount() {
         if (this.props.isInProduction) {
-            new Promise((resolve) =>{
+            new Promise((resolve) => {
                 VK.init({ apiId: 7154329 });
                 VK.Auth.getLoginStatus((response) => {
                     resolve(response);
                 })
-            }).then((response) => this.setState({vk_state: response}));
+            }).then((response) => {
+                this.isAuthorized = response && response.status === 'connected';
+                this.setState({ 'showMainPage': this.isAuthorized });
+            });
         }
-      }
-    
-    render() {
-        let pageContent;
-        if (this.state.vk_state && this.state.vk_state.status === 'connected') this.props.isAuthorized = true;
+    }
 
-        if ((this.props.isInProduction && this.props.isAuthorized) || !this.props.isInProduction) {
-            pageContent = <Route
-                path="/"
-                render={(props) => <MainPage {...props} />} />
-        }
-        else {
-            pageContent = <Route
-                path="/"
-                render={(props) => <AuthPage {...props} />} />
-        }
+
+    render() {
         return (
             <Router>
-                {pageContent}
-            </Router>
+                <Route path="/" render={(props) => this.state.showMainPage ?
+                    <MainPage {...props} /> :
+                    <AuthPage {...props} />}
+                />
+            </Router >
         );
     }
 }
