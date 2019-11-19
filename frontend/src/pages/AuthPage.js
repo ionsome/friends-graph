@@ -7,7 +7,10 @@ const VK = window.VK;
 class AuthPage extends Component {
 
     loginButtonClickHandler = () => {
-        VK.Auth.login(() => window.location.reload(true));
+        var promise = document.requestStorageAccess();
+        promise.then(() =>
+            VK.Auth.login(() => window.location.reload(true))
+        );
     };
 
     statusButtonClickHandler = () => {
