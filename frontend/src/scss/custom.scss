@@ -1,3 +1,7 @@
+@import "~bootstrap";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
 $theme-colors: (
   primary: #00b2ff
 );
@@ -6,4 +10,34 @@ html, body, #root {
   height: 100%;
 }
 
-@import '~bootstrap';
+.btn-sidebar-dark {
+  @include button-variant($dark, $dark);
+  border-radius: 0;
+}
+
+.btn-sidebar-dark:focus {
+  box-shadow: none;
+}
+
+.btn-sidebar-light {
+  @include button-variant($light, $light);
+  border-radius: 0;
+}
+
+.btn-sidebar-light:focus {
+  box-shadow: none;
+}
+
+#header-text {
+  color: white;
+  line-height: 2.2;
+  margin: 0;
+}
+
+#sidebar-header {
+  background: $dark;
+}
+
+#sidebar-footer {
+  background: $light;
+}

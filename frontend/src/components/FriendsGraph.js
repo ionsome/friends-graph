@@ -45,7 +45,7 @@ const options = {
 
 const events = {
     select: function(event) {
-        var { nodes, edges } = event;
+        let { nodes, edges } = event;
         console.log("Selected nodes:");
         console.log(nodes);
         console.log("Selected edges:");
