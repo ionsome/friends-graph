@@ -7,7 +7,7 @@ const VK = window.VK;
 class AuthPage extends Component {
 
     loginButtonClickHandler = () => {
-       VK.Auth.login(() => window.location.reload(true));
+       VK.Auth.login(() => this.props.changeIsAuthorized());
     };
 
     statusButtonClickHandler = () => {

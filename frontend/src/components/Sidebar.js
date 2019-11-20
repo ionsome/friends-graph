@@ -14,8 +14,7 @@ class Sidebar extends Component {
     state = { width: showWidth };
 
     logoutButtonClickHandler = () => {
-        let callback = this.props.unauthorize;//this.props.reloadParent;
-        VK.Auth.logout(() => callback());
+        VK.Auth.logout(() => this.props.changeIsAuthorized());
     };
 
     hideButtonClickHandler = () => {
