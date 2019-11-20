@@ -8,7 +8,7 @@ class MainPage extends Component {
     render() {
         return (
             <div className="main d-flex">
-                <Sidebar/>
+                <Sidebar unauthorize={this.props.unauthorize}/>
                 <FriendsGraph />
             </div>
         );

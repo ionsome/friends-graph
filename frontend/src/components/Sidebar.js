@@ -14,8 +14,8 @@ class Sidebar extends Component {
     state = { width: showWidth };
 
     logoutButtonClickHandler = () => {
-        VK.Auth.logout(() =>
-            window.location.reload(true));
+        let callback = this.props.unauthorize;//this.props.reloadParent;
+        VK.Auth.logout(() => callback());
     };
 
     hideButtonClickHandler = () => {
@@ -29,7 +29,7 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="d-flex flex-fill">
-                <Card bg="light" className="border-0" style={{width: this.state.width, transition: "0.5s"}}>
+                <Card bg="light" className="border-left-0 border-top-0 border-bottom-0" style={{width: this.state.width, transition: "0.5s"}}>
                     <Card.Header id="sidebar-header" className="d-flex p-1 overflow-hidden">
                         <Button onClick={this.showButtonClickHandler} variant="sidebar-dark" className="mr-1">
                             <img  alt="show" src={logo} width="30" height="30"/>
