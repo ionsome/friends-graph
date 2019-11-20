@@ -7,10 +7,13 @@ const VK = window.VK;
 class AuthPage extends Component {
 
     loginButtonClickHandler = () => {
+        /* Firefox specific
         var promise = document.requestStorageAccess();
         promise.then(() =>
             VK.Auth.login(() => window.location.reload(true))
         );
+        */
+       VK.Auth.login(() => window.location.reload(true));
     };
 
     statusButtonClickHandler = () => {
