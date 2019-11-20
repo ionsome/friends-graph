@@ -7,12 +7,12 @@ class Header extends Component {
 
     render() {
         return (
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" className="p-2 m-0 w-100 d-flex justify-content-between">
+                <img alt="" src={logo} width="30" height="30" />
                 <Navbar.Brand>
-                    <img alt="" src={logo} width="30" height="30" className="d-inline-block align-top mr-2" />
                     Friends Graph
                 </Navbar.Brand>
-                <img alt="" src={hide} width="30" height="30" className="d-inline-block align-top ml-auto" />
+                <img alt="" src={hide} width="30" height="30" />
             </Navbar>
         );
     }

@@ -58,7 +58,7 @@ class FriendsGraph extends Component {
 
     render() {
         return (
-            <div className="position-fixed vw-100 vh-100">
+            <div className="vw-100 vh-100">
                 <Graph graph={graph} options={options} events={events}/>
             </div>
         );

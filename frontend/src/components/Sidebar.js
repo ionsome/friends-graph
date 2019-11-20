@@ -14,16 +14,14 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div className="d-flex flex-fill">
-                <Card bg="light" className="border-left-0 border-top-0 border-bottom-0" style={{ width: "300px" }}>
-                    <Header />
-                    <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />
-                    <ListView />
-                    <Card.Footer className="d-flex">
-                        <Button className="ml-auto" onClick={this.logoutButtonClickHandler}>Log out</Button>
-                    </Card.Footer>
-                </Card>
-            </div>
+            <Card bg="light" className="border-0 d-flex flex-fill" style={{width: "300px"}}>
+                <Header />
+                <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />
+                <ListView />
+                <Card.Footer className="d-flex">
+                    <Button className="ml-auto" onClick={this.logoutButtonClickHandler}>Log out</Button>
+                </Card.Footer>
+            </Card>
         );
     }
 }
