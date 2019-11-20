@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Card, FormControl, Navbar} from "react-bootstrap";
+import {Button, Card, FormControl } from "react-bootstrap";
 import ListView from "./ListView";
 import exit from "../res/exit.svg"
 import logo from "../res/logo.svg";
@@ -7,8 +7,11 @@ import hide from "../res/hide.svg";
 
 const VK = window.VK;
 
+const showWidth = 280;
+const hideWidth = 57;
+
 class Sidebar extends Component {
-    state = { width: 280 };
+    state = { width: showWidth };
 
     logoutButtonClickHandler = () => {
         VK.Auth.logout(() =>
@@ -16,11 +19,11 @@ class Sidebar extends Component {
     };
 
     hideButtonClickHandler = () => {
-        this.setState({ width: 57 });
+        this.setState({ width: hideWidth });
     };
 
     showButtonClickHandler = () => {
-        this.setState({ width: 280 });
+        this.setState({ width: showWidth });
     };
 
     render() {
