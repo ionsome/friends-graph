@@ -13,8 +13,9 @@ class App extends Component {
         this.isAuthorized = false;
     }
 
-    unauthorize() {
-        this.setState({ 'showMainPage': false });
+    changeIsAuthorized() {
+        this.isAuthorized = !this.isAuthorized;
+        this.setState({ 'showMainPage': this.isAuthorized });
     }
 
     componentDidMount() {
@@ -39,8 +40,8 @@ class App extends Component {
         return (
             <Router>
                 <Route path="/" render={(props) => this.state.showMainPage ?
-                    <MainPage {...props} unauthorize={this.unauthorize.bind(this)} /> :
-                    <AuthPage {...props} />}
+                    <MainPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
+                    <AuthPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
                 />
             </Router >
         );
