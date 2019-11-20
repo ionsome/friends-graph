@@ -13,6 +13,10 @@ class App extends Component {
         this.isAuthorized = false;
     }
 
+    unauthorize() {
+        this.setState({ 'showMainPage': false });
+    }
+
     componentDidMount() {
         if (this.props.isInProduction) {
             new Promise((resolve) => {
@@ -35,7 +39,7 @@ class App extends Component {
         return (
             <Router>
                 <Route path="/" render={(props) => this.state.showMainPage ?
-                    <MainPage {...props} /> :
+                    <MainPage {...props} unauthorize={this.unauthorize.bind(this)} /> :
                     <AuthPage {...props} />}
                 />
             </Router >

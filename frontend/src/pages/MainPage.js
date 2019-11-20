@@ -7,9 +7,9 @@ class MainPage extends Component {
 
     render() {
         return (
-            <div className="main h-100 d-flex flex-column">
-                <FriendsGraph/>
-                <Sidebar/>
+            <div className="main d-flex">
+                <Sidebar unauthorize={this.props.unauthorize}/>
+                <FriendsGraph />
             </div>
         );
     }

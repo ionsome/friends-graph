@@ -5,7 +5,7 @@ class ListView extends Component {
 
     render() {
         return (
-            <Accordion defaultActiveKey="-1" className="mb-auto">
+            <Accordion defaultActiveKey="-1" className="text-nowrap mb-auto w-100">
                 <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="0">
                         Item #1

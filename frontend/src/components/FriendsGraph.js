@@ -45,7 +45,7 @@ const options = {
 
 const events = {
     select: function(event) {
-        var { nodes, edges } = event;
+        let { nodes, edges } = event;
         console.log("Selected nodes:");
         console.log(nodes);
         console.log("Selected edges:");
@@ -58,7 +58,7 @@ class FriendsGraph extends Component {
 
     render() {
         return (
-            <div className="position-fixed vw-100 vh-100">
+            <div className="vw-100 vh-100">
                 <Graph graph={graph} options={options} events={events}/>
             </div>
         );
