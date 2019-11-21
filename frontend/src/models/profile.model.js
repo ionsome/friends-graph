@@ -4,6 +4,6 @@ class Profile {
         this.label = `${first_name} ${second_name}`;
         this.color = ''
     }
-};
+}
 
 export default Profile;
