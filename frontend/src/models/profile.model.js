@@ -1,7 +1,7 @@
 class Profile {
-    constructor(id, name, surname) {
+    constructor(id, first_name, second_name) {
         this.id = id;
-        this.label = `${name} ${surname}`;
+        this.label = `${first_name} ${second_name}`;
         this.color = ''
     }
 };
