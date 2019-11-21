@@ -29,7 +29,7 @@ class Sidebar extends Component {
         return (
             <div className="d-flex flex-fill">
                 <Card bg="light" className="border-left-0 border-top-0 border-bottom-0" style={{width: this.state.width, transition: "0.5s"}}>
-                    <Card.Header id="sidebar-header" className="d-flex p-1 overflow-hidden">
+                    <Card.Header id="sidebar-header" className="d-flex p-0 overflow-hidden" style={{borderRadius: 0}}>
                         <Button onClick={this.showButtonClickHandler} variant="sidebar-dark" className="mr-1">
                             <img  alt="show" src={logo} width="30" height="30"/>
                         </Button>
@@ -42,7 +42,7 @@ class Sidebar extends Component {
                     <Card.Body className="p-0">
                         <ListView />
                     </Card.Body>
-                    <Card.Footer id="sidebar-footer" className="d-flex p-0">
+                    <Card.Footer id="sidebar-footer" className="d-flex p-0" style={{borderRadius: 0}}>
                         <Button onClick={this.logoutButtonClickHandler} variant="sidebar-light" className="ml-auto">
                             <img alt="exit" src={exit} width="30" height="30"/>
                         </Button>
