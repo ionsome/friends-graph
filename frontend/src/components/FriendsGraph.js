@@ -26,7 +26,7 @@ const graph = {
         { from: 4, to: 8 }]
 };
 
-FriendsApi.friends_get(5).then((friendlist) => graph.nodes.push.apply(graph.nodes, friendlist))
+console.log(FriendsApi.friends_get(5));
 
 const options = {
     autoResize: true,
