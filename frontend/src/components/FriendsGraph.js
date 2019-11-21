@@ -61,13 +61,14 @@ const events = {
 class FriendsGraph extends Component {
     state = { network: {} };
 
-    componentDidMount() {
+    test_api() {
         console.log(FriendsApi.friends_get(5));
     }
-    
+
     render() {
         return (
             <div className="vw-100 vh-100">
+                <button onClick={this.test_api}>test</button>  
                 <Graph graph={graph} options={options} events={events} />
             </div>
         );
