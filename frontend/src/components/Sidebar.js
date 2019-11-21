@@ -12,7 +12,7 @@ const showWidth = 280;
 const hideWidth = 57;
 
 class Sidebar extends Component {
-    state = { collapsed: false };
+    state = { collapsed: true };
 
     logoutButtonClickHandler = () => {
         VK.Auth.logout(() => this.props.changeIsAuthorized());
