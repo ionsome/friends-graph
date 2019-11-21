@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import Graph from "react-graph-vis";
 
+import Profile from '../models/profile.model';
+
+let durov = new Profile(1, 'Pavel', 'Durov');
+
 const graph = {
     nodes: [
-        { id: 1, label: "Node 1", color: "#e04141"},
+        { id: 9, label: "Node 1", color: "#e04141"},
         { id: 2, label: "Node 2", color: "#e09c41"},
         { id: 3, label: "Node 3", color: "#e0df41"},
         { id: 4, label: "Node 4", color: "#7be041"},
         { id: 5, label: "Node 5", color: "#41e0c9"},
         { id: 6, label: "Node 6", color: "#335ae0"},
         { id: 7, label: "Node 7", color: "#e05fda"},
-        { id: 8, label: "Node 8", color: "#98c2e0"}
+        { id: 8, label: "Node 8", color: "#98c2e0"},
+        durov
     ],
     edges: [
         { from: 1, to: 2 },
