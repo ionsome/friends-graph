@@ -42,7 +42,7 @@ class Sidebar extends Component {
                     </Card.Header>
                     {this.state.collapsed ?
                         <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
-                            <img alt="search" src={search} width="30" height="30"/>
+                            <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1"/>
                         </Button> :
                         <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
                     <Card.Body className="p-0">
