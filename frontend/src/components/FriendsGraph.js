@@ -59,11 +59,10 @@ const events = {
 };
 
 class FriendsGraph extends Component {
-    state = { network: {} };
 
     render() {
         return (
-            <div className="vw-100 vh-100">
+            <div className="vw-100 vh-100 position-fixed">
                 <Graph graph={graph} options={options} events={events}/>
             </div>
         );

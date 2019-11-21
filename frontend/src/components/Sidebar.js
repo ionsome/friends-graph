@@ -28,7 +28,7 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div className="d-flex flex-fill">
+            <div className="d-flex flex-fill vh-100">
                 <Card bg="light" className="border-left-0 border-top-0 border-bottom-0"
                       style={{width: this.state.collapsed ? hideWidth : showWidth, transition: "0.5s"}}>
                     <Card.Header id="sidebar-header" className="d-flex p-0 overflow-hidden" style={{borderRadius: 0}}>

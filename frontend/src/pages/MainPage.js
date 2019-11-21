@@ -8,8 +8,8 @@ class MainPage extends Component {
     render() {
         return (
             <div className="main d-flex">
-                <Sidebar changeIsAuthorized={this.props.changeIsAuthorized}/>
                 <FriendsGraph />
+                <Sidebar changeIsAuthorized={this.props.changeIsAuthorized}/>
             </div>
         );
     }
