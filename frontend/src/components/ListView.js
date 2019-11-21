@@ -6,7 +6,7 @@ class ListView extends Component {
     render() {
         return (
             <Accordion defaultActiveKey="-1" className="text-nowrap mb-auto w-100">
-                <Card>
+                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
                     <Accordion.Toggle as={Card.Header} eventKey="0">
                         Item #1
                     </Accordion.Toggle>
@@ -14,7 +14,7 @@ class ListView extends Component {
                         <Card.Body>Content #1</Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card>
+                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
                     <Accordion.Toggle as={Card.Header} eventKey="1">
                         Item #2
                     </Accordion.Toggle>
@@ -22,7 +22,7 @@ class ListView extends Component {
                         <Card.Body>Content #2</Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card>
+                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
                     <Accordion.Toggle as={Card.Header} eventKey="2">
                         Item #3
                     </Accordion.Toggle>
@@ -30,7 +30,7 @@ class ListView extends Component {
                         <Card.Body>Content #3</Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card>
+                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
                     <Accordion.Toggle as={Card.Header} eventKey="3">
                         Item #4
                     </Accordion.Toggle>
@@ -38,7 +38,7 @@ class ListView extends Component {
                         <Card.Body>Content #4</Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card>
+                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
                     <Accordion.Toggle as={Card.Header} eventKey="4">
                         Item #5
                     </Accordion.Toggle>

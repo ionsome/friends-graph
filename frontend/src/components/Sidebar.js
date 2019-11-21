@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Card, FormControl } from "react-bootstrap";
+import { Button, Card, FormControl } from "react-bootstrap";
 import ListView from "./ListView";
 import exit from "../res/exit.svg"
 import logo from "../res/logo.svg";
@@ -12,24 +12,25 @@ const showWidth = 280;
 const hideWidth = 57;
 
 class Sidebar extends Component {
-    state = { width: showWidth, collapsed: false };
+    state = { collapsed: false };
 
     logoutButtonClickHandler = () => {
         VK.Auth.logout(() => this.props.changeIsAuthorized());
     };
 
     hideButtonClickHandler = () => {
-        this.setState({ width: hideWidth, collapsed: true });
+        this.setState({ collapsed: true });
     };
 
     showButtonClickHandler = () => {
-        this.setState({ width: showWidth, collapsed: false});
+        this.setState({ collapsed: false });
     };
 
     render() {
         return (
             <div className="d-flex flex-fill">
-                <Card bg="light" className="border-left-0 border-top-0 border-bottom-0" style={{width: this.state.width, transition: "0.5s"}}>
+                <Card bg="light" className="border-left-0 border-top-0 border-bottom-0"
+                      style={{width: this.state.collapsed ? hideWidth : showWidth, transition: "0.5s"}}>
                     <Card.Header id="sidebar-header" className="d-flex p-0 overflow-hidden" style={{borderRadius: 0}}>
                         <Button onClick={this.showButtonClickHandler} variant="sidebar-dark" className="mr-1">
                             <img  alt="show" src={logo} width="30" height="30"/>
