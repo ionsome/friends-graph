@@ -67,6 +67,7 @@ class FriendsGraph extends Component {
     render() {
         return (
             <div className="vw-100 vh-100 position-fixed">
+                <button className="float-right" onClick={this.test_api}>test</button>
                 <Graph graph={graph} options={options} events={events}/>
             </div>
         );
