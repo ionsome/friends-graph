@@ -4,6 +4,7 @@ import ListView from "./ListView";
 import exit from "../res/exit.svg"
 import logo from "../res/logo.svg";
 import hide from "../res/hide.svg";
+import search from "../res/search.svg"
 
 const VK = window.VK;
 
@@ -11,18 +12,18 @@ const showWidth = 280;
 const hideWidth = 57;
 
 class Sidebar extends Component {
-    state = { width: showWidth };
+    state = { width: showWidth, collapsed: false };
 
     logoutButtonClickHandler = () => {
         VK.Auth.logout(() => this.props.changeIsAuthorized());
     };
 
     hideButtonClickHandler = () => {
-        this.setState({ width: hideWidth });
+        this.setState({ width: hideWidth, collapsed: true });
     };
 
     showButtonClickHandler = () => {
-        this.setState({ width: showWidth });
+        this.setState({ width: showWidth, collapsed: false});
     };
 
     render() {
@@ -38,7 +39,11 @@ class Sidebar extends Component {
                             <img alt="hide" src={hide} width="30" height="30" className="overflow-hidden"/>
                         </Button>
                     </Card.Header>
-                    <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />
+                    {this.state.collapsed ?
+                        <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
+                            <img alt="search" src={search} width="30" height="30"/>
+                        </Button> :
+                        <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
                     <Card.Body className="p-0">
                         <ListView />
                     </Card.Body>
