@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
 import Graph from "react-graph-vis";
 
-import Profile from '../models/profile.model';
+import FriendsApi from '../api/Friends'
 
-let durov = new Profile(1, 'Pavel', 'Durov');
 
 const graph = {
     nodes: [
-        { id: 9, label: "Node 1", color: "#e04141"},
-        { id: 2, label: "Node 2", color: "#e09c41"},
-        { id: 3, label: "Node 3", color: "#e0df41"},
-        { id: 4, label: "Node 4", color: "#7be041"},
-        { id: 5, label: "Node 5", color: "#41e0c9"},
-        { id: 6, label: "Node 6", color: "#335ae0"},
-        { id: 7, label: "Node 7", color: "#e05fda"},
-        { id: 8, label: "Node 8", color: "#98c2e0"},
-        durov
+        { id: 9, label: "Node 1", color: "#e04141" },
+        { id: 2, label: "Node 2", color: "#e09c41" },
+        { id: 3, label: "Node 3", color: "#e0df41" },
+        { id: 4, label: "Node 4", color: "#7be041" },
+        //{ id: 5, label: "Node 5", color: "#41e0c9"},
+        { id: 6, label: "Node 6", color: "#335ae0" },
+        { id: 7, label: "Node 7", color: "#e05fda" },
+        { id: 8, label: "Node 8", color: "#98c2e0" }
     ],
     edges: [
         { from: 1, to: 2 },
         { from: 1, to: 3 },
         { from: 2, to: 4 },
         { from: 2, to: 5 },
+        { from: 3, to: 4 },
         { from: 3, to: 6 },
         { from: 3, to: 7 },
         { from: 4, to: 8 }]
 };
+
 
 const options = {
     autoResize: true,
@@ -39,7 +39,7 @@ const options = {
         color: "#000000",
         arrows: {
             to: {
-                enabled: false  
+                enabled: false
             }
         },
         smooth: {
@@ -49,7 +49,7 @@ const options = {
 };
 
 const events = {
-    select: function(event) {
+    select: function (event) {
         let { nodes, edges } = event;
         console.log("Selected nodes:");
         console.log(nodes);
@@ -60,6 +60,10 @@ const events = {
 
 class FriendsGraph extends Component {
 
+    componentDidMount() {
+        console.log(FriendsApi.friends_get(5));
+    }
+    
     render() {
         return (
             <div className="vw-100 vh-100 position-fixed">
