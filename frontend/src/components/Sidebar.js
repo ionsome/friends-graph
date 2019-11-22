@@ -40,12 +40,12 @@ class Sidebar extends Component {
                             <img alt="hide" src={hide} width="30" height="30" className="overflow-hidden"/>
                         </Button>
                     </Card.Header>
-                    {this.state.collapsed ?
-                        <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
-                            <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1"/>
-                        </Button> :
-                        <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
-                    <Card.Body className="p-0">
+                    <Card.Body className="d-flex flex-column p-0">
+                        {this.state.collapsed ?
+                            <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
+                                <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1"/>
+                            </Button> :
+                            <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
                         <ListView />
                     </Card.Body>
                     <Card.Footer id="sidebar-footer" className="d-flex p-0" style={{borderRadius: 0}}>
