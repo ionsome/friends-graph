@@ -19,7 +19,7 @@ class Sidebar extends Component {
     };
 
     hideButtonClickHandler = () => {
-        this.setState({ collapsed: true, showInfo: false});
+        this.setState({ collapsed: true, showInfo: false });
     };
 
     showButtonClickHandler = () => {
@@ -31,7 +31,7 @@ class Sidebar extends Component {
     };
 
     itemClickHandler = (item) => {
-        this.setState({ collapsed: false, showInfo: true, info: item});
+        this.setState({ collapsed: false, showInfo: true, info: item });
     };
 
     getSidebarContent() {

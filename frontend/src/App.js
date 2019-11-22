@@ -6,6 +6,7 @@ import AuthPage from './pages/AuthPage';
 const VK = window.VK;
 
 class App extends Component {
+
     constructor(props) {
         super(props);
 

@@ -12,7 +12,7 @@ let users_get =  (list_ids) => {
             },
             (rejected_resp) => reject(rejected_resp));
     })
-}
+};
 
 export default {
 
