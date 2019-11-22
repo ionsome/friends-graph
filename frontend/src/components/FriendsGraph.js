@@ -5,14 +5,14 @@ import FriendsApi from '../api/Friends'
 
 
 const nodes = [
-    { id: 9, label: "Node 1", color: "#e04141" },
+    { id: 1, label: "Node 1", color: "#e04141" },
     { id: 2, label: "Node 2", color: "#e09c41" },
     { id: 3, label: "Node 3", color: "#e0df41" },
     { id: 4, label: "Node 4", color: "#7be041" },
     { id: 6, label: "Node 6", color: "#335ae0" },
     { id: 7, label: "Node 7", color: "#e05fda" },
     { id: 8, label: "Node 8", color: "#98c2e0" }
-]
+];
 
 const options = {
     interaction: { hover: true },
@@ -32,16 +32,6 @@ const options = {
         },
         smooth: {
             enabled: true
-        }
-    },
-    manipulation: {
-        enabled: true,
-        initiallyActive: true,
-        addNode: function (nodeData, callback) {
-            nodeData = {
-                value: Math.floor((Math.random() * 1000) + 1),
-            };
-            callback(nodeData);
         }
     }
 };
@@ -77,10 +67,15 @@ class FriendsGraph extends Component {
         };
 
         this.initNetworkInstance = this.initNetworkInstance.bind(this);
+        this.initNodesInstance = this.initNodesInstance.bind(this);
     }
 
     initNetworkInstance(networkInstance) {
-        this.graphIntance = networkInstance;
+        this.networkIntance = networkInstance;
+    }
+
+    initNodesInstance(nodesInstance) {
+        this.nodesIntance = nodesInstance;
     }
 
     test_api() {
@@ -91,8 +86,8 @@ class FriendsGraph extends Component {
             offset: { x: 0, y: 0 },
             animation: { duration: 1000, easingFunction: "easeInOutQuad" }
         };
-        this.graphIntance.moveTo(newCameraPosition);
-        this.graphIntance.addNodeMode();
+        this.networkIntance.moveTo(newCameraPosition);
+        this.nodesIntance.add([{ label: "Maxim" }]);
     }
 
     render() {
@@ -102,7 +97,8 @@ class FriendsGraph extends Component {
                 <GraphVis graph={this.state.graphVis}
                     options={options}
                     events={events}
-                    getNetwork={this.initNetworkInstance} />
+                    getNetwork={this.initNetworkInstance}
+                    getNodes={this.initNodesInstance}/>
             </div>
         );
     }
