@@ -12,19 +12,47 @@ const showWidth = 280;
 const hideWidth = 57;
 
 class Sidebar extends Component {
-    state = { collapsed: true };
+    state = { collapsed: true, showInfo: false };
 
     logoutButtonClickHandler = () => {
         VK.Auth.logout(() => this.props.changeIsAuthorized());
     };
 
     hideButtonClickHandler = () => {
-        this.setState({ collapsed: true });
+        this.setState({ collapsed: true, showInfo: false});
     };
 
     showButtonClickHandler = () => {
         this.setState({ collapsed: false });
     };
+
+    backButtonClickHandler = () => {
+        this.setState({ showInfo: false });
+    };
+
+    itemClickHandler = (item) => {
+        this.setState({ collapsed: false, showInfo: true, info: item});
+    };
+
+    getSidebarContent() {
+        let listTab = (
+            <>
+                { this.state.collapsed ?
+                    <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
+                        <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1"/>
+                    </Button> :
+                    <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
+                <ListView onItemClick={this.itemClickHandler}/>
+            </>
+        );
+        let infoTab = (
+            <>
+                <Button onClick={this.backButtonClickHandler} variant="sidebar-light" className="text-nowrap overflow-hidden">Back</Button>
+                <p className="text-nowrap overflow-hidden m-2">{this.state.info}</p>
+            </>
+        );
+        return this.state.showInfo ? infoTab : listTab;
+    }
 
     render() {
         return (
@@ -41,12 +69,7 @@ class Sidebar extends Component {
                         </Button>
                     </Card.Header>
                     <Card.Body className="d-flex flex-column p-0">
-                        {this.state.collapsed ?
-                            <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
-                                <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1"/>
-                            </Button> :
-                            <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
-                        <ListView />
+                        {this.getSidebarContent()}
                     </Card.Body>
                     <Card.Footer id="sidebar-footer" className="d-flex p-0" style={{borderRadius: 0}}>
                         <Button onClick={this.logoutButtonClickHandler} variant="sidebar-light" className="ml-auto">

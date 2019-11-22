@@ -45,3 +45,13 @@ html, body, #root {
 .vis-network {
   outline: 0;
 }
+
+.list-group-item {
+  border-radius: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+}
+
+.list-group-item:focus {
+  outline: 0;
+}
