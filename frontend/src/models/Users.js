@@ -15,7 +15,7 @@ async function addRootUser(id, graph) {
         friends_get(id).then(async (result) => {
             for (const item of result) {
                 addUser(item, graph);
-                await wait(100);
+                await wait(200);
             };
         });
     });
@@ -24,7 +24,7 @@ async function addRootUser(id, graph) {
 async function addUser(id, graph) {
     users_get(id).then((result) => {
         if (!users.some((element) => element.id == result.id))
-            graph.addNodes([result[0]])
+            graph.addNodes([createProfile(result[0])])
     });
 };
 
