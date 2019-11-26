@@ -13,21 +13,24 @@ async function addRootUser(id, graph) {
         users.push(profile);
         graph.addNodes([profile]);
         friends_get(id).then(async (result) => {
-                for (const item of result) {
-                    addUser(item, graph);
-                    await wait(100);
-                };
-            });
+            for (const item of result) {
+                addUser(item, graph);
+                await wait(100);
+            };
+        });
     });
 };
 
 async function addUser(id, graph) {
-    users_get(id).then((result) => { graph.addNodes([result[0]])});
+    users_get(id).then((result) => {
+        if (!users.some((element) => element.id == result.id))
+            graph.addNodes([result[0]])
+    });
 };
 
 function wait(ms) {
     return new Promise(r => setTimeout(r, ms));
-  }
+}
 
 
 export { users, relations, addUser, addRootUser };
