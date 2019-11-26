@@ -1,52 +1,27 @@
 import React, { Component } from 'react';
-import { Accordion, Card } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 
 class ListView extends Component {
 
     render() {
         return (
-            <Accordion defaultActiveKey="-1" className="text-nowrap mb-auto w-100">
-                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
-                    <Accordion.Toggle as={Card.Header} eventKey="0">
-                        Item #1
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body>Content #1</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
-                    <Accordion.Toggle as={Card.Header} eventKey="1">
-                        Item #2
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="1">
-                        <Card.Body>Content #2</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
-                    <Accordion.Toggle as={Card.Header} eventKey="2">
-                        Item #3
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="2">
-                        <Card.Body>Content #3</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
-                    <Accordion.Toggle as={Card.Header} eventKey="3">
-                        Item #4
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="3">
-                        <Card.Body>Content #4</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-                <Card className="border-right-0 border-left-0" style={{borderRadius: 0}}>
-                    <Accordion.Toggle as={Card.Header} eventKey="4">
-                        Item #5
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="4">
-                        <Card.Body>Content #5</Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
+            <ListGroup id="list-view" className="text-nowrap">
+                <ListGroup.Item action onClick={() => {this.props.onItemClick("Content #1")}}>
+                    Item #1
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={() => {this.props.onItemClick("Content #2")}}>
+                    Item #2
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={() => {this.props.onItemClick("Content #3")}}>
+                    Item #3
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={() => {this.props.onItemClick("Content #4")}}>
+                    Item #4
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={() => {this.props.onItemClick("Content #5")}}>
+                    Item #5
+                </ListGroup.Item>
+            </ListGroup>
         );
     }
 }
