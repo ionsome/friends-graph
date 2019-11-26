@@ -23,7 +23,7 @@ async function addRootUser(id, graph) {
 
 async function addUser(id, graph) {
     users_get(id).then((result) => {
-        if (!users.some((element) => element.id == result.id))
+        if (!users.some((element) => element === undefined || element.id == result.id))
             graph.addNodes([createProfile(result[0])])
     });
 };
