@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import GraphVis from "react-graph-vis";
-
-import FriendsApi from '../api/Friends'
-
+import {addRootUser} from '../models/Users'
 
 const nodes = [
     { id: 1, label: "Node 1", color: "#e04141" },
@@ -12,6 +10,17 @@ const nodes = [
     { id: 6, label: "Node 6", color: "#335ae0" },
     { id: 7, label: "Node 7", color: "#e05fda" },
     { id: 8, label: "Node 8", color: "#98c2e0" }
+];
+
+const edges = [
+    { from: 1, to: 2 },
+    { from: 1, to: 3 },
+    { from: 2, to: 4 },
+    { from: 2, to: 5 },
+    { from: 3, to: 4 },
+    { from: 3, to: 6 },
+    { from: 3, to: 7 },
+    { from: 4, to: 8 }
 ];
 
 const options = {
@@ -53,21 +62,14 @@ class FriendsGraph extends Component {
         this.state = {
             graphVis: {
                 nodes: nodes,
-                edges: [
-                    { from: 1, to: 2 },
-                    { from: 1, to: 3 },
-                    { from: 2, to: 4 },
-                    { from: 2, to: 5 },
-                    { from: 3, to: 4 },
-                    { from: 3, to: 6 },
-                    { from: 3, to: 7 },
-                    { from: 4, to: 8 }]
+                edges: edges,
             },
             events: events
         };
 
         this.initNetworkInstance = this.initNetworkInstance.bind(this);
         this.initNodesInstance = this.initNodesInstance.bind(this);
+        this.initEdgesInstance = this.initEdgesInstance.bind(this);
     }
 
     initNetworkInstance(networkInstance) {
@@ -78,16 +80,22 @@ class FriendsGraph extends Component {
         this.nodesIntance = nodesInstance;
     }
 
+    initEdgesInstance(edgesInstance) {
+        this.edgesInstance = edgesInstance;
+    }
+
     test_api() {
-        console.log(FriendsApi.friends_get(5));
-        const newCameraPosition = {
-            position: { x: Math.floor((Math.random() * 250)), y: Math.floor((Math.random() * 250)) },
-            scale: 0.85,
-            offset: { x: 0, y: 0 },
-            animation: { duration: 1000, easingFunction: "easeInOutQuad" }
-        };
-        this.networkIntance.moveTo(newCameraPosition);
-        this.nodesIntance.add([{ label: "Maxim" }]);
+        this.addNodes({ label: "Maxim" });
+        this.addEdges([{ from: 4, to: 6 }]);
+        addRootUser(7);
+    }
+
+    addNodes(nodes) {
+        this.nodesIntance.add(nodes);
+    }
+
+    addEdges(edges) {
+        this.edgesInstance.add(edges);   
     }
 
     render() {
@@ -98,10 +106,11 @@ class FriendsGraph extends Component {
                     options={options}
                     events={events}
                     getNetwork={this.initNetworkInstance}
-                    getNodes={this.initNodesInstance}/>
+                    getNodes={this.initNodesInstance}
+                    getEdges={this.initEdgesInstance} />
             </div>
         );
     }
 }
 
-export default FriendsGraph;
+export {FriendsGraph};
