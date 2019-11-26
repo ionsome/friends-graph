@@ -36,10 +36,25 @@ html, body, #root {
 
 #sidebar-header {
   background: $dark;
+  border-radius: 0;
+}
+
+#sidebar-body {
+  overflow-y: auto;
 }
 
 #sidebar-footer {
   background: $light;
+  border-radius: 0;
+}
+
+#list-view {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 
 .vis-network {
@@ -50,6 +65,16 @@ html, body, #root {
   border-radius: 0;
   border-right-width: 0;
   border-left-width: 0;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.list-group-item:last-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .list-group-item:focus {

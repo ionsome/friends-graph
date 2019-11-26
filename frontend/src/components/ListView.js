@@ -5,7 +5,7 @@ class ListView extends Component {
 
     render() {
         return (
-            <ListGroup className="text-nowrap overflow-hidden mb-auto w-100">
+            <ListGroup id="list-view" className="text-nowrap">
                 <ListGroup.Item action onClick={() => {this.props.onItemClick("Content #1")}}>
                     Item #1
                 </ListGroup.Item>

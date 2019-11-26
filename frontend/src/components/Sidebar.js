@@ -55,23 +55,31 @@ class Sidebar extends Component {
     }
 
     render() {
+        let header = (
+            <>
+                <Button onClick={this.showButtonClickHandler} variant="sidebar-dark" className="mr-2">
+                    <img  alt="show" src={logo} width="30" height="30"/>
+                </Button>
+                <h5 id="header-text" className="text-nowrap">Friends Graph</h5>
+                <div className="overflow-hidden ml-auto">
+                    <Button onClick={this.hideButtonClickHandler} variant="sidebar-dark">
+                        <img alt="hide" src={hide} width="30" height="30"/>
+                    </Button>
+                </div>
+            </>
+        );
+
         return (
             <div className="d-flex flex-fill vh-100">
                 <Card bg="light" className="border-left-0 border-top-0 border-bottom-0"
                       style={{width: this.state.collapsed ? hideWidth : showWidth, transition: "0.5s"}}>
-                    <Card.Header id="sidebar-header" className="d-flex p-0 overflow-hidden" style={{borderRadius: 0}}>
-                        <Button onClick={this.showButtonClickHandler} variant="sidebar-dark" className="mr-1">
-                            <img  alt="show" src={logo} width="30" height="30"/>
-                        </Button>
-                        <h5 id="header-text" className="text-nowrap">Friends Graph</h5>
-                        <Button onClick={this.hideButtonClickHandler} variant="sidebar-dark" className="ml-auto">
-                            <img alt="hide" src={hide} width="30" height="30" className="overflow-hidden"/>
-                        </Button>
+                    <Card.Header id="sidebar-header" className="d-flex p-0">
+                        {header}
                     </Card.Header>
-                    <Card.Body className="d-flex flex-column p-0">
+                    <Card.Body id="sidebar-body" className="d-flex flex-column p-0">
                         {this.getSidebarContent()}
                     </Card.Body>
-                    <Card.Footer id="sidebar-footer" className="d-flex p-0" style={{borderRadius: 0}}>
+                    <Card.Footer id="sidebar-footer" className="d-flex p-0">
                         <Button onClick={this.logoutButtonClickHandler} variant="sidebar-light" className="ml-auto">
                             <img alt="exit" src={exit} width="30" height="30"/>
                         </Button>
