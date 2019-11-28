@@ -63,10 +63,18 @@ async function addUserRelations(profile, graph, friends) {
     let user_ids = users.map(elem => elem.id);
     for (const friend_id of friends) {
         if (friend_id in user_ids) {
-            graph.addEdges([{ from: profile.id, to: friend_id }]);
+            let relation = { from: profile.id, to: friend_id };
+            if (isRelationPresent(relation)) {
+                relations.push(relation);
+                graph.addEdges([relation]);
+            }
         }
     }
 };
 
+function isRelationPresent(relation) {
+    for (const anotherRelation of relations)
+        return JSON.stringify(relation) === JSON.stringify(anotherRelation);
+}
 
 export { users, relations, createProfileById, addUser, addRootUser };
