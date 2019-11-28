@@ -30,7 +30,7 @@ async function addRootUser(id, graph) {
 }
 
 async function createProfileById(id) {
-    let data = await users_get(id);
+    let data = await users_get([id]);
     console.log(data);
     if (!users.some((element) => data === undefined || element.id === data.id)) {
         return createProfileByData(data);
