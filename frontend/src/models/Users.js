@@ -10,6 +10,8 @@ let relations = [];
 */
 async function addRootUser(id, graph) {
     let rootUser = await createProfileById(id);
+    console.log(id)
+    console.log(rootUser)
     addUser(rootUser, graph);
 
     let friends = await friends_get(id);
@@ -29,6 +31,7 @@ async function addRootUser(id, graph) {
 
 async function createProfileById(id) {
     let data = await users_get(id);
+    console.log(data);
     if (!users.some((element) => data === undefined || element.id === data.id)) {
         return createProfileByData(data);
     }
