@@ -53,8 +53,8 @@ function addUser(profile, graph) {
     уже добавлен в users
 */
 async function addUserRelations(profile, graph, friends) {
-    friends = friends || false;
-    if (!friends) {
+    friends = friends || [];
+    if (friends == []) {
         friends = await friends_get(profile.id, true);
     }
     else {
