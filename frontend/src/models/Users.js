@@ -68,7 +68,7 @@ async function addUserRelations(profile, graph, friends) {
     for (const friend_id of friends) {
         if (friend_id in user_ids) {
             let relation = { from: profile.id, to: friend_id };
-            if (isRelationPresent(relation)) {
+            if (!isRelationPresent(relation)) {
                 relations.push(relation);
                 graph.addEdges([relation]);
             }
