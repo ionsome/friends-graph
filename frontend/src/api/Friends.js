@@ -30,7 +30,7 @@ let friends_get = async (id, idsOnly) => {
     }
     let api_request = (resolve, reject) => {
         VK.api("friends.get", params,
-            (data) => resolve(data.response.items),
+            (data) => data.response ? resolve(data.response.items) : resolve([]),
             (rejected_resp) => reject(rejected_resp))
     };
     let result = await queue.delay(() => new Promise(api_request), 300)

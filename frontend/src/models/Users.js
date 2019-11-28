@@ -49,23 +49,16 @@ function addUser(profile, graph) {
     уже добавлен в users
 */
 async function addUserRelations(profile, graph, friends) {
-    console.log('addUserRelations:');
-    console.log(profile);
-    console.log(graph);
-    console.log(friends);
     friends = friends || false;
     if (!friends) {
-        try {
-            friends = await friends_get(profile.id, true);
-        }
-        catch {
-            console.log('hiddden profile:');
-            console.log(profile);
-            return;
-        }
+        friends = await friends_get(profile.id, true);
     }
     else {
         friends = friends.map(elem => elem.id);
+    }
+
+    if (friends) {
+        return;
     }
     let user_ids = users.map(elem => elem.id);
     for (const friend_id of friends) {
