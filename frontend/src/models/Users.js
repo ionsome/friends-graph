@@ -67,6 +67,8 @@ async function addUserRelations(profile, graph, friends) {
     let user_ids = users.map(elem => elem.id);
     console.log('user_ids:');
     console.log(user_ids);
+    console.log('friends:');
+    console.log(friends);
     for (const friend_id of friends) {
         if (friend_id in user_ids) {
             let relation = { from: profile.id, to: friend_id };
