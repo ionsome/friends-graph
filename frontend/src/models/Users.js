@@ -9,7 +9,7 @@ let relations = [];
     Добавляет пользователя и всех его друзей.
 */
 async function addRootUser(id, graph) {
-    let rootUser = createProfileById(id);
+    let rootUser = await createProfileById(id);
     addUser(rootUser, graph);
 
     let friends = await friends_get(id);
