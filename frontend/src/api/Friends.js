@@ -16,7 +16,7 @@ let users_get = async (list_ids) => {
             (rejected_resp) => reject(rejected_resp));
     }
 
-    let result = await queue.delay(() => new Promise(api_request), 300)
+    let result = await queue.delay(() => new Promise(api_request), 100)
     return result;
 };
 
@@ -33,7 +33,7 @@ let friends_get = async (id, idsOnly) => {
             (data) => data.response ? resolve(data.response.items) : resolve([]),
             (rejected_resp) => reject(rejected_resp))
     };
-    let result = await queue.delay(() => new Promise(api_request), 300)
+    let result = await queue.delay(() => new Promise(api_request), 100)
     return result;
 };
 
