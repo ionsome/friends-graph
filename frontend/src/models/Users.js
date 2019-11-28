@@ -13,11 +13,14 @@ async function addRootUser(id, graph) {
     addUser(rootUser, graph);
 
     let friends = await friends_get(id);
+    console.log('got friends:');
+    console.log(friends);
     for (const friend of friends) {
         let profile = createProfileByData(friend);
         addUser(profile, graph);
     };
-
+    console.log('userlist:');
+    console.log(users);
     await addUserRelations(rootUser, graph, friends);
     for (const friend of friends) {
         await addUserRelations(friend, graph);
@@ -46,8 +49,12 @@ function addUser(profile, graph) {
     уже добавлен в users
 */
 async function addUserRelations(profile, graph, friends) {
-    friends = friends || [];
-    if (friends) {
+    console.log('addUserRelations:');
+    console.log(profile);
+    console.log(graph);
+    console.log(friends);
+    friends = friends || false;
+    if (!friends) {
         friends = await friends_get(profile.id, true);
     }
     else {
