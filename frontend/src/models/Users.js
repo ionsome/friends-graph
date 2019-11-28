@@ -54,8 +54,6 @@ function addUser(profile, graph) {
 */
 async function addUserRelations(profile, graph, friends) {
     friends = friends || [];
-    console.log('friends before checks:');
-    console.log(friends);
     if (!friends.length) {
         friends = await friends_get(profile.id, true);
     }
@@ -67,20 +65,19 @@ async function addUserRelations(profile, graph, friends) {
         return;
     }
     let user_ids = users.map(elem => elem.id);
-    console.log('user_ids:');
-    console.log(user_ids);
-    console.log('friends:');
-    console.log(friends);
     for (const friend_id of friends) {
-        let relation = { from: profile.id, to: friend_id };
-        console.log(relation);
+        let relation = {}
+        if (profile.id > friend_id) {
+            relation = { from: profile.id, to: friend_id }
+        }
+        else {
+            relation = { from: friend_id, to: profile.id }
+        }
         if (friend_id in user_ids) {
             if (!isRelationPresent(relation)) {
+                console.log(relation);
                 relations.push(relation);
                 graph.addEdges([relation]);
-            }
-            else{
-                console.log('presents :(');
             }
         }
     }
