@@ -15,10 +15,10 @@ async function addRootUser(id, graph) {
     let friends = await friends_get(id);
     for (const friend of friends) {
         let profile = createProfileByData(friend);
-        addUser(profile);
+        addUser(profile, graph);
     };
 
-    await addUserRelations(rootUser, graph);
+    await addUserRelations(rootUser, graph, friends);
     for (const friend of friends) {
         await addUserRelations(friend, graph);
     };
@@ -43,17 +43,20 @@ function addUser(profile, graph) {
 
 /*
     Добавляет связи между текущим пользователем и теми, кто
-    уже добавлен в users.
+    уже добавлен в users
 */
 async function addUserRelations(profile, graph, friends) {
     friends = friends || [];
     if (friends) {
         friends = await friends_get(profile.id, true);
     }
+    else {
+        friends = friends.map(elem => elem.id);
+    }
     let user_ids = users.map(elem => elem.id);
     for (const friend_id of friends) {
         if (friend_id in user_ids) {
-            graph.addEdges([{from: profile.id, to: friend_id}]);
+            graph.addEdges([{ from: profile.id, to: friend_id }]);
         }
     }
 };

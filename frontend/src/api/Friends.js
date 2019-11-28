@@ -25,7 +25,7 @@ let users_get = async (list_ids) => {
 */
 let friends_get = async (id, idsOnly) => {
     let params = { "user_id": id, "v": API_VERSION, "fields": [] };
-    if (!idsOnly) {
+    if (idsOnly) {
         params['fields'].push('photo_100');
     }
     let api_request = (resolve, reject) => {
