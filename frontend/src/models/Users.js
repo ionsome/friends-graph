@@ -55,7 +55,14 @@ async function addUserRelations(profile, graph, friends) {
     console.log(friends);
     friends = friends || false;
     if (!friends) {
-        friends = await friends_get(profile.id, true);
+        try {
+            friends = await friends_get(profile.id, true);
+        }
+        catch {
+            console.log('hiddden profile:');
+            console.log(profile);
+            return;
+        }
     }
     else {
         friends = friends.map(elem => elem.id);
