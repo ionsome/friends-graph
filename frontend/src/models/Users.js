@@ -8,29 +8,23 @@ let relations = [];
 let createProfile = (container) => new Profile(container.id, container.first_name, container.last_name);
 
 async function addRootUser(id, graph) {
-    users_get(id).then((result) => {
-        let profile = createProfile(result[0]);
-        users.push(profile);
-        graph.addNodes([profile]);
-        friends_get(id).then(async (result) => {
-            for (const item of result) {
-                addUser(item, graph);
-                await wait(200);
-            };
-        });
-    });
-};
+    let root_user = await users_get(id);
+
+    let profile = createProfile(root_user[0]);
+    users.push(profile);
+    graph.addNodes([profile]);
+
+    let friends = await friends_get(id);
+    for (const friend of friends) {
+        await addUser(friend, graph);
+    };
+}
 
 async function addUser(id, graph) {
-    users_get(id).then((result) => {
-        if (!users.some((element) => result === undefined || element.id == result.id))
-            graph.addNodes([createProfile(result[0])])
-    });
+    let result = await users_get(id);
+    if (!users.some((element) => result === undefined || element.id === result.id))
+        graph.addNodes([createProfile(result[0])])
 };
-
-function wait(ms) {
-    return new Promise(r => setTimeout(r, ms));
-}
 
 
 export { users, relations, addUser, addRootUser };
