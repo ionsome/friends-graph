@@ -65,12 +65,18 @@ async function addUserRelations(profile, graph, friends) {
         return;
     }
     let user_ids = users.map(elem => elem.id);
+    print('user_ids:');
+    console.log(user_ids);
     for (const friend_id of friends) {
         if (friend_id in user_ids) {
             let relation = { from: profile.id, to: friend_id };
+            console.log(relation);
             if (!isRelationPresent(relation)) {
                 relations.push(relation);
                 graph.addEdges([relation]);
+            }
+            else{
+                console.log('presents :(');
             }
         }
     }
@@ -79,6 +85,7 @@ async function addUserRelations(profile, graph, friends) {
 function isRelationPresent(relation) {
     for (const anotherRelation of relations)
         return JSON.stringify(relation) === JSON.stringify(anotherRelation);
+    return false;
 }
 
 export { users, relations, createProfileById, addUser, addRootUser };
