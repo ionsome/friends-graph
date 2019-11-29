@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
-import {FriendsGraph} from "../components/FriendsGraph";
+import { FriendsGraph } from "../components/FriendsGraph";
 
 class MainPage extends Component {
 

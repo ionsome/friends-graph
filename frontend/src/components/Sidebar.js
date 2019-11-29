@@ -60,7 +60,7 @@ class Sidebar extends Component {
                 <Button onClick={this.showButtonClickHandler} variant="sidebar-dark" className="mr-2">
                     <img  alt="show" src={logo} width="30" height="30"/>
                 </Button>
-                <h5 id="header-text" className="text-nowrap">Friends Graph</h5>
+                <h5 id="header-text" className="overflow-hidden text-nowrap">Friends Graph</h5>
                 <div className="overflow-hidden ml-auto">
                     <Button onClick={this.hideButtonClickHandler} variant="sidebar-dark">
                         <img alt="hide" src={hide} width="30" height="30"/>
