@@ -65,15 +65,20 @@ async function addUserRelations(profile, graph, friends) {
         return;
     }
     let user_ids = users.map(elem => elem.id);
-
     let new_relations =
         friends
             .filter(n => user_ids.indexOf(n) > -1)
             .map(n => profile.id < n ? { from: profile.id, to: n } : { from: n, to: profile.id })
             .filter(rel => !isRelationPresent(rel));
-
+    
+    console.log("****");
+    console.log(friends);
+    console.log(users)
+    console.log(new_relations)
+    console.log("****");
     relations = relations.concat(new_relations);
     graph.addEdges(new_relations);
+    console.log('added');
 };
 
 function isRelationPresent(relation) {
