@@ -63,21 +63,12 @@ async function addUserRelations(profile, graph, friends) {
         return;
     }
     let user_ids = users.map(elem => elem.id);
-    console.log('amount of rels before:');
-    console.log(relations);
-    console.log(relations.length);
     let new_relations =
         friends
             .filter(n => user_ids.indexOf(n) > -1)
             .map(n => profile.id < n ? { from: profile.id, to: n } : { from: n, to: profile.id })
             .filter(rel => !isRelationPresent(rel));
-    console.log('new rels:')
-    console.log(new_relations);
-    console.log(new_relations.length);
     relations = relations.concat(new_relations);
-    console.log('result:')
-    console.log(relations);
-    console.log(relations.length);
     graph.addEdges(new_relations);
 }
 
