@@ -78,7 +78,7 @@ class FriendsGraph extends Component {
     test_api() {
         this.addNodes({ label: "Maxim" });
         this.addEdges([{ from: 4, to: 6 }]);
-        addRootUser(7, this);
+        addRootUser(97992816, this);
     }
 
     addNodes(nodes) {
