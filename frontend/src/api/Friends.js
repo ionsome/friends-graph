@@ -9,7 +9,7 @@ const API_VERSION = "5.73"
 */
 let users_get = async (list_ids) => {
     let api_request = (resolve, reject) => {
-        VK.api("users.get", { "user_ids": list_ids, "v": API_VERSION },
+        VK.api("users.get", { "user_ids": list_ids, "v": API_VERSION, 'fields': ['photo_200'] },
             function (data) {
                 resolve(data.response);
             },
