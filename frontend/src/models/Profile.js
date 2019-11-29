@@ -3,7 +3,7 @@ class Profile {
         this.id = id;
         this.label = `${first_name} ${last_name}`;
         this.color = '';
-        this.image = image;
+        this.image = '';
         this.isRoot = false;
     }
 }

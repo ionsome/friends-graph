@@ -23,7 +23,7 @@ const options = {
     nodes: {
         shape: 'circularImage',
         label: 'useImageSize',
-        brokenImage: 'https://vk.com/images/camera_200.png?ava=1'
+        brokenImage: 'https://vk.com/images/camera_200.png?ava=1',
     },
     edges: {
         color: "#000000",
