@@ -68,14 +68,16 @@ async function addUserRelations(profile, graph, friends) {
             .filter(n => user_ids.indexOf(n) > -1)
             .map(n => profile.id < n ? { from: profile.id, to: n } : { from: n, to: profile.id })
             .filter(rel => !isRelationPresent(rel));
-    
+
     relations = relations.concat(new_relations);
     graph.addEdges(new_relations);
 }
 
 function isRelationPresent(relation) {
     for (const anotherRelation of relations)
-        return JSON.stringify(relation) === JSON.stringify(anotherRelation);
+        if (JSON.stringify(relation) === JSON.stringify(anotherRelation)) {
+            return true;
+        }
     return false;
 }
 
