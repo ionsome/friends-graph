@@ -38,7 +38,7 @@ async function createProfileById(id) {
 };
 
 function createProfileByData(data) {
-    return new Profile(data.id, data.first_name, data.last_name);
+    return new Profile(data.id, data.first_name, data.last_name, data.photo_200);
 }
 
 

@@ -3,9 +3,9 @@ import GraphVis from "react-graph-vis";
 import {addRootUser} from '../models/Users'
 
 const nodes = [
-    { id: 1, label: "Node 1", color: "#e04141" },
-    { id: 2, label: "Node 2", color: "#e09c41" },
-    { id: 3, label: "Node 3", color: "#e0df41" },
+    { id: 1, label: "Node 1", image: '' },
+    { id: 2, label: "Node 2", image: '' },
+    { id: 3, label: "Node 3", image: '' },
 ];
 
 const edges = [
@@ -21,7 +21,9 @@ const options = {
         hierarchical: false
     },
     nodes: {
-        shape: "dot"
+        shape: 'circularImage',
+        label: 'useImageSize',
+        brokenImage: 'https://vk.com/images/camera_200.png?ava=1'
     },
     edges: {
         color: "#000000",
@@ -76,7 +78,7 @@ class FriendsGraph extends Component {
     }
 
     test_api() {
-        this.addNodes({ label: "Maxim" });
+        this.addNodes({ label: "Maxim", image:'https://sun1-28.userapi.com/c850424/v850424298/65692/uCP5eFwQCBI.jpg?ava=2'});
         this.addEdges([{ from: 4, to: 6 }]);
         addRootUser(97992816, this);
     }
