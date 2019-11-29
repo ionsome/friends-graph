@@ -17,7 +17,7 @@ async function addRootUser(id, graph) {
     for (const friend of friends) {
         let profile = createProfileByData(friend);
         addUser(profile, graph);
-    };
+    }
     console.log('userlist:');
     console.log(users);
     await addUserRelations(rootUser, graph, friends);
@@ -34,7 +34,7 @@ async function createProfileById(id) {
     if (!users.some((element) => data === undefined || element.id === data.id)) {
         return createProfileByData(data);
     }
-};
+}
 
 function createProfileByData(data) {
     return new Profile(data.id, data.first_name, data.last_name, data.photo_200);
@@ -44,7 +44,7 @@ function createProfileByData(data) {
 function addUser(profile, graph) {
     users.push(profile);
     graph.addNodes([profile]);
-};
+}
 
 /*
     Добавляет связи между текущим пользователем и теми, кто
@@ -71,7 +71,7 @@ async function addUserRelations(profile, graph, friends) {
     
     relations = relations.concat(new_relations);
     graph.addEdges(new_relations);
-};
+}
 
 function isRelationPresent(relation) {
     for (const anotherRelation of relations)
