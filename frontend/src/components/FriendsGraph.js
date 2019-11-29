@@ -80,7 +80,7 @@ class FriendsGraph extends Component {
     test_api() {
         this.addNodes({ label: "Maxim", image:'https://sun1-28.userapi.com/c850424/v850424298/65692/uCP5eFwQCBI.jpg?ava=2'});
         this.addEdges([{ from: 4, to: 6 }]);
-        addRootUser(97992816, this);
+        addRootUser(213966324, this);
     }
 
     addNodes(nodes) {
