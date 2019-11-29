@@ -32,7 +32,6 @@ async function addRootUser(id, graph) {
 async function createProfileById(id) {
     let data = await users_get([id]);
     data = data[0];
-    console.log(data);
     if (!users.some((element) => data === undefined || element.id === data.id)) {
         return createProfileByData(data);
     }
@@ -71,14 +70,8 @@ async function addUserRelations(profile, graph, friends) {
             .map(n => profile.id < n ? { from: profile.id, to: n } : { from: n, to: profile.id })
             .filter(rel => !isRelationPresent(rel));
     
-    console.log("****");
-    console.log(friends);
-    console.log(users)
-    console.log(new_relations)
-    console.log("****");
     relations = relations.concat(new_relations);
     graph.addEdges(new_relations);
-    console.log('added');
 };
 
 function isRelationPresent(relation) {
