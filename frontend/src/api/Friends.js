@@ -1,7 +1,7 @@
 const queue = require("async-delay-queue");
 const VK = window.VK;
 
-const API_VERSION = "5.73"
+const API_VERSION = "5.73";
 
 
 /*
@@ -14,10 +14,9 @@ let users_get = async (list_ids) => {
                 resolve(data.response);
             },
             (rejected_resp) => reject(rejected_resp));
-    }
+    };
 
-    let result = await queue.delay(() => new Promise(api_request), 100)
-    return result;
+    return await queue.delay(() => new Promise(api_request), 100);
 };
 
 /*
@@ -33,8 +32,7 @@ let friends_get = async (id, idsOnly) => {
             (data) => data.response ? resolve(data.response.items) : resolve([]),
             (rejected_resp) => reject(rejected_resp))
     };
-    let result = await queue.delay(() => new Promise(api_request), 100)
-    return result;
+    return await queue.delay(() => new Promise(api_request), 100);
 };
 
 export { users_get, friends_get };
