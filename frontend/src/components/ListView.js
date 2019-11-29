@@ -12,9 +12,9 @@ class ListView extends Component {
                 {users.map((card) => {
                     return (
                         <ListGroup.Item>
-                            <Button onClick={() => { this.props.onItemClick("Content " + card.id); }} variant="sidebar-light" className="text-left w-100">
+                            <Button onClick={() => { this.props.onItemClick("id " + card.id); }} variant="sidebar-light" className="text-left w-100">
                                 <img alt="" src={defaultAvatar} width="30" height="30" className="avatar mr-4" />
-                                Item #{card.label}
+                                {card.label}
                             </Button>
                         </ListGroup.Item>
                     );
