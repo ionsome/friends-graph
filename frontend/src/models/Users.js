@@ -61,7 +61,7 @@ async function addUserRelations(profile, graph, friends) {
         friends = friends.map(elem => elem.id);
     }
 
-    if (friends.length) {
+    if (!friends.length) {
         return;
     }
     let user_ids = users.map(elem => elem.id);
