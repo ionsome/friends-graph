@@ -10,13 +10,10 @@ let relations = [];
 */
 async function addRootUser(id, graph) {
     let rootUser = await createProfileById(id);
-    console.log(id)
-    console.log(rootUser)
     addUser(rootUser, graph);
 
     let friends = await friends_get(id);
-    console.log('got friends:');
-    console.log(friends);
+
     for (const friend of friends) {
         let profile = createProfileByData(friend);
         addUser(profile, graph);
@@ -27,6 +24,8 @@ async function addRootUser(id, graph) {
     for (const friend of friends) {
         await addUserRelations(friend, graph);
     };
+    console.log('rels:');
+    console.log(relations);
 }
 
 async function createProfileById(id) {
