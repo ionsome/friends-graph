@@ -83,7 +83,8 @@ async function addUserRelations(profile, graph, friends) {
 
 function isRelationPresent(relation) {
     for (const anotherRelation of relations)
-        if (JSON.stringify(relation) === JSON.stringify(anotherRelation)) {
+        if (relation.from === anotherRelation.from &&
+            relation.to === anotherRelation.to) {
             return true;
         }
     return false;
