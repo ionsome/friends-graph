@@ -13,7 +13,7 @@ class ListView extends Component {
                     return (
                         <ListGroup.Item>
                             <Button onClick={() => { this.props.onItemClick("id " + card.id); }} variant="sidebar-light" className="text-left w-100">
-                                <img alt="" src={defaultAvatar} width="30" height="30" className="avatar mr-4" />
+                                <img alt="" src={card.image ? card.image : defaultAvatar} width="30" height="30" className="avatar mr-4" />
                                 {card.label}
                             </Button>
                         </ListGroup.Item>
