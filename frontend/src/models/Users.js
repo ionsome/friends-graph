@@ -75,7 +75,11 @@ async function connectFriends(friends, graph) {
         let respond = vkscript_execute(`return [${usersPayload}];`);
         console.log(respond);
         for (let n = 0; n < respond.length; n++) {
-            await addUserRelations(friends[index + n], graph, respond[n].rels.items);
+            let relations = respond[n].rels;
+            console.log(`${n}-th`);
+            console.log(relations);
+            if (relations)
+                await addUserRelations(friends[index + n], graph, relations.items);
         }
     }
 }
