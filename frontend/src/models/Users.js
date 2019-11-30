@@ -37,7 +37,7 @@ async function changeToRoot(rootUser, graph) {
     console.log('userlist:');
     console.log(users);
     await addUserRelations(rootUser, graph, friends);
-    await connectFriends(friends);
+    await connectFriends(friends, graph);
     console.log('rels:');
     console.log(relations);
 }
