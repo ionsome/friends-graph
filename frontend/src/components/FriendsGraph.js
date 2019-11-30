@@ -55,6 +55,14 @@ const events = {
         console.log("Selected edges:");
         console.log(edges);
     },
+    doubleClick: function (event) {
+        let { nodes } = event;
+        console.log("Doubleclick");
+        console.log(nodes);
+        if (nodes) {
+            addRootUser(nodes[0], this);
+        }
+    }
 };
 
 class FriendsGraph extends Component {
@@ -95,7 +103,7 @@ class FriendsGraph extends Component {
     }
 
     addEdges(edges) {
-        this.edgesInstance.add(edges);   
+        this.edgesInstance.add(edges);
     }
 
     render() {
@@ -113,4 +121,4 @@ class FriendsGraph extends Component {
     }
 }
 
-export {FriendsGraph};
+export { FriendsGraph };
