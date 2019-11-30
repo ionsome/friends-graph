@@ -26,7 +26,7 @@ const options = {
         brokenImage: 'https://vk.com/images/camera_200.png?ava=1',
     },
     edges: {
-        color: "#000000",
+        color: "#9b9b9b",
         arrows: {
             to: {
                 enabled: false
