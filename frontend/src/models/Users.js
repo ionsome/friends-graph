@@ -36,7 +36,7 @@ async function changeToRoot(rootUser, graph) {
     }
     console.log('userlist:');
     console.log(users);
-    await addUserRelations(rootUser, graph, friends);
+    await addUserRelationsWithProfiles(rootUser, graph, friends);
     await connectFriends(friends, graph);
     console.log('rels:');
     console.log(relations);
@@ -76,30 +76,26 @@ async function connectFriends(friends, graph) {
         console.log(respond);
         for (let n = 0; n < respond.length; n++) {
             let relations = respond[n].rels;
-            console.log(`${n}-th`);
-            console.log(relations);
             if (relations)
-                await addUserRelations(friends[index + n], graph, relations.items);
+                await addUserRelationsWithIds(friends[index + n], graph, relations.items);
         }
     }
 }
 
+
 /*
     Добавляет связи между текущим пользователем и теми, кто
-    уже добавлен в users
+    уже добавлен в users.
+
+    Также, можно передать список id друзей через параметр friends. 
 */
 async function addUserRelations(profile, graph, friends) {
     friends = friends || [];
     if (!friends.length) {
         friends = await friends_get(profile.id, true);
-    }
-    else {
-        friends = friends.map(elem => elem.id);
+        if (!friends.length) return;
     }
 
-    if (!friends.length) {
-        return;
-    }
     let user_ids = users.map(elem => elem.id);
     let new_relations =
         friends
@@ -108,6 +104,25 @@ async function addUserRelations(profile, graph, friends) {
             .filter(rel => !isRelationPresent(rel));
     relations = relations.concat(new_relations);
     graph.addEdges(new_relations);
+}
+
+/*
+    Тоже, что и addUserRelations, но параметр friends принимает профили.
+*/
+async function addUserRelationsWithProfiles(profile, graph, friends) {
+    friends = friends || [];
+    if (!friends.length) {
+        friends = friends.map(elem => elem.id);
+    }
+    await addUserRelations(profile, graph, friends);
+}
+
+
+/*
+    Тоже, что и addUserRelations.
+*/
+async function addUserRelationsWithIds(profile, graph, friends) {
+    await addUserRelations(profile, graph, friends)
 }
 
 function isRelationPresent(relation) {
