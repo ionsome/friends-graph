@@ -1,5 +1,5 @@
 import { Profile } from './Profile'
-import { users_get, friends_get } from '../api/Friends';
+import { users_get, friends_get, vkscript_execute } from '../api/Friends';
 
 
 let users = [];
@@ -37,9 +37,7 @@ async function changeToRoot(rootUser, graph) {
     console.log('userlist:');
     console.log(users);
     await addUserRelations(rootUser, graph, friends);
-    for (const friend of friends) {
-        await addUserRelations(friend, graph);
-    }
+    await connectFriends(friends);
     console.log('rels:');
     console.log(relations);
 }
@@ -61,6 +59,23 @@ function addUser(profile, graph) {
     if (!isUserPresentWithId(profile.id)) {
         users.push(profile);
         graph.addNodes([profile]);
+    }
+}
+
+/*
+    Соединяет друзей между собой и добавленными юзерами 
+*/
+async function connectFriends(friends, graph) {
+    for (let index = 0; index < friends.length; index += 25) {
+        let lastIndex = Math.min(friends.length, index + 25);
+        let requestedUsers = friends.slice(index, lastIndex);
+        let usersPayload = requestedUsers
+            .map(elem => { return `{id: ${elem.id},rels: API.friends.get({user_id: ${elem.id}})}` });
+
+        let respond = vkscript_execute(`return [${usersPayload}];`);
+        for (let n = 0; n < respond.length; n++) {
+            await addUserRelations(friends[index + n], graph, respond[n].rels);
+        }
     }
 }
 

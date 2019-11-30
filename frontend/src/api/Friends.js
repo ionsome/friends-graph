@@ -35,4 +35,15 @@ let friends_get = async (id, idsOnly) => {
     return await queue.delay(() => new Promise(api_request), 100);
 };
 
-export { users_get, friends_get };
+
+let vkscript_execute = async (code) => {
+    let params = { "v": API_VERSION, "code": code };
+    let api_request = (resolve, reject) => {
+        VK.api("execute", params,
+            (data) => data.response ? resolve(data.response) : resolve([]),
+            (rejected_resp) => reject(rejected_resp))
+    };
+    return await queue.delay(() => new Promise(api_request), 100);
+};
+
+export { users_get, friends_get, vkscript_execute };
