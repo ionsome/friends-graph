@@ -26,7 +26,13 @@ const options = {
         brokenImage: 'https://vk.com/images/camera_200.png?ava=1',
     },
     edges: {
-        color: "#9b9b9b",
+        color: {
+            color: "#9b9b9b",
+            highlight: "#00b2ff",
+            hover: "#00b2ff"
+        },
+        hoverWidth: 2,
+        selectionWidth: 2,
         arrows: {
             to: {
                 enabled: false
