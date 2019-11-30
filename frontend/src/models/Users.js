@@ -6,13 +6,29 @@ let users = [];
 let relations = [];
 
 /*
-    Добавляет пользователя и всех его друзей.
+    Добавляет рутового юзера
 */
 async function addRootUser(id, graph) {
-    let rootUser = await createProfileById(id);
-    addUser(rootUser, graph);
+    let user = isUserPresentWithId(id);
+    if (!user) {
+        user = await createProfileById(id);
+        addUser(user, graph);
+    }
 
-    let friends = await friends_get(id);
+    changeToRoot(user, graph);
+}
+
+/*
+    Меняет тип юзера на рутовый и добавляет всех его друзей
+*/
+async function changeToRoot(rootUser, graph) {
+    // Проверка, если юзер уже рутовый
+    if (rootUser.root) {
+        return;
+    }
+    rootUser.root = true;
+
+    let friends = await friends_get(rootUser.id);
 
     for (const friend of friends) {
         let profile = createProfileByData(friend);
@@ -42,8 +58,10 @@ function createProfileByData(data) {
 
 
 function addUser(profile, graph) {
-    users.push(profile);
-    graph.addNodes([profile]);
+    if (!isUserPresentWithId(profile.id)) {
+        users.push(profile);
+        graph.addNodes([profile]);
+    }
 }
 
 /*
@@ -77,6 +95,18 @@ function isRelationPresent(relation) {
         if (relation.from === anotherRelation.from &&
             relation.to === anotherRelation.to) {
             return true;
+        }
+    return false;
+}
+
+/*
+    Возвращает профиль юзера, если
+    соответствующий был найден
+*/
+function isUserPresentWithId(userId) {
+    for (const anotherUser of users)
+        if (userId === anotherUser.id) {
+            return anotherUser;
         }
     return false;
 }

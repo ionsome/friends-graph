@@ -22,7 +22,7 @@ class ListView extends Component {
                 }
                 {[1,2,3,4,5].map((card) => {
                     return (
-                        <ListGroup.Item>
+                        <ListGroup.Item key={card}>
                             <Button onClick={() => { this.props.onItemClick("Content " + card); }} variant="sidebar-light" className="text-left w-100">
                                 <img alt="" src={defaultAvatar} width="30" height="30" className="avatar mr-4" />
                                 Item #{card}
