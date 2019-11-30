@@ -24,6 +24,11 @@ const options = {
         shape: 'circularImage',
         label: 'useImageSize',
         brokenImage: 'https://vk.com/images/camera_200.png?ava=1',
+        color: {
+            border: "#9b9b9b",
+            highlight: "#00b2ff",
+            hover: "#00b2ff"
+        }
     },
     edges: {
         color: {
@@ -79,7 +84,7 @@ class FriendsGraph extends Component {
                     }
                 }
             }
-        }
+        };
 
         this.initNetworkInstance = this.initNetworkInstance.bind(this);
         this.initNodesInstance = this.initNodesInstance.bind(this);
