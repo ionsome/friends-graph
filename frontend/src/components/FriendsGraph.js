@@ -48,21 +48,7 @@ const options = {
 };
 
 const events = {
-    select: function (event) {
-        let { nodes, edges } = event;
-        console.log("Selected nodes:");
-        console.log(nodes);
-        console.log("Selected edges:");
-        console.log(edges);
-    },
-    doubleClick: function (event) {
-        let { nodes } = event;
-        console.log("Doubleclick");
-        console.log(nodes);
-        if (nodes) {
-            addRootUser(nodes[0], this);
-        }
-    }
+
 };
 
 class FriendsGraph extends Component {
@@ -74,8 +60,24 @@ class FriendsGraph extends Component {
                 nodes: nodes,
                 edges: edges,
             },
-            events: events
-        };
+            events: {
+                select: (event) => {
+                    let { nodes, edges } = event;
+                    console.log("Selected nodes:");
+                    console.log(nodes);
+                    console.log("Selected edges:");
+                    console.log(edges);
+                },
+                doubleClick: (event) => {
+                    let { nodes } = event;
+                    console.log("Doubleclick");
+                    console.log(nodes);
+                    if (nodes) {
+                        addRootUser(nodes[0], this);
+                    }
+                }
+            }
+        }
 
         this.initNetworkInstance = this.initNetworkInstance.bind(this);
         this.initNodesInstance = this.initNodesInstance.bind(this);
