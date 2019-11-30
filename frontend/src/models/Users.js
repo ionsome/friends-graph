@@ -72,7 +72,7 @@ async function connectFriends(friends, graph) {
         let usersPayload = requestedUsers
             .map(elem => { return `{id: ${elem.id},rels: API.friends.get({user_id: ${elem.id}})}` });
 
-        let respond = vkscript_execute(`return [${usersPayload}];`);
+        let respond = await vkscript_execute(`return [${usersPayload}];`);
         console.log(respond);
         for (let n = 0; n < respond.length; n++) {
             let relations = respond[n].rels;
