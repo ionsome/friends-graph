@@ -65,7 +65,7 @@ function addUser(profile, graph) {
 /*
     Соединяет друзей между собой и добавленными юзерами 
 */
-async function connectFriends(friends) {
+async function connectFriends(friends, graph) {
     for (let index = 0; index < friends.length; index += 25) {
         let lastIndex = Math.min(friends.length, index + 25);
         let requestedUsers = friends.slice(index, lastIndex);

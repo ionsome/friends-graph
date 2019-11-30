@@ -35,21 +35,6 @@ let friends_get = async (id, idsOnly) => {
     return await queue.delay(() => new Promise(api_request), 100);
 };
 
-/*
-    Возвращает друзей пользователя
-*/
-let friends_get = async (id, idsOnly) => {
-    let params = { "user_id": id, "v": API_VERSION, "fields": [] };
-    if (!idsOnly) {
-        params['fields'].push('photo_200');
-    }
-    let api_request = (resolve, reject) => {
-        VK.api("friends.get", params,
-            (data) => data.response ? resolve(data.response.items) : resolve([]),
-            (rejected_resp) => reject(rejected_resp))
-    };
-    return await queue.delay(() => new Promise(api_request), 100);
-};
 
 let vkscript_execute = async (code) => {
     let params = { "v": API_VERSION, "code": code };
