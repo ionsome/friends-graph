@@ -39,7 +39,7 @@ async function changeToRoot(rootUser, graph) {
     await addUserRelations(rootUser, graph, friends);
     for (const friend of friends) {
         await addUserRelations(friend, graph);
-    };
+    }
     console.log('rels:');
     console.log(relations);
 }
