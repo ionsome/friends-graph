@@ -47,10 +47,6 @@ const options = {
     }
 };
 
-const events = {
-
-};
-
 class FriendsGraph extends Component {
 
     constructor(props) {
@@ -114,7 +110,7 @@ class FriendsGraph extends Component {
                 <button className="float-right" onClick={this.test_api.bind(this)}>test</button>
                 <GraphVis graph={this.state.graphVis}
                     options={options}
-                    events={events}
+                    events={this.state.events}
                     getNetwork={this.initNetworkInstance}
                     getNodes={this.initNodesInstance}
                     getEdges={this.initEdgesInstance} />
