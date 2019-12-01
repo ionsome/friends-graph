@@ -111,7 +111,7 @@ async function addUserRelations(profile, graph, friends) {
 */
 async function addUserRelationsWithProfiles(profile, graph, friends) {
     friends = friends || [];
-    if (!friends.length) {
+    if (friends.length) {
         friends = friends.map(elem => elem.id);
     }
     await addUserRelations(profile, graph, friends);
