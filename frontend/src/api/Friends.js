@@ -2,7 +2,13 @@ const queue = require("async-delay-queue");
 const VK = window.VK;
 
 const API_VERSION = "5.73";
+const DELAY = 1000 / 20; // 20 запросов в секунду 
 
+
+
+let async_queque_fetch = async (api_request) => {
+    return await queue.delay(() => new Promise(api_request), DELAY);
+}
 
 /*
     Возвращает списком данных пользователей по списку id
@@ -16,7 +22,7 @@ let users_get = async (list_ids) => {
             (rejected_resp) => reject(rejected_resp));
     };
 
-    return await queue.delay(() => new Promise(api_request), 100);
+    return await async_queque_fetch(api_request);
 };
 
 /*
@@ -32,7 +38,8 @@ let friends_get = async (id, idsOnly) => {
             (data) => data.response ? resolve(data.response.items) : resolve([]),
             (rejected_resp) => reject(rejected_resp))
     };
-    return await queue.delay(() => new Promise(api_request), 100);
+
+    return await async_queque_fetch(api_request);
 };
 
 
@@ -43,7 +50,8 @@ let vkscript_execute = async (code) => {
             (data) => data.response ? resolve(data.response) : resolve([]),
             (rejected_resp) => reject(rejected_resp))
     };
-    return await queue.delay(() => new Promise(api_request), 100);
+
+    return await async_queque_fetch(api_request);
 };
 
 export { users_get, friends_get, vkscript_execute };
