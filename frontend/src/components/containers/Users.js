@@ -1,6 +1,5 @@
-import { Profile } from './Profile'
-import { users_get, friends_get, vkscript_execute } from '../api/Friends';
-
+import { Profile } from '../../models/Profile'
+import { users_get, friends_get, vkscript_execute } from '../../api/Friends';
 
 let users = [];
 let relations = [];

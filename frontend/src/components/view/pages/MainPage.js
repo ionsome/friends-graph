@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Sidebar } from "../Sidebar";
 import { FriendsGraph as Graph } from "../Graph";
+import { users } from '../../containers/Users';
 
 class MainPage extends Component {
 
@@ -9,7 +10,7 @@ class MainPage extends Component {
         return (
             <div className="main d-flex">
                 <Graph />
-                <Sidebar changeIsAuthorized={this.props.changeIsAuthorized} />
+                <Sidebar userList={ users } changeIsAuthorized={this.props.changeIsAuthorized} />
             </div>
         );
     }

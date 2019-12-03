@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Button, ListGroup } from "react-bootstrap";
-import defaultAvatar from "../../res/default-avatar.png";
+import defaultAvatar from "../../../res/default-avatar.png";
 
 class ListView extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             items: props.items
         };
@@ -20,6 +19,11 @@ class ListView extends Component {
                 </Button>
             </ListGroup.Item>
         );
+    }
+
+
+    static getDerivedStateFromProps(props, state) {
+        return { items: props.items };
     }
 
     render() {

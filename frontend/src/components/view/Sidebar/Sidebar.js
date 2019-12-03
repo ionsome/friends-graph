@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card, FormControl } from "react-bootstrap";
-import { users } from '../../models/Users';
 import ListView from "./ListView";
-import exit from "../../res/exit.svg"
-import logo from "../../res/logo.svg";
-import hide from "../../res/hide.svg";
-import search from "../../res/search.svg"
+import exit from "../../../res/exit.svg"
+import logo from "../../../res/logo.svg";
+import hide from "../../../res/hide.svg";
+import search from "../../../res/search.svg";
 
 
 const VK = window.VK;
@@ -14,7 +13,15 @@ const showWidth = 280;
 const hideWidth = 57;
 
 class Sidebar extends Component {
-    state = { collapsed: true, showInfo: false };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            collapsed: true,
+            showInfo: false,
+            userList: this.props.userList
+        }
+    }
 
     logoutButtonClickHandler = () => {
         VK.Auth.logout(() => this.props.changeIsAuthorized());
@@ -44,7 +51,7 @@ class Sidebar extends Component {
                         <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1" />
                     </Button> :
                     <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />}
-                <ListView onItemClick={this.itemClickHandler} items={users.filter(user => user.root)} />
+                <ListView onItemClick={this.itemClickHandler} items={this.state.userList.filter(user => user.root)} />
             </>
         );
         let infoTab = (

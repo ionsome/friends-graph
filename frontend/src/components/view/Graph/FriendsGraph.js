@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GraphVis from "react-graph-vis";
-import { addRootUser } from '../../models/Users';
+import { addRootUser, users } from '../../containers/Users';
 
 const nodes = [
     { id: 1, label: "Node 1", image: '' },
@@ -105,6 +105,13 @@ class FriendsGraph extends Component {
 
     test_api() {
         addRootUser(213966324, this);
+        users.push({
+            "id": 160347025,
+            "label": "Стас Швецов",
+            "color": "",
+            "image": "https://sun9-64.userapi.com/c857236/v857236044/5ad11/s8rKweGF8GU.jpg?ava=1",
+            "root": true
+        });
     }
 
     addNodes(nodes) {
