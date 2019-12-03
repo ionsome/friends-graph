@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import GraphVis from "react-graph-vis";
-import { addRootUser, users } from '../../containers/Users';
 
 const nodes = [
     { id: 1, label: "Node 1", image: '' },
@@ -61,6 +60,7 @@ const options = {
 class FriendsGraph extends Component {
 
     constructor(props) {
+        console.log(props);
         super(props);
         this.state = {
             graphVis: {
@@ -80,7 +80,7 @@ class FriendsGraph extends Component {
                     console.log("Doubleclick");
                     console.log(nodes);
                     if (nodes) {
-                        addRootUser(nodes[0], this);
+                        this.props.addRootUser(nodes[0], this);
                     }
                 }
             }
@@ -104,7 +104,7 @@ class FriendsGraph extends Component {
     }
 
     test_api() {
-        addRootUser(213966324, this);
+        this.props.addRootUser(213966324, this);
     }
 
     addNodes(nodes) {

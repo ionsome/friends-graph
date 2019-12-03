@@ -63,6 +63,11 @@ class Sidebar extends Component {
         return this.state.showInfo ? infoTab : listTab;
     }
 
+
+    static getDerivedStateFromProps(props, state) {
+        return { userList: props.userList };
+    }
+
     render() {
         let header = (
             <>
