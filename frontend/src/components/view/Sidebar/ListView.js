@@ -21,7 +21,6 @@ class ListView extends Component {
         );
     }
 
-
     static getDerivedStateFromProps(props, state) {
         return { items: props.items };
     }
