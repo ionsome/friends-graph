@@ -153,7 +153,7 @@ class Userable extends Component {
     }
 
     render() {
-        return this.props.children(this.state.users, this.addRootUser.bind(this), this.addUser.bind(this));
+        return this.props.children(this.state.users, this.addRootUser.bind(this));
     }
 
 }
