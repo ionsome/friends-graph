@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Card, FormControl } from "react-bootstrap";
+import { users } from '../models/Users';
 import ListView from "./ListView";
 import exit from "../res/exit.svg"
 import logo from "../res/logo.svg";
 import hide from "../res/hide.svg";
 import search from "../res/search.svg"
+
 
 const VK = window.VK;
 
@@ -42,7 +44,7 @@ class Sidebar extends Component {
                         <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1"/>
                     </Button> :
                     <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search"/> }
-                <ListView onItemClick={this.itemClickHandler}/>
+                <ListView onItemClick={this.itemClickHandler} items={users.filter(user => user.root)}/>
             </>
         );
         let infoTab = (
