@@ -60,7 +60,6 @@ const options = {
 class FriendsGraph extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {
             graphVis: {

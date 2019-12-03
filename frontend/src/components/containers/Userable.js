@@ -42,7 +42,7 @@ class Userable extends Component {
             this.addUser(profile, graph);
         }
         console.log('userlist:');
-        console.log(this.stateusers);
+        console.log(this.state.users);
         await this.addUserRelationsWithProfiles(rootUser, graph, friends);
         await this.connectFriends(friends, graph);
         console.log('rels:');
