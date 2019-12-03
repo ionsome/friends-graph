@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GraphVis from "react-graph-vis";
-import { addRootUser } from '../models/Users'
+import { addRootUser } from '../../models/Users';
 
 const nodes = [
     { id: 1, label: "Node 1", image: '' },
