@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import GraphVis from "react-graph-vis";
 
-const nodes = [
-    { id: 1, label: "Node 1", image: '' },
-    { id: 2, label: "Node 2", image: '' },
-    { id: 3, label: "Node 3", image: '' },
-];
-
-const edges = [
-    { from: 1, to: 2 },
-    { from: 1, to: 3 },
-    { from: 2, to: 3 },
-];
 
 const options = {
     interaction: { hover: true },
@@ -63,8 +52,8 @@ class FriendsGraph extends Component {
         super(props);
         this.state = {
             graphVis: {
-                nodes: nodes,
-                edges: edges,
+                nodes: this.props.users,
+                edges: this.props.relations,
             },
             events: {
                 select: (event) => {

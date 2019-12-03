@@ -8,7 +8,7 @@ const DELAY = 1000 / 20; // 20 запросов в секунду
 
 let async_queque_fetch = async (api_request) => {
     return await queue.delay(() => new Promise(api_request), DELAY);
-}
+};
 
 /*
     Возвращает списком данных пользователей по списку id

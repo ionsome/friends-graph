@@ -9,9 +9,9 @@ class MainPage extends Component {
 
     render() {
         return <Userable>
-            {(users, addRootUser, addUser) => (
+            {(users, relations, addRootUser) => (
                 <div className="main d-flex">
-                    <Graph users={users} addUser={addUser} addRootUser={(id, network) => addRootUser(id, network)} />
+                    <Graph users={users} relations={relations} addRootUser={(id, network) => addRootUser(id, network)} />
                     <Sidebar userList={users} changeIsAuthorized={this.props.changeIsAuthorized} />
                 </div>)
             }
