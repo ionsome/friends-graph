@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import MainPage from './components/view/pages/MainPage';
-import AuthPage from './components/view/pages/AuthPage';
+import MainPage from './components/pages/MainPage';
+import AuthPage from './components/pages/AuthPage';
 
 const VK = window.VK;
 
