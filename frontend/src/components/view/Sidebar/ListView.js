@@ -14,7 +14,7 @@ class ListView extends Component {
     createCard = (card) => {
         return (
             <ListGroup.Item key={card.id} className="d-flex">
-                <Button onClick={() => { this.props.onItemClick("id " + card.id); }} variant="sidebar-light" className="text-left">
+                <Button onClick={() => { this.props.onItemClick("id " + card.id); }} variant="sidebar-light" className="text-left flex-fill">
                     <img alt="" src={card.image ? card.image : defaultAvatar} width="30" height="30" className="avatar mr-4" />
                     {card.label}
                 </Button>
