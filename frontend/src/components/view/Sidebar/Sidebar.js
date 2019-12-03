@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card, FormControl } from "react-bootstrap";
 import ListView from "./ListView";
-import exit from "../../../res/exit.svg"
+import exitIcon from "../../../res/exit.svg"
 import logo from "../../../res/logo.svg";
-import hide from "../../../res/hide.svg";
-import search from "../../../res/search.svg";
+import hideIcon from "../../../res/hide.svg";
+import searchIcon from "../../../res/search.svg";
 
 
 const VK = window.VK;
@@ -48,7 +48,7 @@ class Sidebar extends Component {
             <>
                 {this.state.collapsed ?
                     <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
-                        <img alt="search" src={search} width="30" height="32" className="mt-1 mb-1" />
+                        <img alt="search" src={searchIcon} width="30" height="32" className="mt-1 mb-1" />
                     </Button> :
                     <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />}
                 <ListView onItemClick={this.itemClickHandler} items={this.state.userList.filter(user => user.root)} />
@@ -77,7 +77,7 @@ class Sidebar extends Component {
                 <h5 id="header-text" className="overflow-hidden text-nowrap">Friends Graph</h5>
                 <div className="overflow-hidden ml-auto">
                     <Button onClick={this.hideButtonClickHandler} variant="sidebar-dark">
-                        <img alt="hide" src={hide} width="30" height="30" />
+                        <img alt="hide" src={hideIcon} width="30" height="30" />
                     </Button>
                 </div>
             </>
@@ -95,7 +95,7 @@ class Sidebar extends Component {
                     </Card.Body>
                     <Card.Footer id="sidebar-footer" className="d-flex p-0">
                         <Button onClick={this.logoutButtonClickHandler} variant="sidebar-light" className="ml-auto">
-                            <img alt="exit" src={exit} width="30" height="30" />
+                            <img alt="exit" src={exitIcon} width="30" height="30" />
                         </Button>
                     </Card.Footer>
                 </Card>
