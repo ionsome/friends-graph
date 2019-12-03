@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Sidebar from "../components/Sidebar";
-import { FriendsGraph as Graph } from "../components/Graph";
+import { Sidebar } from "../Sidebar";
+import { FriendsGraph as Graph } from "../Graph";
 
 class MainPage extends Component {
 
@@ -9,7 +9,7 @@ class MainPage extends Component {
         return (
             <div className="main d-flex">
                 <Graph />
-                <Sidebar changeIsAuthorized={this.props.changeIsAuthorized}/>
+                <Sidebar changeIsAuthorized={this.props.changeIsAuthorized} />
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ListGroup } from "react-bootstrap";
-import defaultAvatar from "../res/default-avatar.png";
+import defaultAvatar from "../../res/default-avatar.png";
 
 class ListView extends Component {
     constructor(props) {

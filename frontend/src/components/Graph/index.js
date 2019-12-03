@@ -1,1 +1,1 @@
-export {FriendsGraph} from './FriendsGraph';
+export { FriendsGraph } from './FriendsGraph';

@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import GraphVis from "react-graph-vis";
 import { addRootUser } from '../../models/Users';
 
-// const nodes = [
-//     { id: 1, label: "Node 1", image: '' },
-//     { id: 2, label: "Node 2", image: '' },
-//     { id: 3, label: "Node 3", image: '' },
-// ];
+const nodes = [
+    { id: 1, label: "Node 1", image: '' },
+    { id: 2, label: "Node 2", image: '' },
+    { id: 3, label: "Node 3", image: '' },
+];
 
-// const edges = [
-//     { from: 1, to: 2 },
-//     { from: 1, to: 3 },
-//     { from: 2, to: 3 },
-// ];
-const nodes = [];
-const edges = [];
+const edges = [
+    { from: 1, to: 2 },
+    { from: 1, to: 3 },
+    { from: 2, to: 3 },
+];
 
 const options = {
     interaction: { hover: true },
