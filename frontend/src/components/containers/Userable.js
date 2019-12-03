@@ -35,7 +35,7 @@ class Userable extends Component {
         }
         rootUser.root = true;
 
-        let friends = await this.friends_get(rootUser.id);
+        let friends = await friends_get(rootUser.id);
 
         for (const friend of friends) {
             let profile = this.createProfileByData(friend);
