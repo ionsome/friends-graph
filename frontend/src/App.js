@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MainPage from './components/pages/MainPage';
-import AuthPage from './components/pages/AuthPage';
+import LoginPage from './components/pages/LoginPage';
 
 const VK = window.VK;
 
@@ -41,7 +41,7 @@ class App extends Component {
             <Router>
                 <Route path="/" render={(props) => this.state.showMainPage ?
                     <MainPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
-                    <AuthPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
+                    <LoginPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
                 />
             </Router >
         );

@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 
 const VK = window.VK;
 
-class AuthPage extends Component {
+class LoginPage extends Component {
 
     loginButtonClickHandler = () => {
        VK.Auth.login(() => this.props.changeIsAuthorized());
@@ -26,4 +26,4 @@ class AuthPage extends Component {
     }
 }
 
-export default withRouter(AuthPage);
+export default withRouter(LoginPage);
