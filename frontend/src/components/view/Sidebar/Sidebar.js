@@ -18,7 +18,6 @@ class Sidebar extends Component {
         this.state = {
             collapsed: true,
             showInfo: false,
-            userList: this.props.userList,
             listModel: this.props.userList.filter(user => user.root)
         }
     }
@@ -45,9 +44,9 @@ class Sidebar extends Component {
 
     searchInputHandler = (event) => {
         if (event.target.value ===  "") {
-            this.setState({ listModel: this.state.userList.filter(user => user.root) });
+            this.setState({ listModel: this.props.userList.filter(user => user.root) });
         } else {
-            this.setState({ listModel: this.state.userList.filter(user => user.label.includes(event.target.value)) });
+            this.setState({ listModel: this.props.userList.filter(user => user.label.includes(event.target.value)) });
         }
     };
 
