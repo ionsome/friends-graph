@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, ListGroup } from "react-bootstrap";
 import defaultAvatar from "../../../res/default-avatar.png";
 import removeIcon from "../../../res/remove.svg"
+import addIcon from "../../../res/add.svg"
 
 class ListView extends Component {
     constructor(props) {
@@ -13,14 +14,20 @@ class ListView extends Component {
 
     createCard = (card) => {
         return (
-            <ListGroup.Item key={card.id} className="d-flex">
-                <Button onClick={() => { this.props.onItemClick("id " + card.id); }} variant="sidebar-light" className="text-left flex-fill">
-                    <img alt="" src={card.image ? card.image : defaultAvatar} width="30" height="30" className="avatar mr-4" />
-                    {card.label}
+            <ListGroup.Item key={card.id} className="d-flex flex-nowrap">
+                <Button onClick={() => { this.props.onItemClick("id " + card.id); }} variant="sidebar-light"
+                        className="text-left flex-fill" style={{width:54}}>
+                    <img alt="" src={card.image ? card.image : defaultAvatar} width="30" height="30" className="avatar mr-4"/>
+                    <span>{card.label}</span>
                 </Button>
-                <Button variant="sidebar-light" className="ml-auto">
-                    <img alt="remove" src={removeIcon} width="30" height="30"/>
-                </Button>
+                {card.root ?
+                    <Button variant="sidebar-light" className="ml-auto">
+                        <img alt="add" src={removeIcon} width="20" height="20"/>
+                    </Button> :
+                    <Button variant="sidebar-light" className="ml-auto">
+                        <img alt="remove" src={addIcon} width="20" height="20"/>
+                    </Button>
+                }
             </ListGroup.Item>
         );
     };

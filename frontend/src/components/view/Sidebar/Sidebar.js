@@ -6,11 +6,10 @@ import logo from "../../../res/logo.svg";
 import hideIcon from "../../../res/hide.svg";
 import searchIcon from "../../../res/search.svg";
 
-
 const VK = window.VK;
 
 const showWidth = 280;
-const hideWidth = 57;
+const hideWidth = 55;
 
 class Sidebar extends Component {
 
@@ -19,7 +18,7 @@ class Sidebar extends Component {
         this.state = {
             collapsed: true,
             showInfo: false,
-            userList: this.props.userList
+            listModel: this.props.userList.filter(user => user.root)
         }
     }
 
@@ -43,15 +42,23 @@ class Sidebar extends Component {
         this.setState({ collapsed: false, showInfo: true, info: item });
     };
 
+    searchInputHandler = (event) => {
+        if (event.target.value ===  "") {
+            this.setState({ listModel: this.props.userList.filter(user => user.root) });
+        } else {
+            this.setState({ listModel: this.props.userList.filter(user => user.label.includes(event.target.value)) });
+        }
+    };
+
     getSidebarContent() {
         let listTab = (
             <>
                 {this.state.collapsed ?
                     <Button onClick={this.showButtonClickHandler} variant="sidebar-light">
-                        <img alt="search" src={searchIcon} width="30" height="32" className="mt-1 mb-1" />
+                        <img alt="search" src={searchIcon} width="30" height="34" className="mt-1 mb-1" />
                     </Button> :
-                    <FormControl className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />}
-                <ListView onItemClick={this.itemClickHandler} items={this.state.userList.filter(user => user.root)} />
+                    <FormControl onChange={this.searchInputHandler} className="m-2 w-auto" type="search" placeholder="Search" aria-label="Search" />}
+                <ListView onItemClick={this.itemClickHandler} items={this.state.listModel} />
             </>
         );
         let infoTab = (
