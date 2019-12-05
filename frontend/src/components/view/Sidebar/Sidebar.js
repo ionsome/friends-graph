@@ -72,7 +72,7 @@ class Sidebar extends Component {
 
 
     static getDerivedStateFromProps(props, state) {
-        return { userList: props.listModel };
+        return { listModel: props.userList };
     }
 
     render() {
