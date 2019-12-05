@@ -14,11 +14,13 @@ const hideWidth = 55;
 class Sidebar extends Component {
 
     constructor(props) {
+        console.log('constructor');
         super(props);
         this.state = {
             collapsed: true,
             showInfo: false,
-            listModel: this.props.userList.filter(user => user.root)
+            userList: props.userList,
+            listModel: props.userList.filter(user => user.root)
         }
     }
 
@@ -43,7 +45,8 @@ class Sidebar extends Component {
     };
 
     searchInputHandler = (event) => {
-        if (event.target.value ===  "") {
+        console.log(event.target.value);
+        if (event.target.value === "") {
             this.setState({ listModel: this.props.userList.filter(user => user.root) });
         } else {
             this.setState({ listModel: this.props.userList.filter(user => user.label.includes(event.target.value)) });
@@ -72,7 +75,12 @@ class Sidebar extends Component {
 
 
     static getDerivedStateFromProps(props, state) {
-        return { listModel: props.userList };
+        if (props.userList.length !== state.userList.length)
+            return {
+                userList: props.userList,
+                listModel: props.userList.filter(user => user.root)
+            };
+        return null;
     }
 
     render() {
