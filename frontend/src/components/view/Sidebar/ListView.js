@@ -39,7 +39,7 @@ class ListView extends Component {
     render() {
         return (
             <ListGroup id="list-view" className="text-nowrap">
-                {this.state.items.map(this.createCard)}
+                {this.state.items.slice(0, 30).map(this.createCard)}
             </ListGroup>
         );
     }
