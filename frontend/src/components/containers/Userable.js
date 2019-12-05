@@ -1,14 +1,15 @@
 import { Profile } from '../../models/Profile'
 import { users_get, friends_get, vkscript_execute } from '../../api/Friends';
 import { Component } from 'react';
+import {edges, nodes} from "./consts";
 
 
 class Userable extends Component {
     constructor() {
         super();
         this.state = {
-            users: [],
-            relations: [],
+            users: nodes,
+            relations: edges,
         }
     }
 
