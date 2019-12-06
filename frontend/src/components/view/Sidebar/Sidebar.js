@@ -45,7 +45,7 @@ class Sidebar extends Component {
 
   itemAddBtnHandler = card => {
     console.log('add handler');
-    this.log(card);
+    console.log(card);
     this.props.addRootUser(card.id);
   };
 

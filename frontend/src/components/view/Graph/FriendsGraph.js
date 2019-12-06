@@ -106,8 +106,6 @@ class FriendsGraph extends Component {
   }
 
   addNodes(nodes) {
-    console.log(this.nodesInstance);
-    console.log(this.edgesInstance);
     this.nodesInstance.add(nodes);
   }
 
