@@ -19,7 +19,7 @@ class LoginPage extends Component {
             <div>
                 <video id="bg-video" src={bgVideo} autoPlay="true" muted="true" loop="true"/>
                 <div id="vk_auth"></div>
-                    {this.login()}
+                    {this.props.isInProduction && this.login()}
                 <div className="login-content">
                     <Button onClick={this.loginButtonClickHandler} className="position-absolute">Log in</Button>
                 </div>
