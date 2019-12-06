@@ -12,7 +12,7 @@ class LoginPage extends Component {
     };
 
     login = () => {
-        VK.Widgets.Auth("vk_auth", {"width":600,"onAuth": () => this.props.changeIsAuthorized()});
+        return 2+2;
     }
     render() {
         return (

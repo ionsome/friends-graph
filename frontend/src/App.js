@@ -29,6 +29,10 @@ class App extends Component {
             }).then((response) => {
                 this.isAuthorized = response && response.status === 'connected';
                 this.setState({ 'showMainPage': this.isAuthorized });
+                if (!this.isAuthorized)
+                {
+                    VK.Widgets.Auth("vk_auth", {"width":600,"onAuth": () => this.changeIsAuthorized()});
+                }
             });
         }
         else {
