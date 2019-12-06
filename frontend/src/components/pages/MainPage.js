@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Sidebar } from "../view/Sidebar";
 import { FriendsGraph as Graph } from "../view/Graph";
-import { Userable } from "../containers/Userable";
+import { Grapharable } from "../containers/Grapharable";
 
 class MainPage extends Component {
   render() {
     return (
-      <Userable>
-        {(users, relations, addRootUser, bindGraph, addUser) => (
+      <Grapharable>
+        {(users, relations, addRootUser, addUser, removeUser, bindGraph) => (
           <div className="main d-flex">
             <Graph
               users={users}
@@ -21,10 +21,11 @@ class MainPage extends Component {
               userList={users}
               changeIsAuthorized={this.props.changeIsAuthorized}
               addRootUser={addRootUser}
+              removeUser={removeUser}
             />
           </div>
         )}
-      </Userable>
+      </Grapharable>
     );
   }
 }
