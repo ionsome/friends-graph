@@ -12,14 +12,14 @@ class LoginPage extends Component {
     };
 
     login = () => {
-        VK.Widgets.Auth("vk_auth", {"width":600,"onAuth": () => this.props.changeIsAuthorized()});
+        return 2+2;
     }
     render() {
         return (
             <div>
                 <video id="bg-video" src={bgVideo} autoPlay="true" muted="true" loop="true"/>
                 <div id="vk_auth"></div>
-                    {this.login()}
+                    {this.props.isInProduction && this.login()}
                 <div className="login-content">
                     <Button onClick={this.loginButtonClickHandler} className="position-absolute">Log in</Button>
                 </div>
