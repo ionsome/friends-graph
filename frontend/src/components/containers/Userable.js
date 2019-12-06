@@ -72,9 +72,9 @@ class Userable extends Component {
   addUser(profile) {
     if (!this.isUserPresentWithId(profile.id)) {
       this.setState({ users: [...this.state.users, profile] });
-      if (this.graph) this.graph.addNodes([profile])
-      else console.log('graph isn\' initialized');
+      return true;
     }
+    return false;
   }
 
   /*
@@ -111,7 +111,7 @@ class Userable extends Component {
     friends = friends || [];
     if (!friends.length) {
       friends = await friends_get(profile.id, true);
-      if (!friends.length) return;
+      if (!friends.length) return false;
     }
 
     let user_ids = this.state.users.map(elem => elem.id);
@@ -123,8 +123,12 @@ class Userable extends Component {
           : { from: n, to: profile.id }
       )
       .filter(rel => !this.isRelationPresent(rel));
-    this.state.relations = this.state.relations.concat(new_relations);
-    if (this.graph) this.graph.addEdges(new_relations);
+    this.addRelations(new_relations);
+    return true;
+  }
+
+  addRelations(relations) {
+    this.setState({ relations: this.state.relations.concat(relations) });
   }
 
   /*
@@ -168,12 +172,8 @@ class Userable extends Component {
     return false;
   }
 
-  removeUser(userId) {}
-
-  bindGraph(graph) {
-    console.log('graph is bound');
-    console.log(graph);
-    this.graph = graph;
+  removeUser(userId) {
+      console.log('removeUser called.');
   }
 
   render() {
@@ -181,8 +181,8 @@ class Userable extends Component {
       this.state.users,
       this.state.relations,
       this.addRootUser.bind(this),
-      this.bindGraph.bind(this),
       this.addUser.bind(this),
+      this.removeUser.bind(this)
     );
   }
 }
