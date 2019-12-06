@@ -1,22 +1,31 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Sidebar } from "../view/Sidebar";
 import { FriendsGraph as Graph } from "../view/Graph";
-import { Userable } from '../containers/Userable';
-
+import { Userable } from "../containers/Userable";
 
 class MainPage extends Component {
-
-    render() {
-        return <Userable>
-            {(users, relations, addRootUser) => (
-                <div className="main d-flex">
-                    <Graph users={users} relations={relations} addRootUser={(id, network) => addRootUser(id, network)} />
-                    <Sidebar userList={users} changeIsAuthorized={this.props.changeIsAuthorized} />
-                </div>)
-            }
-            </Userable>;
-    }
+  render() {
+    return (
+      <Userable>
+        {(users, relations, addRootUser, bindGraph) => (
+          <div className="main d-flex">
+            <Graph
+              users={users}
+              relations={relations}
+              addRootUser={(id, network) => addRootUser(id, network)}
+              bindGraph={bindGraph}
+            />
+            <Sidebar
+              userList={users}
+              changeIsAuthorized={this.props.changeIsAuthorized}
+              addRootUser={addRootUser}
+            />
+          </div>
+        )}
+      </Userable>
+    );
+  }
 }
 
 export default withRouter(MainPage);
