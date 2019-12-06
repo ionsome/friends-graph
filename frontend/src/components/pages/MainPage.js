@@ -8,13 +8,14 @@ class MainPage extends Component {
   render() {
     return (
       <Userable>
-        {(users, relations, addRootUser, bindGraph) => (
+        {(users, relations, addRootUser, bindGraph, addUser) => (
           <div className="main d-flex">
             <Graph
               users={users}
               relations={relations}
               addRootUser={(id, network) => addRootUser(id, network)}
               bindGraph={bindGraph}
+              addUser={addUser}
             />
             <Sidebar
               userList={users}
