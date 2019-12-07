@@ -19,7 +19,7 @@ class Sidebar extends Component {
       showInfo: false,
       userList: props.userList,
       listModel: props.userList.filter(user => user.root),
-      rootOnly: true
+      searchLine: ''
     };
   }
 
@@ -59,14 +59,14 @@ class Sidebar extends Component {
     if (event.target.value === "") {
       this.setState({
         listModel: this.props.userList.filter(user => user.root),
-        rootOnly: true
+        searchLine: ''
       });
     } else {
       this.setState({
         listModel: this.props.userList.filter(user =>
           user.label.includes(event.target.value)
         ),
-        rootOnly: false
+        searchLine: event.target.value
       });
     }
   };
@@ -75,7 +75,7 @@ class Sidebar extends Component {
     let delta = {};
     if (props.userList.length !== state.userList.length)
       delta.userList = props.userList;
-    if (state.rootOnly)
+    if (state.searchLine === '')
       delta.listModel = props.userList.filter(user => user.root);
     return delta;
   }
@@ -126,6 +126,7 @@ class Sidebar extends Component {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  value={this.state.searchLine}
                 />
               )}
               <ListView
