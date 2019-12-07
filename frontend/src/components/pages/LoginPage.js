@@ -13,14 +13,10 @@ class LoginPage extends Component {
     };
   }
 
-  loginButtonClickHandler = () => {
-    VK.Auth.login(() => this.props.changeIsAuthorized());
-  };
-
   loadVkWidget = () => {
     VK.Widgets.Auth("vk_auth", {
       width: 600,
-      onAuth: () => this.changeIsAuthorized()
+      onAuth: () => this.props.changeIsAuthorized()
     });
   };
 
@@ -39,15 +35,9 @@ class LoginPage extends Component {
           muted="true"
           loop="true"
         />
-        <div id="vk_auth" className="position-fixed"></div>
-        {this.state.showWidget && this.loadVkWidget()}
         <div className="login-content">
-          <Button
-            onClick={this.loginButtonClickHandler}
-            className="position-absolute"
-          >
-            Log in
-          </Button>
+          <div id="vk_auth" className="position-fixed"></div>
+          {this.state.showWidget && this.loadVkWidget()}
         </div>
       </div>
     );
