@@ -19,7 +19,8 @@ class Sidebar extends Component {
       showInfo: false,
       userList: props.userList,
       listModel: props.userList.filter(user => user.root),
-      searchLine: ''
+      searchLine: '',
+      info: { id: 0, label: "", image: "" }
     };
   }
 
@@ -146,9 +147,9 @@ class Sidebar extends Component {
               >
                 Back
               </Button>
-              <p className="text-nowrap overflow-hidden m-2">
-                {this.state.info}
-              </p>
+              <img alt="avatar" src={this.state.info.image} width="100%" />
+              <p className="ml-2 mb-0">{this.state.info.label}</p>
+              <a className="ml-2" href={"https://vk.com/id" + this.state.info.id}>Page</a>
             </div>
           </Tab.Pane>
         </Tab.Content>

@@ -17,7 +17,7 @@ class ListView extends Component {
       <ListGroup.Item key={card.id} className="d-flex flex-nowrap">
         <Button
           onClick={() => {
-            this.props.onItemClick("id " + card.id);
+            this.props.onItemClick(card);
           }}
           variant="sidebar-light"
           className="text-left flex-fill"
