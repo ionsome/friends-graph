@@ -45,13 +45,11 @@ class Sidebar extends Component {
   };
 
   itemAddBtnHandler = card => {
-    console.log("add handler");
     console.log(card);
     this.props.addRootUser(card.id);
   };
 
   itemRemoveBtnHandler = card => {
-    console.log("remove handler");
     console.log(card);
     this.props.removeUser(card.id);
   };
@@ -177,7 +175,7 @@ class Sidebar extends Component {
       </div>
     );
   };
-  
+
   render() {
     return (
       <div className="d-flex flex-fill vh-100">
