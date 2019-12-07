@@ -41,7 +41,7 @@ class App extends Component {
             <Router>
                 <Route path="/" render={(props) => this.state.showMainPage ?
                     <MainPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
-                    <LoginPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
+                    <LoginPage vkInit={this.state.vkInit} {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
                 />
             </Router >
         );
