@@ -14,7 +14,7 @@ class LoginPage extends Component {
   }
 
   loadVkWidget = () => {
-    VK.Widgets.Auth("vk_auth", {
+    VK.Widgets.Auth("vk-auth", {
       width: 600,
       onAuth: () => this.props.changeIsAuthorized()
     });
@@ -30,7 +30,7 @@ class LoginPage extends Component {
       <div>
         <video id="bg-video" src={bgVideo} autoPlay="true" muted="true" loop="true" />
         <div className="login-content">
-          <div id="vk_auth" className="position-fixed"></div>
+          <div id="vk-auth" className="position-fixed"></div>
           {this.state.showWidget && this.loadVkWidget()}
         </div>
       </div>
