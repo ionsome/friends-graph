@@ -147,7 +147,7 @@ class Sidebar extends Component {
               >
                 Back
               </Button>
-              <img alt="avatar" src={this.state.info.image} width="100%" />
+              <img alt="avatar" src={this.state.info.image} width="100%" className="mb-2" />
               <p className="ml-2 mb-0">{this.state.info.label}</p>
               <a className="ml-2" href={"https://vk.com/id" + this.state.info.id}>Page</a>
             </div>
