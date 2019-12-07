@@ -13,7 +13,6 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <div id="vk_auth"></div>
         <video
           id="bg-video"
           src={bgVideo}
@@ -21,6 +20,7 @@ class LoginPage extends Component {
           muted="true"
           loop="true"
         />
+        <div id="vk_auth" className="position-fixed"></div>
         <div className="login-content">
           <Button
             onClick={this.loginButtonClickHandler}
