@@ -25,7 +25,7 @@ class LoginPage extends Component {
           loop="true"
         />
         <div id="vk_auth" className="position-fixed"></div>
-        {this.props.vkInit && this.loadVkWidget}
+        {this.props.vkInit && this.loadVkWidget()}
         <div className="login-content">
           <Button
             onClick={this.loginButtonClickHandler}
