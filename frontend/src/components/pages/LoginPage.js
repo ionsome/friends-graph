@@ -25,8 +25,8 @@ class LoginPage extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    // Если состояние vkInit обновилось и имеет значение true
-    if (props.vkInit && !this.props.vkInit) return { showWidget: true };
+    // Если состояние vkInit стало true и виджет не отображается
+    if (props.vkInit && !state.showWidget) return { showWidget: true };
   }
 
   render() {
