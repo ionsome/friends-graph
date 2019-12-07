@@ -10,6 +10,10 @@ class LoginPage extends Component {
     VK.Auth.login(() => this.props.changeIsAuthorized());
   };
 
+  loadVkWidget = () => {
+        VK.Widgets.Auth("vk_auth", {"width":600,"onAuth": () => this.changeIsAuthorized()});
+  }
+
   render() {
     return (
       <div>
@@ -21,6 +25,7 @@ class LoginPage extends Component {
           loop="true"
         />
         <div id="vk_auth" className="position-fixed"></div>
+        {this.props.vkInit && this.loadVkWidget}
         <div className="login-content">
           <Button
             onClick={this.loginButtonClickHandler}
