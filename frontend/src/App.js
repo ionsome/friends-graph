@@ -10,7 +10,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 'showMainPage': false };
+        this.state = { 'showMainPage': false, 'vkInit' : false };
         this.isAuthorized = false;
     }
 
@@ -28,11 +28,7 @@ class App extends Component {
                 })
             }).then((response) => {
                 this.isAuthorized = response && response.status === 'connected';
-                this.setState({ 'showMainPage': this.isAuthorized });
-                if (!this.isAuthorized)
-                {
-                    VK.Widgets.Auth("vk_auth", {"width":600,"onAuth": () => this.changeIsAuthorized()});
-                }
+                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit' : true });
             });
         }
         else {
