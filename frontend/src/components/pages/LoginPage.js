@@ -28,13 +28,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <video
-          id="bg-video"
-          src={bgVideo}
-          autoPlay="true"
-          muted="true"
-          loop="true"
-        />
+        <video id="bg-video" src={bgVideo} autoPlay="true" muted="true" loop="true" />
         <div className="login-content">
           <div id="vk_auth" className="position-fixed"></div>
           {this.state.showWidget && this.loadVkWidget()}
