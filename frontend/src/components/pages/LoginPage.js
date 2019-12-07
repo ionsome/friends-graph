@@ -6,12 +6,27 @@ import bgVideo from "../../res/bg-video.mp4";
 const VK = window.VK;
 
 class LoginPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showWidget: false
+    };
+  }
+
   loginButtonClickHandler = () => {
     VK.Auth.login(() => this.props.changeIsAuthorized());
   };
 
   loadVkWidget = () => {
-        VK.Widgets.Auth("vk_auth", {"width":600,"onAuth": () => this.changeIsAuthorized()});
+    VK.Widgets.Auth("vk_auth", {
+      width: 600,
+      onAuth: () => this.changeIsAuthorized()
+    });
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    // Если состояние vkInit обновилось и имеет значение true
+    if (props.vkInit && !this.props.vkInit) return { showWidget: true };
   }
 
   render() {
@@ -25,7 +40,7 @@ class LoginPage extends Component {
           loop="true"
         />
         <div id="vk_auth" className="position-fixed"></div>
-        {this.props.vkInit && this.loadVkWidget()}
+        {this.state.showWidget && this.loadVkWidget()}
         <div className="login-content">
           <Button
             onClick={this.loginButtonClickHandler}
