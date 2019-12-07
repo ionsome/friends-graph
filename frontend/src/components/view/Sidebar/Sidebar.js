@@ -19,7 +19,7 @@ class Sidebar extends Component {
       showInfo: false,
       userList: props.userList,
       listModel: props.userList.filter(user => user.root),
-      searchLine: '',
+      searchLine: "",
       info: { id: 0, label: "", image: "" }
     };
   }
@@ -45,13 +45,11 @@ class Sidebar extends Component {
   };
 
   itemAddBtnHandler = card => {
-    console.log('add handler');
     console.log(card);
     this.props.addRootUser(card.id);
   };
 
   itemRemoveBtnHandler = card => {
-    console.log('remove handler');
     console.log(card);
     this.props.removeUser(card.id);
   };
@@ -60,7 +58,7 @@ class Sidebar extends Component {
     if (event.target.value === "") {
       this.setState({
         listModel: this.props.userList.filter(user => user.root),
-        searchLine: ''
+        searchLine: ""
       });
     } else {
       this.setState({
@@ -76,13 +74,13 @@ class Sidebar extends Component {
     let delta = {};
     if (props.userList.length !== state.userList.length)
       delta.userList = props.userList;
-    if (state.searchLine === '')
+    if (state.searchLine === "")
       delta.listModel = props.userList.filter(user => user.root);
     return delta;
   }
 
-  render() {
-    let header = (
+  Header = () => {
+    return (
       <>
         <Button
           onClick={this.showButtonClickHandler}
@@ -101,61 +99,84 @@ class Sidebar extends Component {
         </div>
       </>
     );
+  };
 
-    let sidebarContent = (
+  SidebarContent = () => {
+    return (
       <Tab.Container activeKey={this.state.showInfo ? "infoTab" : "listTab"}>
         <Tab.Content>
           <Tab.Pane eventKey="listTab">
-            <div className="d-flex flex-column">
-              {this.state.collapsed ? (
-                <Button
-                  onClick={this.showButtonClickHandler}
-                  variant="sidebar-light"
-                >
-                  <img
-                    alt="search"
-                    src={searchIcon}
-                    width="30"
-                    height="34"
-                    className="mt-1 mb-1"
-                  />
-                </Button>
-              ) : (
-                <FormControl
-                  onChange={this.searchInputHandler}
-                  className="m-2 w-auto"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  value={this.state.searchLine}
-                />
-              )}
-              <ListView
-                onItemClick={this.itemClickHandler}
-                items={this.state.listModel}
-                addBtnHandler={this.itemAddBtnHandler}
-                removeBtnHandler={this.itemRemoveBtnHandler}
-              />
-            </div>
+            <this.ListTab />
           </Tab.Pane>
           <Tab.Pane eventKey="infoTab">
-            <div className="d-flex flex-column">
-              <Button
-                onClick={this.backButtonClickHandler}
-                variant="sidebar-light"
-                className="text-nowrap overflow-hidden"
-              >
-                Back
-              </Button>
-              <img alt="avatar" src={this.state.info.image} width="100%" className="mb-2" />
-              <p className="ml-2 mb-0">{this.state.info.label}</p>
-              <a className="ml-2" href={"https://vk.com/id" + this.state.info.id}>Page</a>
-            </div>
+            <this.InfoTab />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>
     );
+  };
 
+  InfoTab = () => {
+    return (
+      <div className="d-flex flex-column">
+        <Button
+          onClick={this.backButtonClickHandler}
+          variant="sidebar-light"
+          className="text-nowrap overflow-hidden"
+        >
+          Back
+        </Button>
+        <img
+          alt="avatar"
+          src={this.state.info.image}
+          width="100%"
+          className="mb-2"
+        />
+        <p className="ml-2 mb-0">{this.state.info.label}</p>
+        <a className="ml-2" href={"https://vk.com/id" + this.state.info.id}>
+          Page
+        </a>
+      </div>
+    );
+  };
+
+  ListTab = () => {
+    return (
+      <div className="d-flex flex-column">
+        {this.state.collapsed ? (
+          <Button
+            onClick={this.showButtonClickHandler}
+            variant="sidebar-light"
+          >
+            <img
+              alt="search"
+              src={searchIcon}
+              width="30"
+              height="34"
+              className="mt-1 mb-1"
+            />
+          </Button>
+        ) : (
+          <FormControl
+            onChange={this.searchInputHandler}
+            className="m-2 w-auto"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            value={this.state.searchLine}
+          />
+        )}
+        <ListView
+          onItemClick={this.itemClickHandler}
+          items={this.state.listModel}
+          addBtnHandler={this.itemAddBtnHandler}
+          removeBtnHandler={this.itemRemoveBtnHandler}
+        />
+      </div>
+    );
+  };
+
+  render() {
     return (
       <div className="d-flex flex-fill vh-100">
         <Card
@@ -167,10 +188,10 @@ class Sidebar extends Component {
           }}
         >
           <Card.Header id="sidebar-header" className="d-flex p-0">
-            {header}
+            <this.Header />
           </Card.Header>
           <Card.Body id="sidebar-body" className="d-flex flex-column p-0">
-            {sidebarContent}
+            <this.SidebarContent />
           </Card.Body>
           <Card.Footer id="sidebar-footer" className="d-flex p-0">
             <Button
