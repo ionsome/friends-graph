@@ -28,7 +28,7 @@ class Sidebar extends Component {
   };
 
   hideButtonClickHandler = () => {
-    this.setState({ collapsed: true, showInfo: false, listModel: this.props.userList.filter(user => user.root) });
+    this.setState({ collapsed: true, showInfo: false });
   };
 
   showButtonClickHandler = () => {
