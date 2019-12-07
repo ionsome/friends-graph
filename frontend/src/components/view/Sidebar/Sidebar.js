@@ -19,7 +19,8 @@ class Sidebar extends Component {
       showInfo: false,
       userList: props.userList,
       listModel: props.userList.filter(user => user.root),
-      rootOnly: true
+      searchLine: '',
+      info: { id: 0, label: "", image: "" }
     };
   }
 
@@ -28,7 +29,7 @@ class Sidebar extends Component {
   };
 
   hideButtonClickHandler = () => {
-    this.setState({ collapsed: true, showInfo: false, listModel: this.props.userList.filter(user => user.root) });
+    this.setState({ collapsed: true, showInfo: false });
   };
 
   showButtonClickHandler = () => {
@@ -59,14 +60,14 @@ class Sidebar extends Component {
     if (event.target.value === "") {
       this.setState({
         listModel: this.props.userList.filter(user => user.root),
-        rootOnly: true
+        searchLine: ''
       });
     } else {
       this.setState({
         listModel: this.props.userList.filter(user =>
-          user.label.includes(event.target.value)
+          user.label.toLowerCase().includes(event.target.value.toLowerCase())
         ),
-        rootOnly: false
+        searchLine: event.target.value
       });
     }
   };
@@ -75,7 +76,7 @@ class Sidebar extends Component {
     let delta = {};
     if (props.userList.length !== state.userList.length)
       delta.userList = props.userList;
-    if (state.rootOnly)
+    if (state.searchLine === '')
       delta.listModel = props.userList.filter(user => user.root);
     return delta;
   }
@@ -126,6 +127,7 @@ class Sidebar extends Component {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  value={this.state.searchLine}
                 />
               )}
               <ListView
@@ -145,9 +147,9 @@ class Sidebar extends Component {
               >
                 Back
               </Button>
-              <p className="text-nowrap overflow-hidden m-2">
-                {this.state.info}
-              </p>
+              <img alt="avatar" src={this.state.info.image} width="100%" />
+              <p className="ml-2 mb-0">{this.state.info.label}</p>
+              <a className="ml-2" href={"https://vk.com/id" + this.state.info.id}>Page</a>
             </div>
           </Tab.Pane>
         </Tab.Content>
