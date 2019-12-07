@@ -64,7 +64,7 @@ class Sidebar extends Component {
     } else {
       this.setState({
         listModel: this.props.userList.filter(user =>
-          user.label.includes(event.target.value)
+          user.label.toLowerCase().includes(event.target.value.toLowerCase())
         ),
         searchLine: event.target.value
       });
