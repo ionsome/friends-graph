@@ -5,8 +5,6 @@ import exitIcon from "../../../res/exit.svg";
 import logo from "../../../res/logo.svg";
 import hideIcon from "../../../res/hide.svg";
 import searchIcon from "../../../res/search.svg";
-import removeIcon from "../../../res/remove.svg";
-import addIcon from "../../../res/add.svg";
 
 const VK = window.VK;
 
@@ -135,26 +133,25 @@ class Sidebar extends Component {
           className="mb-2"
         />
         <p className="ml-2 mb-0">{this.state.info.label}</p>
-        <a className="m-2" target="_blank" href={"https://vk.com/id" + this.state.info.id}>
+        <a className="m-2" target="_blank" rel="noopener noreferrer" href={"https://vk.com/id" + this.state.info.id}>
           Page
         </a>
-        {this.state.info.root ? (
+        {this.state.info.root ? <></> : (
             <Button
-                className="border-top border-bottom"
-                variant="sidebar-light"
-                onClick={() => this.itemRemoveBtnHandler(this.state.info)}
-            >
-              Remove
-            </Button>
-        ) : (
-            <Button
-                className="border-top border-bottom"
+                className="border-top"
                 variant="sidebar-light"
                 onClick={() => this.itemAddBtnHandler(this.state.info)}
             >
               Add
             </Button>
         )}
+        <Button
+            className="border-top border-bottom"
+            variant="sidebar-light"
+            onClick={() => this.itemRemoveBtnHandler(this.state.info)}
+        >
+          Remove
+        </Button>
       </div>
     );
   };
