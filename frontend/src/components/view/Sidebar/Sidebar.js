@@ -133,7 +133,7 @@ class Sidebar extends Component {
           className="mb-2"
         />
         <p className="ml-2 mb-0">{this.state.info.label}</p>
-        <a className="m-2" target="_blank" href={"https://vk.com/id" + this.state.info.id}>
+        <a className="m-2" target="_blank" rel="noopener noreferrer" href={"https://vk.com/id" + this.state.info.id}>
           Page
         </a>
         {this.state.info.root ? (
