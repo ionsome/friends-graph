@@ -5,8 +5,6 @@ import exitIcon from "../../../res/exit.svg";
 import logo from "../../../res/logo.svg";
 import hideIcon from "../../../res/hide.svg";
 import searchIcon from "../../../res/search.svg";
-import removeIcon from "../../../res/remove.svg";
-import addIcon from "../../../res/add.svg";
 
 const VK = window.VK;
 
