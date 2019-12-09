@@ -15,16 +15,18 @@ const options = {
       border: "#9b9b9b",
       highlight: "#00b2ff",
       hover: "#00b2ff"
-    }
+    },
+    size: 35,
   },
   edges: {
     color: {
       color: "#9b9b9b",
-      highlight: "#00b2ff",
-      hover: "#00b2ff"
+      highlight: "#0000CD",
+      hover: "#0062ff"
     },
-    hoverWidth: 2,
-    selectionWidth: 2,
+    width: 3,
+    hoverWidth: 4,
+    selectionWidth: 6,
     arrows: {
       to: {
         enabled: false
@@ -64,7 +66,6 @@ class FriendsGraph extends Component {
         doubleClick: event => {
           let { nodes } = event;
           console.log("Doubleclick");
-          console.log(nodes);
           if (nodes) {
             this.props.addRootUser(nodes[0], this);
           }
@@ -92,17 +93,6 @@ class FriendsGraph extends Component {
 
   test_api() {
     this.props.addRootUser(213966324);
-    // this.props.addUser(
-    //   {
-    //     id: 30042234,
-    //     label: "Алексей Русалков",
-    //     color: "",
-    //     image:
-    //       "https://sun1-17.userapi.com/8R582ps0d9RxUwDsiMy8GUrg3hNKfXTbOWIqpQ/bODgNmoNGys.jpg?ava=1",
-    //     root: true
-    //   },
-    //   this
-    // );
   }
 
   addNodes(nodes) {
