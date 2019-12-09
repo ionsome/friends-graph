@@ -12,15 +12,15 @@ const options = {
     label: "useImageSize",
     brokenImage: "https://vk.com/images/camera_200.png?ava=1",
     color: {
-      border: "#9b9b9b",
+      border: "#6b6b6b",
       highlight: "#00b2ff",
       hover: "#00b2ff"
     },
-    size: 50,
+    size: 25,
   },
   edges: {
     color: {
-      color: "#9b9b9b",
+      color: "#bbbbbb",
       highlight: "#0000CD",
       hover: "#0062ff"
     },
@@ -40,14 +40,14 @@ const options = {
     enabled: true,
     solver: "forceAtlas2Based",
     forceAtlas2Based: {
-      gravitationalConstant: -250,
+      gravitationalConstant: -200,
       springConstant: 0.03,
       damping: 0.8,
-      springLength: 400,
+      springLength: 25,
       avoidOverlap: 0
     },
-    maxVelocity: 250,
-    minVelocity: 30,
+    maxVelocity: 200,
+    minVelocity: 40,
   }
 };
 
