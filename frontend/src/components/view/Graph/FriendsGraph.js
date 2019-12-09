@@ -16,7 +16,7 @@ const options = {
       highlight: "#00b2ff",
       hover: "#00b2ff"
     },
-    size: 35,
+    size: 50,
   },
   edges: {
     color: {
@@ -24,9 +24,9 @@ const options = {
       highlight: "#0000CD",
       hover: "#0062ff"
     },
-    width: 3,
-    hoverWidth: 4,
-    selectionWidth: 6,
+    width: 2,
+    hoverWidth: 3,
+    selectionWidth: 4,
     arrows: {
       to: {
         enabled: false
@@ -38,12 +38,16 @@ const options = {
   },
   physics: {
     enabled: true,
-    solver: "repulsion",
-    repulsion: {
-      nodeDistance: 1000,
-      springLength: 250,
-      springConstant: 0.03
-    }
+    solver: "forceAtlas2Based",
+    forceAtlas2Based: {
+      gravitationalConstant: -250,
+      springConstant: 0.03,
+      damping: 0.8,
+      springLength: 400,
+      avoidOverlap: 0
+    },
+    maxVelocity: 250,
+    minVelocity: 30,
   }
 };
 
