@@ -3,3 +3,4 @@ werkzeug
 requests
 flask_cors
 mongolog
+dnspython
