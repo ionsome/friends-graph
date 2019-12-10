@@ -12,21 +12,21 @@ const options = {
     label: "useImageSize",
     brokenImage: "https://vk.com/images/camera_200.png?ava=1",
     color: {
-      border: "#9b9b9b",
+      border: "#6b6b6b",
       highlight: "#00b2ff",
       hover: "#00b2ff"
     },
-    size: 35,
+    size: 25,
   },
   edges: {
     color: {
-      color: "#9b9b9b",
+      color: "#bbbbbb",
       highlight: "#0000CD",
       hover: "#0062ff"
     },
-    width: 3,
-    hoverWidth: 4,
-    selectionWidth: 6,
+    width: 2,
+    hoverWidth: 3,
+    selectionWidth: 4,
     arrows: {
       to: {
         enabled: false
@@ -38,12 +38,16 @@ const options = {
   },
   physics: {
     enabled: true,
-    solver: "repulsion",
-    repulsion: {
-      nodeDistance: 1000,
-      springLength: 250,
-      springConstant: 0.03
-    }
+    solver: "forceAtlas2Based",
+    forceAtlas2Based: {
+      gravitationalConstant: -200,
+      springConstant: 0.03,
+      damping: 0.8,
+      springLength: 25,
+      avoidOverlap: 0
+    },
+    maxVelocity: 200,
+    minVelocity: 40,
   }
 };
 
