@@ -18,7 +18,8 @@ class Sidebar extends Component {
       collapsed: true,
       showInfo: false,
       userList: props.userList,
-      listModel: [this.props.defaultUser],
+      defaultUser: props.defaultUser,
+      listModel: [props.defaultUser],
       searchLine: "",
       info: { id: 0, label: "", image: "", root: false }
     };
@@ -82,7 +83,7 @@ class Sidebar extends Component {
       delta.userList = props.userList;
     
     // Если строка пустая, то следует вернуть список рутовых юзеров
-    if (state.searchLine === "")
+    if (state.searchLine === "" || props.defaultUser !== state.defaultUser)
     {
       delta.listModel = props.userList.filter(user => user.root);
       // Если список юзеров пустой, то вернуть дефолтного юзера
