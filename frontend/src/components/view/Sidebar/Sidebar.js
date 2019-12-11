@@ -18,7 +18,7 @@ class Sidebar extends Component {
       collapsed: true,
       showInfo: false,
       userList: props.userList,
-      listModel: props.userList.filter(user => user.root),
+      listModel: [this.props.defaultUser],
       searchLine: "",
       info: { id: 0, label: "", image: "", root: false }
     };
@@ -45,7 +45,6 @@ class Sidebar extends Component {
   };
 
   itemAddBtnHandler = card => {
-    console.log(card);
     this.props.addRootUser(card.id);
   };
 
@@ -54,9 +53,16 @@ class Sidebar extends Component {
   };
 
   searchInputHandler = event => {
+    // Если строка пустая, то следует вернуть список рутовых юзеров
     if (event.target.value === "") {
+      let newListModel = this.props.userList.filter(user => user.root);
+      
+      // Если список юзеров пустой, то вернуть дефолтного юзера
+      if (newListModel.length === 0){
+        newListModel = [this.props.defaultUser];
+      }
       this.setState({
-        listModel: this.props.userList.filter(user => user.root),
+        listModel: newListModel,
         searchLine: ""
       });
     } else {
@@ -70,11 +76,20 @@ class Sidebar extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    let delta = {};
+    const delta = {};
+
     if (props.userList.length !== state.userList.length)
       delta.userList = props.userList;
+    
+    // Если строка пустая, то следует вернуть список рутовых юзеров
     if (state.searchLine === "")
+    {
       delta.listModel = props.userList.filter(user => user.root);
+      // Если список юзеров пустой, то вернуть дефолтного юзера
+      if (delta.listModel.length === 0){
+        delta.listModel = [props.defaultUser];
+      }
+    }
     return delta;
   }
 

@@ -8,23 +8,26 @@ class MainPage extends Component {
   render() {
     return (
       <Grapharable>
-        {(users, relations, addRootUser, addUser, removeUser, bindGraph) => (
-          <div className="main d-flex">
-            <Graph
-              users={users}
-              relations={relations}
-              addRootUser={(id, network) => addRootUser(id, network)}
-              bindGraph={bindGraph}
-              addUser={addUser}
-            />
-            <Sidebar
-              userList={users}
-              changeIsAuthorized={this.props.changeIsAuthorized}
-              addRootUser={addRootUser}
-              removeUser={removeUser}
-            />
-          </div>
-        )}
+        {(users, relations, createProfileById, addRootUser, removeUser, bindGraph) => {
+          let defaultUser = createProfileById(213966324);
+          return (
+            <div className="main d-flex">
+              <Graph
+                users={users}
+                relations={relations}
+                addRootUser={addRootUser}
+                bindGraph={bindGraph}
+              />
+              <Sidebar
+                userList={users}
+                changeIsAuthorized={this.props.changeIsAuthorized}
+                addRootUser={addRootUser}
+                removeUser={removeUser}
+                defaultUser={defaultUser}
+              />
+            </div>
+          );
+        }}
       </Grapharable>
     );
   }
