@@ -9,14 +9,7 @@ class MainPage extends Component {
     return (
       <Grapharable>
         {(users, relations, createProfileById, addRootUser, removeUser, bindGraph) => {
-          let defaultUser = {
-            "id": 30042239,
-            "label": "Алексей Русалкин",
-            "color": "",
-            "image": "https://sun1-17.userapi.com/8R582ps0d9RxUwDsiMy8GUrg3hNKfXTbOWIqpQ/bODgNmoNGys.jpg?ava=1",
-            "root": false
-          };
-          //createProfileById(213966324);
+          let defaultUser = createProfileById(213966324);
           return (
             <div className="main d-flex">
               <Graph

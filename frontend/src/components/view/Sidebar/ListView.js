@@ -4,17 +4,6 @@ import defaultAvatar from "../../../res/default-avatar.png";
 import removeIcon from "../../../res/remove.svg";
 import addIcon from "../../../res/add.svg";
 
-let getDefaultUser = () => {
-  return {
-    id: 213966324,
-    label: "Антон Мизиков",
-    color: "",
-    image:
-      "https://sun1-15.userapi.com/c855320/v855320738/84dfa/vSiD1t5QbHk.jpg?ava=1",
-    root: false
-  };
-};
-
 class ListView extends Component {
   constructor(props) {
     super(props);
@@ -52,23 +41,21 @@ class ListView extends Component {
             <img alt="remove" src={removeIcon} width="20" height="20" />
           </Button>
         ) : (
-          <Button
-            variant="sidebar-light"
-            className="ml-auto"
-            onClick={() => this.props.addBtnHandler(card)}
-          >
-            <img alt="add" src={addIcon} width="20" height="20" />
-          </Button>
-        )}
+            <Button
+              variant="sidebar-light"
+              className="ml-auto"
+              onClick={() => this.props.addBtnHandler(card)}
+            >
+              <img alt="add" src={addIcon} width="20" height="20" />
+            </Button>
+          )}
       </ListGroup.Item>
     );
   };
 
   static getDerivedStateFromProps(props, state) {
     if (props.items.length > 0) return { items: props.items };
-    return {
-      items: [getDefaultUser()]
-    };
+    return false;
   }
 
   render() {
