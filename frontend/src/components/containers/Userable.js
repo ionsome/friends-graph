@@ -1,5 +1,4 @@
-import { Profile } from "../../models/Profile";
-import { users_get, friends_get, vkscript_execute } from "../../api/Friends";
+import { users_get, friends_get, vkscript_execute, createProfileByData } from "../../api/Friends";
 import { Component } from "react";
 
 class Userable extends Component {
@@ -37,7 +36,7 @@ class Userable extends Component {
     let friends = await friends_get(rootUser.id);
 
     for (const friend of friends) {
-      let profile = this.createProfileByData(friend);
+      let profile = createProfileByData(friend);
       this.addUser(profile);
     }
     console.log("userlist:");
@@ -46,27 +45,6 @@ class Userable extends Component {
     await this.connectFriends(friends);
     console.log("rels:");
     console.log(this.state.relations);
-  }
-
-  async createProfileById(id) {
-    let data = await users_get([id]);
-    data = data[0];
-    if (
-      !this.state.users.some(
-        element => data === undefined || element.id === data.id
-      )
-    ) {
-      return this.createProfileByData(data);
-    }
-  }
-
-  createProfileByData(data) {
-    return new Profile(
-      data.id,
-      data.first_name,
-      data.last_name,
-      data.photo_200
-    );
   }
 
   addUser(profile) {
@@ -183,13 +161,31 @@ class Userable extends Component {
     return false;
   }
 
+  async createProfileById(id) {
+    let data = await users_get([id]);
+    data = data[0];
+    if (
+      !this.state.users.some(
+        element => data === undefined || element.id === data.id
+      )
+    ) {
+      return this.createProfileByData(data);
+    }
+    return {
+      "id": 1,
+      "label": "Not Loaded",
+      "color": "",
+      "image": "https://vk.com/images/camera_200.png?ava=1",
+      "root": false
+    }
+  }
+
   render() {
     return this.props.children(
       this.state.users,
       this.state.relations,
       this.addRootUser.bind(this),
-      this.addUser.bind(this),
-      this.removeUser.bind(this)
+      this.removeUser.bind(this),
     );
   }
 }

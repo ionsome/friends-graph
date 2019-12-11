@@ -1,3 +1,5 @@
+import { Profile } from '../models/Profile';
+
 const queue = require("async-delay-queue");
 const VK = window.VK;
 
@@ -54,4 +56,21 @@ let vkscript_execute = async (code) => {
     return await async_queque_fetch(api_request);
 };
 
-export { users_get, friends_get, vkscript_execute };
+async function createProfileById(id) {
+    let data = await users_get([id]);
+    data = data[0];
+    return this.createProfileByData(data);
+}
+
+
+function createProfileByData(data) {
+    return new Profile(
+        data.id,
+        data.first_name,
+        data.last_name,
+        data.photo_200
+    );
+}
+
+
+export { users_get, friends_get, vkscript_execute, createProfileById, createProfileByData };

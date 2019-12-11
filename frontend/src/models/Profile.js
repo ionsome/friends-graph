@@ -8,4 +8,4 @@ class Profile {
     }
 }
 
-export {Profile};
+export { Profile };
