@@ -59,7 +59,7 @@ let vkscript_execute = async (code) => {
 async function createProfileById(id) {
     let data = await users_get([id]);
     data = data[0];
-    return this.createProfileByData(data);
+    return createProfileByData(data);
 }
 
 
