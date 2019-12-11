@@ -50,8 +50,7 @@ class Sidebar extends Component {
   };
 
   itemRemoveBtnHandler = card => {
-    console.log(card);
-    this.props.removeUser(card.id);
+    this.props.removeUser(card);
   };
 
   searchInputHandler = event => {

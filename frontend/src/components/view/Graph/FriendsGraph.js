@@ -107,6 +107,10 @@ class FriendsGraph extends Component {
     this.edgesInstance.add(edges);
   }
 
+  removeNodeById(id) {
+    this.nodesInstance.remove(id);
+  }
+
   render() {
     return (
       <div className="vw-100 vh-100 position-fixed">

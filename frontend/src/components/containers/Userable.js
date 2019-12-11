@@ -3,8 +3,8 @@ import { users_get, friends_get, vkscript_execute } from "../../api/Friends";
 import { Component } from "react";
 
 class Userable extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       users: [],
       relations: []
@@ -172,8 +172,15 @@ class Userable extends Component {
     return false;
   }
 
-  removeUser(userId) {
-      console.log('removeUser called.');
+  removeUser(profile) {
+    const index = this.state.users.indexOf(profile);
+    if (index !== -1) {
+      this.setState({
+        users: this.state.users.filter(s => s !== profile)
+      });
+      return true;
+    }
+    return false;
   }
 
   render() {
