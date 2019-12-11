@@ -1,11 +1,12 @@
 import { Userable } from "./Userable";
+import { edges, nodes } from '../../consts';
 
 class Grapharable extends Userable {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      relations: []
+      users: nodes,
+      relations: edges
     };
   }
 

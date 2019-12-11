@@ -57,9 +57,9 @@ class Sidebar extends Component {
     // Если строка пустая, то следует вернуть список рутовых юзеров
     if (event.target.value === "") {
       let newListModel = this.props.userList.filter(user => user.root);
-      
+
       // Если список юзеров пустой, то вернуть дефолтного юзера
-      if (newListModel.length === 0){
+      if (newListModel.length === 0) {
         newListModel = [this.props.defaultUser];
       }
       this.setState({
@@ -81,16 +81,23 @@ class Sidebar extends Component {
 
     if (props.userList.length !== state.userList.length)
       delta.userList = props.userList;
-    
+
     // Если строка пустая, то следует вернуть список рутовых юзеров
-    if (state.searchLine === "" || props.defaultUser !== state.defaultUser)
-    {
+    if (state.searchLine === "") {
       delta.listModel = props.userList.filter(user => user.root);
       // Если список юзеров пустой, то вернуть дефолтного юзера
-      if (delta.listModel.length === 0){
+      if (delta.listModel.length === 0) {
         delta.listModel = [props.defaultUser];
       }
     }
+
+    if (props.listModel)
+      if (props.listModel[0] === state.defaultUser &&
+        props.defaultUser !== state.defaultUser &&
+        props.listModel.length === 1) {
+        state.defaultUser = props.defaultUser;
+        delta.listModel = [props.defaultUser];
+      }
     return delta;
   }
 
@@ -152,18 +159,18 @@ class Sidebar extends Component {
           Page
         </a>
         {this.state.info.root ? <></> : (
-            <Button
-                className="border-top"
-                variant="sidebar-light"
-                onClick={() => this.itemAddBtnHandler(this.state.info)}
-            >
-              Add
+          <Button
+            className="border-top"
+            variant="sidebar-light"
+            onClick={() => this.itemAddBtnHandler(this.state.info)}
+          >
+            Add
             </Button>
         )}
         <Button
-            className="border-top border-bottom"
-            variant="sidebar-light"
-            onClick={() => this.itemRemoveBtnHandler(this.state.info)}
+          className="border-top border-bottom"
+          variant="sidebar-light"
+          onClick={() => this.itemRemoveBtnHandler(this.state.info)}
         >
           Remove
         </Button>
@@ -188,15 +195,15 @@ class Sidebar extends Component {
             />
           </Button>
         ) : (
-          <FormControl
-            onChange={this.searchInputHandler}
-            className="m-2 w-auto"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={this.state.searchLine}
-          />
-        )}
+            <FormControl
+              onChange={this.searchInputHandler}
+              className="m-2 w-auto"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={this.state.searchLine}
+            />
+          )}
         <ListView
           onItemClick={this.itemClickHandler}
           items={this.state.listModel}
