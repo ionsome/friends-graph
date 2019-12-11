@@ -32,7 +32,6 @@ class Grapharable extends Userable {
     return this.props.children(
       this.state.users,
       this.state.relations,
-      this.createProfileById.bind(this),
       this.addRootUser.bind(this),
       this.removeUser.bind(this),
       this.bindGraph.bind(this)
