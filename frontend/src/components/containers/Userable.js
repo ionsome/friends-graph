@@ -169,7 +169,7 @@ class Userable extends Component {
         element => data === undefined || element.id === data.id
       )
     ) {
-      return this.createProfileByData(data);
+      return createProfileByData(data);
     }
     return {
       "id": 1,
