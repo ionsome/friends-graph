@@ -79,8 +79,9 @@ class Sidebar extends Component {
   static getDerivedStateFromProps(props, state) {
     const delta = {};
 
-    if (props.userList.length !== state.userList.length)
+    if (props.userList.length !== state.userList.length) {
       delta.userList = props.userList;
+    }
 
     // Если строка пустая, то следует вернуть список рутовых юзеров
     if (state.searchLine === "") {
@@ -91,13 +92,14 @@ class Sidebar extends Component {
       }
     }
 
-    if (props.listModel)
+    if (props.listModel) {
       if (props.listModel[0] === state.defaultUser &&
-        props.defaultUser !== state.defaultUser &&
-        props.listModel.length === 1) {
+          props.defaultUser !== state.defaultUser &&
+          props.listModel.length === 1) {
         state.defaultUser = props.defaultUser;
         delta.listModel = [props.defaultUser];
       }
+    }
     return delta;
   }
 

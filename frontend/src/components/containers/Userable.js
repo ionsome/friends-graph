@@ -176,7 +176,8 @@ class Userable extends Component {
       "label": "Not Loaded",
       "color": "",
       "image": "https://vk.com/images/camera_200.png?ava=1",
-      "root": false
+      "root": false,
+      "isClosed": true
     }
   }
 

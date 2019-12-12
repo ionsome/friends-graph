@@ -68,7 +68,8 @@ function createProfileByData(data) {
         data.id,
         data.first_name,
         data.last_name,
-        data.photo_200
+        data.photo_200,
+        data.is_closed
     );
 }
 
