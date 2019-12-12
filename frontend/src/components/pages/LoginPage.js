@@ -13,7 +13,7 @@ class LoginPage extends Component {
 
   loadVkWidget = () => {
     VK.Widgets.Auth("vk-auth", {
-      width: 600,
+      width: 'auto',
       onAuth: () => this.props.changeIsAuthorized()
     });
   };
