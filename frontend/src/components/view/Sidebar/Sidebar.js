@@ -17,9 +17,7 @@ class Sidebar extends Component {
     this.state = {
       collapsed: true,
       showInfo: false,
-      userList: props.userList,
-      defaultUser: props.defaultUser,
-      listModel: [props.defaultUser],
+      listModel: [],
       searchLine: "",
       info: { id: 0, label: "", image: "", root: false }
     };
@@ -53,52 +51,38 @@ class Sidebar extends Component {
     this.props.removeUser(card);
   };
 
-  searchInputHandler = event => {
+  static filterInput = (searchLine, userList, defaultUser) => {
+    let newListModel;
     // Если строка пустая, то следует вернуть список рутовых юзеров
-    if (event.target.value === "") {
-      let newListModel = this.props.userList.filter(user => user.root);
+    if (searchLine === "") {
+      newListModel = userList.filter(user => user.root);
 
       // Если список юзеров пустой, то вернуть дефолтного юзера
       if (newListModel.length === 0) {
-        newListModel = [this.props.defaultUser];
+        newListModel = [defaultUser];
       }
-      this.setState({
-        listModel: newListModel,
-        searchLine: ""
-      });
-    } else {
-      this.setState({
-        listModel: this.props.userList.filter(user =>
-          user.label.toLowerCase().includes(event.target.value.toLowerCase())
-        ),
-        searchLine: event.target.value
-      });
     }
+    else {
+      newListModel = userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
+    }
+    return newListModel;
+  }
+
+  searchInputHandler = event => {
+    const value = event.target.value;
+    this.setState({
+      searchLine: value,
+      listModel: this.filterInput(value, this.props.users, this.props.defaultUser)
+    });
   };
 
   static getDerivedStateFromProps(props, state) {
-    const delta = {};
-
-    if (props.userList.length !== state.userList.length)
-      delta.userList = props.userList;
-
-    // Если строка пустая, то следует вернуть список рутовых юзеров
-    if (state.searchLine === "") {
-      delta.listModel = props.userList.filter(user => user.root);
-      // Если список юзеров пустой, то вернуть дефолтного юзера
-      if (delta.listModel.length === 0) {
-        delta.listModel = [props.defaultUser];
-      }
-    }
-
-    if (props.listModel)
-      if (props.listModel[0] === state.defaultUser &&
-        props.defaultUser !== state.defaultUser &&
-        props.listModel.length === 1) {
-        state.defaultUser = props.defaultUser;
-        delta.listModel = [props.defaultUser];
-      }
-    return delta;
+    const delta = {}
+    if (props.userList && props.defaultUser)
+      delta.listModel = Sidebar.filterInput(state.searchLine, props.userList, props.defaultUser);
+    if (delta)
+      return delta;
+    return false;
   }
 
   Header = () => {
