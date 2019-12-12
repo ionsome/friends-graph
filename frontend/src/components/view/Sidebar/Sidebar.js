@@ -70,9 +70,10 @@ class Sidebar extends Component {
 
   searchInputHandler = event => {
     const value = event.target.value;
+    const listModel = Sidebar.filterInput(value, this.props.userList, this.props.defaultUser);
     this.setState({
       searchLine: value,
-      listModel: this.filterInput(value, this.props.users, this.props.defaultUser)
+      listModel: listModel
     });
   };
 
