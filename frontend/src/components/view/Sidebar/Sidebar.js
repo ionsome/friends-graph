@@ -19,7 +19,7 @@ class Sidebar extends Component {
             showInfo: false,
             listModel: [],
             searchLine: "",
-            info: { id: 0, label: "", image: "", root: false }
+            info: {id: 0, label: "", image: "", root: false}
         };
     }
 
@@ -28,22 +28,22 @@ class Sidebar extends Component {
     };
 
     hideButtonClickHandler = () => {
-        this.setState({ collapsed: true, showInfo: false });
+        this.setState({collapsed: true, showInfo: false});
     };
 
     showButtonClickHandler = () => {
-        this.setState({ collapsed: false });
+        this.setState({collapsed: false});
     };
 
     backButtonClickHandler = () => {
-        this.setState( { showInfo: false });
+        this.setState({showInfo: false});
     };
 
     itemClickHandler = item => {
         if (this.state.collapsed) {
-            this.setState({ collapsed: false });
+            this.setState({collapsed: false});
         } else {
-            this.setState({ showInfo: true, info: item });
+            this.setState({showInfo: true, info: item});
         }
     };
 
@@ -56,19 +56,29 @@ class Sidebar extends Component {
     };
 
     static filterInput = (searchLine, userList, defaultUser) => {
-        let newListModel;
         // Если строка пустая, то следует вернуть список рутовых юзеров
         if (searchLine === "") {
-            newListModel = userList.filter(user => user.root);
+            let newListModel = userList.filter(user => user.root);
 
             // Если список юзеров пустой, то вернуть дефолтного юзера
             if (newListModel.length === 0) {
-                newListModel = [defaultUser];
+                return [defaultUser];
             }
-        } else {
-            newListModel = userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
         }
-        return newListModel;
+
+        let re = /https:\/\/vk.com\/.+.*/;
+
+        if (re.test(searchLine)) {
+            return  [{
+                    "id": 0,
+                    "label": "New User",
+                    "color": "",
+                    "image": "https://vk.com/images/camera_200.png?ava=1",
+                    "root": false
+            }]
+        }
+
+        return userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
     };
 
     searchInputHandler = event => {
