@@ -10,7 +10,7 @@ class MainPage extends Component {
     super();
     this.state = {
       defaultUser: {
-        "id": 213966324,
+        "id": 0,
         "label": "Not loaded",
         "color": "",
         "image": "https://vk.com/images/camera_200.png?ava=1",
@@ -21,7 +21,7 @@ class MainPage extends Component {
 
   componentDidMount() {
     createProfileById(213966324).then(
-      (profile) => profile && this.setState({ defaultUser: profile })
+     (profile) => profile && this.setState({ defaultUser: profile })
     );
   }
 
@@ -52,4 +52,4 @@ class MainPage extends Component {
   }
 }
 
-export default withRouter(MainPage);
+export { MainPage };

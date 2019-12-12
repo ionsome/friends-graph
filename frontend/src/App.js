@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import MainPage from './components/pages/MainPage';
-import LoginPage from './components/pages/LoginPage';
+import { MainPage } from './components/pages/MainPage';
+import { LoginPage } from './components/pages/LoginPage';
 
 const VK = window.VK;
 
@@ -10,7 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 'showMainPage': false, 'vkInit' : false };
+        this.state = { 'showMainPage': false, 'vkInit': false };
         this.isAuthorized = false;
     }
 
@@ -28,7 +27,7 @@ class App extends Component {
                 })
             }).then((response) => {
                 this.isAuthorized = response && response.status === 'connected';
-                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit' : true });
+                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit': true });
             });
         }
         else {
@@ -37,14 +36,10 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <Router>
-                <Route path="/" render={(props) => this.state.showMainPage ?
-                    <MainPage {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
-                    <LoginPage vkInit={this.state.vkInit} {...props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
-                />
-            </Router >
-        );
+        return <> {this.state.showMainPage ?
+            <MainPage {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
+            <LoginPage vkInit={this.state.vkInit} {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
+        </>
     }
 }
 
