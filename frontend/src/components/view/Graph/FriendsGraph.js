@@ -5,7 +5,8 @@ const options = {
   interaction: { hover: true },
   autoResize: true,
   layout: {
-    hierarchical: false
+    hierarchical: false,
+    randomSeed: 0xdeadbeef
   },
   nodes: {
     shape: "circularImage",
@@ -20,13 +21,13 @@ const options = {
   },
   edges: {
     color: {
-      color: "#bbbbbb",
-      highlight: "#0000CD",
-      hover: "#0062ff"
+      color: "#999999",
+      highlight: "#0052ef",
+      hover: "#0077ff"
     },
     width: 2,
     hoverWidth: 3,
-    selectionWidth: 4,
+    selectionWidth: 3,
     arrows: {
       to: {
         enabled: false
@@ -114,9 +115,9 @@ class FriendsGraph extends Component {
   render() {
     return (
       <div className="vw-100 vh-100 position-fixed">
-        <button className="float-right" onClick={this.test_api.bind(this)}>
+        {/* <button className="float-right" onClick={this.test_api.bind(this)}>
           test
-        </button>
+        </button> */}
         <GraphVis
           graph={this.state.graphVis}
           options={options}
