@@ -64,6 +64,7 @@ class Sidebar extends Component {
             if (newListModel.length === 0) {
                 return [defaultUser];
             }
+            return newListModel;
         }
 
         let re = /https:\/\/vk.com\/.+.*/;
