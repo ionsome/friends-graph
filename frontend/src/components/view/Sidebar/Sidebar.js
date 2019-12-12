@@ -66,7 +66,7 @@ class Sidebar extends Component {
       newListModel = userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
     }
     return newListModel;
-  }
+  };
 
   searchInputHandler = event => {
     const value = event.target.value;
@@ -78,11 +78,11 @@ class Sidebar extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    const delta = {}
-    if (props.userList && props.defaultUser)
-      delta.listModel = Sidebar.filterInput(state.searchLine, props.userList, props.defaultUser);
-    if (delta)
-      return delta;
+    const delta = {};
+    if (props.userList && props.defaultUser) {
+        delta.listModel = Sidebar.filterInput(state.searchLine, props.userList, props.defaultUser);
+    }
+    if (delta) return delta;
     return false;
   }
 
