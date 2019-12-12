@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { Sidebar } from "../view/Sidebar";
 import { FriendsGraph as Graph } from "../view/Graph";
 import { Grapharable } from "../containers/Grapharable";
@@ -10,7 +9,7 @@ class MainPage extends Component {
     super();
     this.state = {
       defaultUser: {
-        "id": 213966324,
+        "id": 0,
         "label": "Not loaded",
         "color": "",
         "image": "https://vk.com/images/camera_200.png?ava=1",
@@ -21,7 +20,7 @@ class MainPage extends Component {
 
   componentDidMount() {
     createProfileById(213966324).then(
-      (profile) => profile && this.setState({ defaultUser: profile })
+     (profile) => profile && this.setState({ defaultUser: profile })
     );
   }
 
@@ -38,11 +37,11 @@ class MainPage extends Component {
                 bindGraph={bindGraph}
               />
               <Sidebar
-                userList={users}
                 changeIsAuthorized={this.props.changeIsAuthorized}
+                defaultUser={this.state.defaultUser}
+                userList={users}
                 addRootUser={addRootUser}
                 removeUser={removeUser}
-                defaultUser={this.state.defaultUser}
               />
             </div>
           );
@@ -52,4 +51,4 @@ class MainPage extends Component {
   }
 }
 
-export default withRouter(MainPage);
+export { MainPage };

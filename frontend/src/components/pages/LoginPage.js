@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import bgVideo from "../../res/bg-video.mp4";
 
 const VK = window.VK;
 
 class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showWidget: false
     };
@@ -22,6 +21,7 @@ class LoginPage extends Component {
   static getDerivedStateFromProps(props, state) {
     // Если состояние vkInit стало true и виджет не отображается
     if (props.vkInit && !state.showWidget) return { showWidget: true };
+    return false;
   }
 
   render() {
@@ -37,4 +37,4 @@ class LoginPage extends Component {
   }
 }
 
-export default withRouter(LoginPage);
+export { LoginPage };

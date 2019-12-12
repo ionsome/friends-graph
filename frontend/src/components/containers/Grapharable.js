@@ -1,13 +1,6 @@
 import { Userable } from "./Userable";
 
 class Grapharable extends Userable {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      relations: []
-    };
-  }
 
   addUser(profile) {
     if (super.addUser(profile) && this.graph) this.graph.addNodes([profile]);
