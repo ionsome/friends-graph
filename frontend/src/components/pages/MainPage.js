@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { Sidebar } from "../view/Sidebar";
 import { FriendsGraph as Graph } from "../view/Graph";
 import { Grapharable } from "../containers/Grapharable";
@@ -38,11 +37,11 @@ class MainPage extends Component {
                 bindGraph={bindGraph}
               />
               <Sidebar
-                userList={users}
                 changeIsAuthorized={this.props.changeIsAuthorized}
+                defaultUser={this.state.defaultUser}
+                userList={users}
                 addRootUser={addRootUser}
                 removeUser={removeUser}
-                defaultUser={this.state.defaultUser}
               />
             </div>
           );
