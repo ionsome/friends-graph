@@ -30,13 +30,8 @@ html, body, #root {
   box-shadow: none;
 }
 
-.btn-transparent {
-  @include button-variant(#ffffffff, #ffffffff);
-  border-radius: 0;
-  border: 0;
-}
-
-.btn-transparent:focus {
+.btn-transparent.dropdown-toggle {
+  background-color: transparent;
   box-shadow: none;
 }
 
