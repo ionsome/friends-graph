@@ -36,6 +36,8 @@ class Userable extends Component {
     }
     rootUser.root = true;
 
+    if (rootUser.isClosed) return;
+
     let friends = await friends_get(rootUser.id);
 
     for (const friend of friends) {

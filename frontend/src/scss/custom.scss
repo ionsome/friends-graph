@@ -30,6 +30,11 @@ html, body, #root {
   box-shadow: none;
 }
 
+.btn-transparent.dropdown-toggle {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 #header-text {
   color: white;
   line-height: 2.2;
@@ -101,5 +106,6 @@ html, body, #root {
 
 #vk-auth {
   top: 40%;
+  width: 40%;
   filter: drop-shadow(1px 1px 10px lightgray);
 }
