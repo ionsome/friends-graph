@@ -30,6 +30,16 @@ html, body, #root {
   box-shadow: none;
 }
 
+.btn-transparent {
+  @include button-variant(#ffffffff, #ffffffff);
+  border-radius: 0;
+  border: 0;
+}
+
+.btn-transparent:focus {
+  box-shadow: none;
+}
+
 #header-text {
   color: white;
   line-height: 2.2;
