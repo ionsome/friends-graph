@@ -4,14 +4,17 @@ import { Component } from "react";
 class Userable extends Component {
   constructor(props) {
     super(props);
+    // нужен для хранения пользователей
+    this.users = [];
+
     this.state = {
-      users: [],
+      users: [], // нужен для отображения
       relations: []
     };
   }
 
   /*
-        Добавляет рутового юзера
+      Добавляет рутового юзера
     */
   async addRootUser(id) {
     let user = this.isUserPresentWithId(id);
@@ -51,7 +54,8 @@ class Userable extends Component {
 
   addUser(profile) {
     if (!this.isUserPresentWithId(profile.id)) {
-      this.setState({ users: [...this.state.users, profile] });
+      this.users.push(profile);
+      this.setState({ users: this.users });
       return true;
     }
     return false;
@@ -69,7 +73,6 @@ class Userable extends Component {
       });
 
       let respond = await vkscript_execute(`return [${usersPayload}];`);
-      console.log(respond);
       for (let n = 0; n < respond.length; n++) {
         let relations = respond[n].rels;
         if (relations)
