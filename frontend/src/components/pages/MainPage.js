@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Dropdown} from "react-bootstrap";
+import {Dropdown, Form} from "react-bootstrap";
 import {Sidebar} from "../view/Sidebar";
 import {FriendsGraph as Graph} from "../view/Graph";
 import {Grapharable} from "../containers/Grapharable";
@@ -51,9 +51,10 @@ class MainPage extends Component {
                                     <img alt="settings" src={settingsIcon} width="30" height="30"/>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => {this.setState({aggregators: !this.state.aggregators})}}>
-                                            {this.state.aggregators ? "Disable aggregators" : "Enable aggregators"}
-                                        </Dropdown.Item>
+                                    <Dropdown.Header>Settings</Dropdown.Header>
+                                    <div className="pl-4 pt-1 pb-1" style={{width:200}}>
+                                        <Form.Check type="checkbox" label="Disable aggregators" />
+                                    </div>
                                     <Dropdown.Item>Clear graph</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
