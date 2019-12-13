@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dropdown, Form } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { Sidebar } from "../view/Sidebar";
 import { FriendsGraph as Graph } from "../view/Graph";
 import { Grapharable } from "../containers/Grapharable";
@@ -27,6 +27,22 @@ class MainPage extends Component {
         );
     }
 
+    SettingsButton = () => {
+        return <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 30, bottom: 15 }}>
+            <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon} />
+            <Dropdown.Menu>
+                <Dropdown.Header>Settings</Dropdown.Header>
+                <Dropdown.Item onClick={() => {
+                    this.setState({ aggregators: !this.state.aggregators });
+                }
+                }>
+                    {this.state.aggregators ? "Disable aggregators" : "Enable aggregators" }
+                </Dropdown.Item>
+                <Dropdown.Item >Clear graph</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>;
+    }
+
     render() {
         return (
             <Grapharable>
@@ -46,16 +62,7 @@ class MainPage extends Component {
                                 addRootUser={addRootUser}
                                 removeUser={removeUser}
                             />
-                            <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 30, bottom: 15 }}>
-                                <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon}/>
-                                <Dropdown.Menu>
-                                    <Dropdown.Header>Settings</Dropdown.Header>
-                                    <Dropdown.Item onClick={() => { this.setState({ aggregators: !this.state.aggregators }) }}>
-                                        {this.state.aggregators ? "Disable aggregators" : "Enable aggregators"}
-                                    </Dropdown.Item>
-                                    <Dropdown.Item>Clear graph</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <this.SettingsButton />
                         </div>
                     );
                 }}
