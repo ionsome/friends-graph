@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import {Dropdown, Form} from "react-bootstrap";
-import {Sidebar} from "../view/Sidebar";
-import {FriendsGraph as Graph} from "../view/Graph";
-import {Grapharable} from "../containers/Grapharable";
-import {createProfileById} from "../../api/Friends";
+import React, { Component } from "react";
+import { Dropdown } from "react-bootstrap";
+import { Sidebar } from "../view/Sidebar";
+import { FriendsGraph as Graph } from "../view/Graph";
+import { Grapharable } from "../containers/Grapharable";
+import { createProfileById } from "../../api/Friends";
 import settingsIcon from "../../res/settings.svg";
 
 class MainPage extends Component {
@@ -23,8 +23,24 @@ class MainPage extends Component {
 
     componentDidMount() {
         createProfileById(213966324).then(
-            (profile) => profile && this.setState({defaultUser: profile})
+            (profile) => profile && this.setState({ defaultUser: profile })
         );
+    }
+
+    SettingsButton = () => {
+        return <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 30, bottom: 15 }}>
+            <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon} />
+            <Dropdown.Menu>
+                <Dropdown.Header>Settings</Dropdown.Header>
+                <Dropdown.Item onClick={() => {
+                    this.setState({ aggregators: !this.state.aggregators });
+                }
+                }>
+                    {this.state.aggregators ? "Disable aggregators" : "Enable aggregators" }
+                </Dropdown.Item>
+                <Dropdown.Item >Clear graph</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>;
     }
 
     render() {
@@ -46,18 +62,7 @@ class MainPage extends Component {
                                 addRootUser={addRootUser}
                                 removeUser={removeUser}
                             />
-                            <Dropdown alignRight  drop='up' className="position-fixed" style={{right:0, bottom:0}}>
-                                <Dropdown.Toggle variant="transparent" >
-                                    <img alt="settings" src={settingsIcon} width="30" height="30"/>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Header>Settings</Dropdown.Header>
-                                    <div className="pl-4 pt-1 pb-1" style={{width:200}}>
-                                        <Form.Check type="checkbox" label="Disable aggregators" />
-                                    </div>
-                                    <Dropdown.Item>Clear graph</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <this.SettingsButton />
                         </div>
                     );
                 }}
@@ -66,4 +71,4 @@ class MainPage extends Component {
     }
 }
 
-export {MainPage};
+export { MainPage };

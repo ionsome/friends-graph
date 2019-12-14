@@ -67,4 +67,4 @@ class ListView extends Component {
   }
 }
 
-export default ListView;
+export { ListView };
