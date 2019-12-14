@@ -36,7 +36,7 @@ class MainPage extends Component {
                     this.setState({ aggregators: !this.state.aggregators });
                 }
                 }>
-                    {this.state.aggregators ? "Disable aggregators" : "Enable aggregators" }
+                    {this.state.aggregators ? "Disable aggregators" : "Enable aggregators"}
                 </Dropdown.Item>
                 <Dropdown.Item >Clear graph</Dropdown.Item>
             </Dropdown.Menu>

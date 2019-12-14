@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { Button, Card, Tab } from "react-bootstrap";
 import { ListView } from "./ListView";
-import { SearchModule } from "./SearchModule";
+import { SearchModule, filterInput } from "./SearchModule";
 
 import exitIcon from "../../../res/exit.svg";
 import logo from "../../../res/logo.svg";
 import hideIcon from "../../../res/hide.svg";
 
-
-
 const VK = window.VK;
 
 const showWidth = 280;
 const hideWidth = 55;
+
 
 class Sidebar extends Component {
   constructor(props) {
@@ -20,6 +19,7 @@ class Sidebar extends Component {
     this.state = {
       collapsed: true,
       showInfo: false,
+      searchLine: "",
       listModel: [props.defaultUser],
       info: { id: 0, label: "", image: "", root: false }
     };
@@ -35,7 +35,6 @@ class Sidebar extends Component {
 
   showButtonClickHandler = () => {
     this.setState({ collapsed: false });
-    console.log('update');
   };
 
   backButtonClickHandler = () => {
@@ -58,17 +57,17 @@ class Sidebar extends Component {
     this.props.removeUser(card);
   };
 
-  updateListHandler = (newListModel) => {
-    this.setState({
-      listModel: newListModel
-    });
-  };
-
+  updateSearchLine = (newSearchLine) => {
+    this.setState({searchLine: newSearchLine});
+  }
+  
   static getDerivedStateFromProps(props, state) {
     const delta = {};
 
     delta.userList = props.userList;
     delta.defaultUser = props.defaultUser;
+    
+    delta.listModel = filterInput(state.searchLine, props.userList, props.defaultUser);
 
     if (delta) return delta;
     return false;
@@ -156,8 +155,7 @@ class Sidebar extends Component {
     return (
       <div className="d-flex flex-column">
         <SearchModule
-          userList={this.state.userList}
-          defaultUser={this.state.defaultUser}
+          updateSearchLine={(line) => this.updateSearchLine(line)}
           collapsed={this.state.collapsed}
           showButtonClickHandler={() => this.showButtonClickHandler()}
           updateListHandler={(list) => this.updateListHandler(list)}
@@ -171,6 +169,7 @@ class Sidebar extends Component {
       </div>
     );
   };
+
 
   render() {
     return (
