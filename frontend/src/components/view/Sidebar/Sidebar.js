@@ -49,7 +49,7 @@ class Sidebar extends Component {
     }
   };
 
-  itemAddBtnHandler = card => {
+  itemAddBtnHandler = async (card) => {
     this.props.addRootUser(card.id);
   };
 
@@ -58,15 +58,15 @@ class Sidebar extends Component {
   };
 
   updateSearchLine = (newSearchLine) => {
-    this.setState({searchLine: newSearchLine});
+    this.setState({ searchLine: newSearchLine });
   }
-  
+
   static getDerivedStateFromProps(props, state) {
     const delta = {};
 
     delta.userList = props.userList;
     delta.defaultUser = props.defaultUser;
-    
+
     delta.listModel = filterInput(state.searchLine, props.userList, props.defaultUser);
 
     if (delta) return delta;
@@ -135,10 +135,10 @@ class Sidebar extends Component {
           <Button
             className="border-top"
             variant="sidebar-light"
-            onClick={() => this.itemAddBtnHandler(this.state.info)}
+            onClick={async () => this.itemAddBtnHandler(this.state.info)}
           >
             Add
-                    </Button>
+          </Button>
         )}
         <Button
           className="border-top border-bottom"

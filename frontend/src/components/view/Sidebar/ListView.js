@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Button, ListGroup } from "react-bootstrap";
-import defaultAvatar from "../../../res/default-avatar.png";
-import removeIcon from "../../../res/remove.svg";
-import addIcon from "../../../res/add.svg";
+import { ListGroup } from "react-bootstrap";
+import { ListViewItem } from "./ListViewItem";
+
 
 class ListView extends Component {
   constructor(props) {
@@ -12,46 +11,18 @@ class ListView extends Component {
     };
   }
 
-  createCard = card => {
-    return (
-      <ListGroup.Item key={card.id} className="d-flex flex-nowrap">
-        <Button
-          onClick={() => {
-            this.props.onItemClick(card);
-          }}
-          variant="sidebar-light"
-          className="text-left flex-fill"
-          style={{ width: 54 }}
-        >
-          <img
-            alt=""
-            src={card.image ? card.image : defaultAvatar}
-            width="30"
-            height="30"
-            className="avatar mr-4"
-          />
-          <span>{card.label}</span>
-        </Button>
-        {card.root ? (
-          <Button
-            variant="sidebar-light"
-            className="ml-auto"
-            onClick={() => this.props.removeBtnHandler(card)}
-          >
-            <img alt="remove" src={removeIcon} width="20" height="20" />
-          </Button>
-        ) : (
-            <Button
-              variant="sidebar-light"
-              className="ml-auto"
-              onClick={() => this.props.addBtnHandler(card)}
-            >
-              <img alt="add" src={addIcon} width="20" height="20" />
-            </Button>
-          )}
-      </ListGroup.Item>
-    );
-  };
+  // быстрая операция
+  removeCard = (card) => {
+    this.props.removeBtnHandler(card);
+  }
+
+  //  Медленная операция
+  addCard = (card) => {
+    return this.props.addBtnHandler(card);
+    // const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+    // card.root = true;
+    // return wait(1500);
+  }
 
   static getDerivedStateFromProps(props, state) {
     return props;
@@ -60,7 +31,15 @@ class ListView extends Component {
   render() {
     return (
       <ListGroup id="list-view" className="text-nowrap">
-        {this.state.items.slice(0, 30).map(this.createCard)}
+        {this.state.items.slice(0, 30).map((card) =>
+          <ListViewItem
+            card={card}
+            onItemClick={this.props.onItemClick}
+            removeCard={(card) => this.removeCard(card)}
+            addCard={(card) => this.addCard(card)}
+          />
+        )
+        }
       </ListGroup>
     );
   }
