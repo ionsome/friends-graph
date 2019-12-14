@@ -157,7 +157,7 @@ class Userable extends Component {
 
   removeUser(profile) {
     if (profile && profile.id) {
-      this.users = this.users.filter(s => s.id !== profile.id)
+      this.users = this.users.filter(s => s.id !== profile.id);
       this.setState({
         users: this.users
       });
