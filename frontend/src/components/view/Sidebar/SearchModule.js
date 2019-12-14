@@ -11,8 +11,9 @@ let filterInput = (searchLine, userList, defaultUser) => {
 
         // Если список юзеров пустой, то вернуть дефолтного юзера
         if (newListModel.length === 0) {
-            return newListModel = [defaultUser];
+            newListModel = [defaultUser];
         }
+        return newListModel;
     }
 
     let re = /https:\/\/vk.com\/.+.*/;
