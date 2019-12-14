@@ -156,10 +156,10 @@ class Userable extends Component {
   }
 
   removeUser(profile) {
-    const index = this.state.users.indexOf(profile);
-    if (index !== -1) {
+    //const index = this.state.users.indexOf(profile);
+    if (profile) {
       this.setState({
-        users: this.state.users.filter(s => s !== profile)
+        users: this.state.users.filter(s => s.id !== profile.id)
       });
       return true;
     }
