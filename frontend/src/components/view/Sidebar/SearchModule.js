@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FormControl, Button } from "react-bootstrap";
 import searchIcon from "../../../res/search.svg";
 
+
 let filterInput = (searchLine, userList, defaultUser) => {
     let newListModel;
     // Если строка пустая, то следует вернуть список рутовых юзеров
@@ -10,9 +11,8 @@ let filterInput = (searchLine, userList, defaultUser) => {
 
         // Если список юзеров пустой, то вернуть дефолтного юзера
         if (newListModel.length === 0) {
-            return [defaultUser];
+            return newListModel = [defaultUser];
         }
-        return newListModel;
     }
 
     let re = /https:\/\/vk.com\/.+.*/;
@@ -26,9 +26,8 @@ let filterInput = (searchLine, userList, defaultUser) => {
             "root": false
         }]
     }
-
     return userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
-};
+}
 
 class SearchModule extends Component {
     constructor(props) {
@@ -41,9 +40,8 @@ class SearchModule extends Component {
 
     searchInputHandler = (event) => {
         const value = event.target.value;
-        const newListModel = filterInput(value, this.state.userList, this.state.defaultUser);
-        this.props.updateListHandler(newListModel);
         this.setState({ searchLine: value });
+        this.props.updateSearchLine(value);
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -51,10 +49,6 @@ class SearchModule extends Component {
 
         if (props.collapsed !== state.collapsed)
             delta.collapsed = props.collapsed;
-
-        delta.listModel = filterInput(state.searchLine, props.userList, props.defaultUser);
-        delta.userList = props.userList;
-        delta.defaultUser = props.defaultUser;
 
         if (delta) return delta;
         return false;

@@ -54,8 +54,7 @@ class ListView extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.items.length > 0) return { items: props.items };
-    return false;
+    return props;
   }
 
   render() {
