@@ -54,7 +54,9 @@ class ListViewItem extends Component {
 
     onAddClick = () => {
         this.setState({ isLoading: true });
-        this.props.addCard(this.props.card).then(() => this.setState({ isLoading: false }));
+        this.props.addCard(this.props.card).then(() => {
+            this.setState({ isLoading: false });
+        });
     }
 
 
@@ -87,7 +89,7 @@ class ListViewItem extends Component {
             };
         }
 
-        return (<ListGroup.Item key={this.props.card.id} className="d-flex flex-nowrap" >
+        return (<ListGroup.Item className="d-flex flex-nowrap" >
             <this.ItemUserLabel card={this.props.card} onItemClick={() => this.props.onItemClick(this.props.card)} />
             <this.ItemBtnLabel {...buttonProps} />
         </ListGroup.Item >);

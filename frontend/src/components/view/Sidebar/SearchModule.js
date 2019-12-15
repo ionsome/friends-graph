@@ -3,7 +3,7 @@ import { FormControl, Button } from "react-bootstrap";
 import searchIcon from "../../../res/search.svg";
 
 
-let filterInput = (searchLine, userList, defaultUser) => {
+let filterInput = async (searchLine, userList, defaultUser) => {
     let newListModel;
     // Если строка пустая, то следует вернуть список рутовых юзеров
     if (searchLine === "") {
@@ -28,7 +28,7 @@ let filterInput = (searchLine, userList, defaultUser) => {
                 return res;
         }
         else {
-            const matchedDomain = matchedDomain;
+            const matchedDomain = match[2];
             const res = userList.filter(user => user.domain === matchedDomain);
             if (res.length > 0)
                 return res;
@@ -53,7 +53,8 @@ class SearchModule extends Component {
             searchLine: "",
             collapsed: this.props.collapsed
         };
-        this.timer = null;
+
+        this.timer = null; // нужен для задержки при вводе
     }
 
     searchInputHandler = (event) => {
