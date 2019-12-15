@@ -17,8 +17,7 @@ let filterInput = (searchLine, userList, defaultUser) => {
     }
 
     const re = /^(?:https{0,1}:\/\/)?vk.com\/(?:id(\d+)|([a-zA-Z0-9]{2,})) *$/;
-
-    let match = re.exec(searchLine);
+    const match = re.exec(searchLine);
 
     if (match && match[2] !== 'id') {
         // проверка наличия пользователя
@@ -28,7 +27,12 @@ let filterInput = (searchLine, userList, defaultUser) => {
             if (res.length > 0)
                 return res;
         }
-        
+        else {
+            const matchedDomain = matchedDomain;
+            const res = userList.filter(user => user.domain === matchedDomain);
+            if (res.length > 0)
+                return res;
+        }
         return [{
             "id": '-2',
             "label": "New User",
