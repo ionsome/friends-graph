@@ -28,7 +28,7 @@ class App extends Component {
             }).then((response) => {
                 console.log(response);
                 this.isAuthorized = response && response.status === 'connected';
-                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit': true, 'mainUserId' : response.user.id });
+                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit': true, 'mainUserId' : response.session.mid });
             });
         }
         else {
