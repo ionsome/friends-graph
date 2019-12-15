@@ -15,7 +15,7 @@ const hideWidth = 55;
 
 class Sidebar extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
       collapsed: true,
       showInfo: false,
@@ -96,8 +96,13 @@ class Sidebar extends Component {
       return true;
     }
 
-    if (this.state.collapsed !== nextState.collapsed)
+    if (this.state.collapsed !== nextState.collapsed){
       return true;
+    }
+
+    if (this.state.showInfo !== nextState.showInfo){
+      return true;
+    }
 
     return false;
   }
