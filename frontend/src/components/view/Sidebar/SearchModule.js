@@ -11,16 +11,26 @@ let filterInput = (searchLine, userList, defaultUser) => {
 
         // Если список юзеров пустой, то вернуть дефолтного юзера
         if (newListModel.length === 0) {
-            newListModel = [defaultUser];
+            newListModel = defaultUser ? [defaultUser] : [];
         }
         return newListModel;
     }
 
-    let re = /https:\/\/vk.com\/.+.*/;
+    const re = /^(?:https{0,1}:\/\/)?vk.com\/(?:id(\d+)|([a-zA-Z0-9]{2,})) *$/;
 
-    if (re.test(searchLine)) {
+    let match = re.exec(searchLine);
+
+    if (match && match[2] !== 'id') {
+        // проверка наличия пользователя
+        if (match[1]) {
+            const matchedId = parseInt(match[1]);
+            const res = userList.filter(user => user.id === matchedId);
+            if (res.length > 0)
+                return res;
+        }
+        
         return [{
-            "id": 0,
+            "id": '-2',
             "label": "New User",
             "color": "",
             "image": "https://vk.com/images/camera_200.png?ava=1",
