@@ -10,13 +10,14 @@ class MainPage extends Component {
     constructor() {
         super();
         this.state = {
-            defaultUser: {
-                "id": 0,
-                "label": "Not loaded",
-                "color": "",
-                "image": "https://vk.com/images/camera_200.png?ava=1",
-                "root": false
-            },
+            defaultUser: undefined,
+            // {
+            //     "id": 0,
+            //     "label": "Not loaded",
+            //     "color": "",
+            //     "image": "https://vk.com/images/camera_200.png?ava=1",
+            //     "root": false
+            // },
             aggregators: false
         };
     }
