@@ -177,7 +177,7 @@ class Userable extends Component {
       return createProfileByData(data);
     }
     return {
-      "id": 1,
+      "id": -100,
       "label": "Not Loaded",
       "color": "",
       "image": "https://vk.com/images/camera_200.png?ava=1",
@@ -190,6 +190,7 @@ class Userable extends Component {
       this.state.users,
       this.state.relations,
       this.addRootUser.bind(this),
+      this.addUser.bind(this),
       this.removeUser.bind(this),
     );
   }

@@ -26,8 +26,9 @@ class Grapharable extends Userable {
       this.state.users,
       this.state.relations,
       this.addRootUser.bind(this),
+      this.addUser.bind(this),
       this.removeUser.bind(this),
-      this.bindGraph.bind(this)
+      this.bindGraph.bind(this),
     );
   }
 }
