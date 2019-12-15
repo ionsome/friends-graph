@@ -31,8 +31,9 @@ class ListView extends Component {
   render() {
     return (
       <ListGroup id="list-view" className="text-nowrap">
-        {this.state.items.slice(0, 30).map((card) =>
+        {this.state.items.slice(0, 50).map((card) =>
           <ListViewItem
+            key={card.id}
             card={card}
             onItemClick={this.props.onItemClick}
             removeCard={(card) => this.removeCard(card)}
