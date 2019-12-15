@@ -42,13 +42,13 @@ class ListViewItem extends Component {
     ItemBtnLabel = (props) => {
         return <Button
             variant="sidebar-light"
-            className="ml-auto">
+            className="ml-auto"
+            onClick={props.onClick}>
             <img
                 alt={props.alt}
                 src={props.src}
-                onClick={props.onClick}
-                width="25" height="25"
-            ></img>
+                width="20" height="20"
+            />
         </Button>;
     }
 
@@ -65,22 +65,22 @@ class ListViewItem extends Component {
     }
 
     render() {
-        let img = {
+        let buttonProps = {
             alt: "add",
             src: addIcon,
-            onClick: () => this.onAddClick()
+            onClick: this.onAddClick
         };
 
         if (this.props.card.root) {
-            img = {
+            buttonProps = {
                 alt: "remove",
                 src: removeIcon,
-                onClick: () => { this.onRemoveClick(); }
+                onClick: this.onRemoveClick
             };
         }
 
         if (this.state.isLoading) {
-            img = {
+            buttonProps = {
                 alt: "loading",
                 src: loadingIcon,
                 onClick: () => { console.log('unavailable') }
@@ -89,7 +89,7 @@ class ListViewItem extends Component {
 
         return (<ListGroup.Item key={this.props.card.id} className="d-flex flex-nowrap" >
             <this.ItemUserLabel card={this.props.card} onItemClick={() => this.props.onItemClick(this.props.card)} />
-            <this.ItemBtnLabel {...img} />
+            <this.ItemBtnLabel {...buttonProps} />
         </ListGroup.Item >);
     }
 }
