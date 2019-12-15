@@ -69,11 +69,7 @@ class Sidebar extends Component {
       delta.userList = props.userList;
     }
 
-    if (state.defaultUser !== props.defaultUser) {
-      delta.defaultUser = props.defaultUser;
-    }
-
-    if (delta.defaultUser || delta.userList) {
+    if (delta.userList) {
       delta.shouldListModelUpdate = true;
       return delta;
     }
