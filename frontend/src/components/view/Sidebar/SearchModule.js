@@ -30,6 +30,8 @@ let filterInput = (searchLine, userList, defaultUser) => {
     return userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
 }
 
+const UPDATE_TIMEOUT = 400;
+
 class SearchModule extends Component {
     constructor(props) {
         super(props);
@@ -37,12 +39,18 @@ class SearchModule extends Component {
             searchLine: "",
             collapsed: this.props.collapsed
         };
+        this.timer = null;
     }
 
     searchInputHandler = (event) => {
         const value = event.target.value;
         this.setState({ searchLine: value });
-        this.props.updateSearchLine(value);
+        clearTimeout(this.timer);
+
+        this.timer = setTimeout(
+            () => this.props.updateSearchLine(value),
+            value === '' ? 0 : UPDATE_TIMEOUT
+        );
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -70,7 +78,7 @@ class SearchModule extends Component {
                     />
                 </Button>
             </>)
-            : (< FormControl
+            : (<FormControl
                 onChange={this.searchInputHandler}
                 className="m-2 w-auto"
                 type="search"
