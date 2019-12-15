@@ -43,7 +43,6 @@ class MainPage extends Component {
                             />
                             <Sidebar
                                 changeIsAuthorized={this.props.changeIsAuthorized}
-                                defaultUser={this.state.defaultUser}
                                 userList={users}
                                 addRootUser={addRootUser}
                                 addUser={addUser}
