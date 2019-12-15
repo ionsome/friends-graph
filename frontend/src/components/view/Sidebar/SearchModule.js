@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormControl, Button } from "react-bootstrap";
-import { users_get } from '../../../api/Friends';
+import { users_get, createProfileByData } from '../../../api/Friends';
 import searchIcon from "../../../res/search.svg";
 
 
