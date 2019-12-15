@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FormControl, Button } from "react-bootstrap";
+import { users_get } from '../../../api/Friends';
 import searchIcon from "../../../res/search.svg";
 
 
@@ -19,20 +20,29 @@ let filterInput = async (searchLine, userList) => {
     const re = /^(?:https{0,1}:\/\/)?vk.com\/(?:id(\d+)|([a-zA-Z0-9]{2,})) *$/;
     const match = re.exec(searchLine);
 
+    let res;
     if (match && match[2] !== 'id') {
         // проверка наличия пользователя
         if (match[1]) {
             const matchedId = parseInt(match[1]);
-            const res = userList.filter(user => user.id === matchedId);
-            if (res.length > 0)
+            res = userList.filter(user => user.id === matchedId);
+            if (res.length > 0) {
                 return res;
+            }
+            res = users_get([match[1]])[0];
         }
         else {
             const matchedDomain = match[2];
-            const res = userList.filter(user => user.domain === matchedDomain);
+            res = userList.filter(user => user.domain === matchedDomain);
             if (res.length > 0)
                 return res;
+            res = users_get([match[2]])[0];
         }
+
+        if (res.length > 0) {
+            return res;
+        }
+        
         return [{
             "id": '-2',
             "label": "New User",
