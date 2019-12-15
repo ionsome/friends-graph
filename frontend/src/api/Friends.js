@@ -42,7 +42,7 @@ let friends_get = async (id, idsOnly) => {
     let params = { "user_id": id, "v": API_VERSION, "fields": [] };
     if (!idsOnly) {
         params['fields'].push('photo_200');
-        params['fileds'].push('domain');
+        params['fields'].push('domain');
     }
     let api_request = (resolve, reject) => {
         VK.api("friends.get", params,
