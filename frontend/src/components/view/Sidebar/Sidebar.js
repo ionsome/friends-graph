@@ -20,7 +20,7 @@ class Sidebar extends Component {
       collapsed: true,
       showInfo: false,
       searchLine: "",
-      listModel: [props.defaultUser],
+      listModel: [],
       info: { id: 0, label: "", image: "", root: false }
     };
   }
@@ -58,7 +58,7 @@ class Sidebar extends Component {
   };
 
   updateSearchLine = (newSearchLine) => {
-    this.setState({ searchLine: newSearchLine, searchLineUpdated: true });
+    this.setState({ searchLine: newSearchLine, shouldListModelUpdate: true });
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -73,6 +73,7 @@ class Sidebar extends Component {
     }
 
     if (delta.defaultUser || delta.userList) {
+      delta.shouldListModelUpdate = true;
       return delta;
     }
 
@@ -80,18 +81,18 @@ class Sidebar extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.searchLineUpdated) {
+    if (this.state.shouldListModelUpdate) {
       filterInput(this.state.searchLine,
         this.state.userList,
         this.state.defaultUser
       ).then((res) => {
-        this.setState({ listModel: res, searchLineUpdated: false });
+        this.setState({ listModel: res, shouldListModelUpdate: false });
       });
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.listModel !== nextState.listModel || nextState.searchLineUpdated) {
+    if (this.state.listModel !== nextState.listModel || nextState.shouldListModelUpdate) {
       return true;
     }
 
