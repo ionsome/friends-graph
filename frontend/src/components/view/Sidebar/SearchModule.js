@@ -28,7 +28,7 @@ let filterInput = (searchLine, userList, defaultUser) => {
                 return res;
         }
         else {
-            const matchedDomain = matchedDomain;
+            const matchedDomain = match[2];
             const res = userList.filter(user => user.domain === matchedDomain);
             if (res.length > 0)
                 return res;
