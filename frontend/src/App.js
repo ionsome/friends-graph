@@ -26,8 +26,9 @@ class App extends Component {
                     resolve(response);
                 })
             }).then((response) => {
+                console.log(response);
                 this.isAuthorized = response && response.status === 'connected';
-                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit': true });
+                this.setState({ 'showMainPage': this.isAuthorized, 'vkInit': true, 'mainUserId' : response.user.id });
             });
         }
         else {
@@ -37,7 +38,7 @@ class App extends Component {
 
     render() {
         return <> {this.state.showMainPage ?
-            <MainPage {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
+            <MainPage {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} mainUserId={this.state.mainUserId} /> :
             <LoginPage vkInit={this.state.vkInit} {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
         </>
     }

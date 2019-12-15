@@ -42,6 +42,7 @@ class MainPage extends Component {
                                 bindGraph={bindGraph}
                             />
                             <Sidebar
+                                mainUserId={this.props.mainUserId}
                                 changeIsAuthorized={this.props.changeIsAuthorized}
                                 userList={users}
                                 addRootUser={addRootUser}

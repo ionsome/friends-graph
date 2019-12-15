@@ -88,7 +88,12 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
-    createProfileById(213966324).then(
+    let id = parseInt(this.props.mainUserId);
+    
+    if (isNaN(id))
+      id = 213966324;
+
+    createProfileById(id).then(
       (profile) => {
         profile.isDefault = true;
         this.props.addUser(profile);
