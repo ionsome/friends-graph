@@ -80,8 +80,7 @@ class Sidebar extends Component {
   componentDidUpdate() {
     if (this.state.shouldListModelUpdate) {
       filterInput(this.state.searchLine,
-        this.state.userList,
-        this.state.defaultUser
+        this.state.userList
       ).then((res) => {
         this.setState({ listModel: res, shouldListModelUpdate: false });
       });
@@ -91,8 +90,8 @@ class Sidebar extends Component {
   componentDidMount() {
     createProfileById(213966324).then(
       (profile) => {
-        profile.root = true;
-        this.props.addUser(profile)
+        profile.isDefault = true;
+        this.props.addUser(profile);
       }
     );
     // this.props.addUser(

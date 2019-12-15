@@ -3,7 +3,7 @@ import { FormControl, Button } from "react-bootstrap";
 import searchIcon from "../../../res/search.svg";
 
 
-let filterInput = async (searchLine, userList, defaultUser) => {
+let filterInput = async (searchLine, userList) => {
     let newListModel;
     // Если строка пустая, то следует вернуть список рутовых юзеров
     if (searchLine === "") {
@@ -11,7 +11,7 @@ let filterInput = async (searchLine, userList, defaultUser) => {
 
         // Если список юзеров пустой, то вернуть дефолтного юзера
         if (newListModel.length === 0) {
-            newListModel = defaultUser ? [defaultUser] : [];
+            newListModel = userList.filter(user => user.isDefault);
         }
         return newListModel;
     }
