@@ -29,20 +29,20 @@ let filterInput = async (searchLine, userList) => {
             if (res.length > 0) {
                 return res;
             }
-            res = users_get([match[1]])[0];
+            res = createProfileByData(users_get([match[1]])[0]);
         }
         else {
             const matchedDomain = match[2];
             res = userList.filter(user => user.domain === matchedDomain);
             if (res.length > 0)
                 return res;
-            res = users_get([match[2]])[0];
+            res = createProfileByData(users_get([match[2]])[0]);
         }
 
         if (res.length > 0) {
             return res;
         }
-        
+
         return [{
             "id": '-2',
             "label": "New User",
