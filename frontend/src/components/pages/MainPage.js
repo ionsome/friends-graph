@@ -3,29 +3,14 @@ import { Dropdown } from "react-bootstrap";
 import { Sidebar } from "../view/Sidebar";
 import { FriendsGraph as Graph } from "../view/Graph";
 import { Grapharable } from "../containers/Grapharable";
-import { createProfileById } from "../../api/Friends";
 import settingsIcon from "../../res/settings.svg";
 
 class MainPage extends Component {
     constructor() {
         super();
         this.state = {
-            defaultUser: undefined,
-            // {
-            //     "id": 0,
-            //     "label": "Not loaded",
-            //     "color": "",
-            //     "image": "https://vk.com/images/camera_200.png?ava=1",
-            //     "root": false
-            // },
             aggregators: false
         };
-    }
-
-    componentDidMount() {
-        createProfileById(213966324).then(
-            (profile) => profile && this.setState({ defaultUser: profile })
-        );
     }
 
     SettingsButton = () => {
@@ -47,7 +32,7 @@ class MainPage extends Component {
     render() {
         return (
             <Grapharable>
-                {(users, relations, addRootUser, removeUser, bindGraph) => {
+                {(users, relations, addRootUser, addUser, removeUser, bindGraph) => {
                     return (
                         <div className="main d-flex">
                             <Graph
@@ -61,6 +46,7 @@ class MainPage extends Component {
                                 defaultUser={this.state.defaultUser}
                                 userList={users}
                                 addRootUser={addRootUser}
+                                addUser={addUser}
                                 removeUser={removeUser}
                             />
                             <this.SettingsButton />

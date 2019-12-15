@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Card, Tab } from "react-bootstrap";
 import { ListView } from "./ListView";
 import { SearchModule, filterInput } from "./SearchModule";
+import { createProfileById } from "../../../api/Friends";
 
 import exitIcon from "../../../res/exit.svg";
 import logo from "../../../res/logo.svg";
@@ -15,7 +16,7 @@ const hideWidth = 55;
 
 class Sidebar extends Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
       collapsed: true,
       showInfo: false,
@@ -91,20 +92,22 @@ class Sidebar extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.listModel !== nextState.listModel || nextState.shouldListModelUpdate) {
-      return true;
-    }
-
-    if (this.state.collapsed !== nextState.collapsed){
-      return true;
-    }
-
-    if (this.state.showInfo !== nextState.showInfo){
-      return true;
-    }
-
-    return false;
+  componentDidMount() {
+    createProfileById(213966324).then(
+      (profile) => {
+        profile.root = true;
+        this.props.addUser(profile)
+      }
+    );
+    // this.props.addUser(
+    //   {
+    //     "id": 213966324,
+    //     "label": "Антон Мизиков",
+    //     "color": "",
+    //     "image": "https://sun1-15.userapi.com/c855320/v855320738/84dfa/vSiD1t5QbHk.jpg?ava=1",
+    //     "root": true
+    //   }
+    // )
   }
 
   Header = () => {
