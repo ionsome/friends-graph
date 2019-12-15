@@ -29,14 +29,16 @@ let filterInput = async (searchLine, userList) => {
             if (res.length > 0) {
                 return res;
             }
-            res = createProfileByData(users_get([match[1]])[0]);
+            res = await users_get([match[1]]);
+            res = res.map(user => createProfileByData(user));
         }
         else {
             const matchedDomain = match[2];
             res = userList.filter(user => user.domain === matchedDomain);
             if (res.length > 0)
                 return res;
-            res = createProfileByData(users_get([match[2]])[0]);
+            res = await users_get([match[2]]);
+            res = res.map(user => createProfileByData(user));
         }
 
         if (res.length > 0) {
