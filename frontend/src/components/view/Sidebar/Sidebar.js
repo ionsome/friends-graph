@@ -50,7 +50,7 @@ class Sidebar extends Component {
   };
 
   itemAddBtnHandler = async (card) => {
-    this.props.addRootUser(card.id);
+    return this.props.addRootUser(card.id);
   };
 
   itemRemoveBtnHandler = card => {
@@ -58,18 +58,46 @@ class Sidebar extends Component {
   };
 
   updateSearchLine = (newSearchLine) => {
-    this.setState({ searchLine: newSearchLine });
+    this.setState({ searchLine: newSearchLine, searchLineUpdated: true });
   }
 
   static getDerivedStateFromProps(props, state) {
     const delta = {};
 
-    delta.userList = props.userList;
-    delta.defaultUser = props.defaultUser;
+    if (state.userList !== props.userList) {
+      delta.userList = props.userList;
+    }
 
-    delta.listModel = filterInput(state.searchLine, props.userList, props.defaultUser);
+    if (state.defaultUser !== props.defaultUser) {
+      delta.defaultUser = props.defaultUser;
+    }
 
-    if (delta) return delta;
+    if (delta.defaultUser || delta.userList) {
+      return delta;
+    }
+
+    return false;
+  }
+
+  componentDidUpdate() {
+    if (this.state.searchLineUpdated) {
+      filterInput(this.state.searchLine,
+        this.state.userList,
+        this.state.defaultUser
+      ).then((res) => {
+        this.setState({ listModel: res, searchLineUpdated: false });
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.listModel !== nextState.listModel || nextState.searchLineUpdated) {
+      return true;
+    }
+
+    if (this.state.collapsed !== nextState.collapsed)
+      return true;
+
     return false;
   }
 
@@ -135,7 +163,7 @@ class Sidebar extends Component {
           <Button
             className="border-top"
             variant="sidebar-light"
-            onClick={async () => this.itemAddBtnHandler(this.state.info)}
+            onClick={() => this.itemAddBtnHandler(this.state.info)}
           >
             Add
           </Button>
