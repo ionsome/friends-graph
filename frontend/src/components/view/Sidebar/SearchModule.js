@@ -17,7 +17,7 @@ let filterInput = async (searchLine, userList) => {
         return newListModel;
     }
 
-    const re = /^(?:https{0,1}:\/\/)?vk.com\/(?:id(\d+)|([a-zA-Z0-9]{2,})) *$/;
+    const re = /^(?:https{0,1}:\/\/)?vk.com\/(?:id(\d+)|([a-zA-Z0-9][a-zA-Z0-9_]*[a-zA-Z0-9])) *$/;
     const match = re.exec(searchLine);
 
     let res;

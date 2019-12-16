@@ -64,13 +64,14 @@ class Sidebar extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const delta = {};
-
+    console.log('DerivedStateCalled');
     if (state.userList !== props.userList) {
       delta.userList = props.userList;
     }
 
     if (delta.userList) {
       delta.shouldListModelUpdate = true;
+      console.log('DerivedStateUpdated');
       return delta;
     }
 
@@ -104,15 +105,6 @@ class Sidebar extends Component {
 
       this.setState({ initialUserId: initialUserId });
     });
-    // this.props.addUser(
-    //   {
-    //     "id": 213966324,
-    //     "label": "Антон Мизиков",
-    //     "color": "",
-    //     "image": "https://sun1-15.userapi.com/c855320/v855320738/84dfa/vSiD1t5QbHk.jpg?ava=1",
-    //     "root": true
-    //   }
-    // )
   }
 
   Header = () => {
