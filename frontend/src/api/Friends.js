@@ -23,6 +23,7 @@ let users_get = async (list_ids) => {
                 "v": API_VERSION,
                 'fields': [
                     'photo_200', // для отображения на нодах и в профиле
+                    'photo_max_orig', // если photo_200 не прогрузилось
                     'domain'     // для поиска и отображения в профиле
                 ]
             },
@@ -42,6 +43,7 @@ let friends_get = async (id, idsOnly) => {
     let params = { "user_id": id, "v": API_VERSION, "fields": [] };
     if (!idsOnly) {
         params['fields'].push('photo_200');
+        params['fields'].push('photo_max_orig');
         params['fields'].push('domain');
     }
     let api_request = (resolve, reject) => {
@@ -77,7 +79,7 @@ function createProfileByData(data) {
         data.id,
         data.first_name,
         data.last_name,
-        data.photo_200,
+        data.photo_200 ? data.photo_200 : data.photo_max_orig,
         data.domain,
         data.is_closed
     );
