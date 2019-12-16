@@ -64,8 +64,11 @@ class Sidebar extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const delta = {};
-    console.log('sidebar der called');
+    console.log('sidebar der called:');
+    console.log(state.userList !== props.userList)
 
+    console.log(state);
+    console.log(props);
     if (state.userList !== props.userList) {
       delta.userList = props.userList;
     }
