@@ -61,11 +61,20 @@ class ListViewItem extends Component {
     };
 
 
+
     onRemoveClick = () => {
         console.log('remove');
         console.log(this.props.card);
         this.props.removeCard(this.props.card);
     };
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.isLoading !== nextState.isLoading)
+            return true;
+        if (this.state.root !== nextState.root)
+            return true;
+        return false
+    }
 
     render() {
         console.log('update ' + this.props.card.id);
