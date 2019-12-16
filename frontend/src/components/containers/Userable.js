@@ -9,7 +9,8 @@ class Userable extends Component {
 
     this.state = {
       users: [], // нужен для отображения
-      relations: []
+      relations: [],
+      aggregators: false
     };
   }
 
@@ -42,7 +43,11 @@ class Userable extends Component {
 
     for (const friend of friends) {
       let profile = createProfileByData(friend);
-      this.addUser(profile);
+      if (this.state.aggregators) {
+        this.addUser(profile);
+      } else if (!this.isAggregator(profile)) {
+        this.addUser(profile);
+      }
     }
     console.log("userlist:");
     console.log(this.state.users);
@@ -185,6 +190,14 @@ class Userable extends Component {
     }
   }
 
+  useAggregators(value) {
+    this.setState({ aggregators: value });
+  }
+
+  isAggregator(profile) {
+    return false;
+  }
+
   render() {
     return this.props.children(
       this.state.users,
@@ -192,6 +205,7 @@ class Userable extends Component {
       this.addRootUser.bind(this),
       this.addUser.bind(this),
       this.removeUser.bind(this),
+      this.useAggregators.bind(this),
     );
   }
 }

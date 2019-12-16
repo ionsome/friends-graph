@@ -63,10 +63,6 @@ class FriendsGraph extends Component {
       events: {
         select: event => {
           let { nodes, edges } = event;
-          console.log("Selected nodes:");
-          console.log(nodes);
-          console.log("Selected edges:");
-          console.log(edges);
         },
         doubleClick: event => {
           let { nodes } = event;
