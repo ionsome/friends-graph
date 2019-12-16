@@ -56,7 +56,7 @@ class ListViewItem extends Component {
         this.setState({ isLoading: true });
         this.props.addCard(this.props.card).then(() => {
             console.log('isLoading => false ' + this.props.card.id);
-            this.setState({ isLoading: false });
+            this.setState({ isLoading: false, root: true });
         });
     };
 
@@ -75,7 +75,7 @@ class ListViewItem extends Component {
             onClick: this.onAddClick
         };
 
-        if (this.props.card.root) {
+        if (this.props.card.root || this.state.root) {
             buttonProps = {
                 alt: "remove",
                 src: removeIcon,
