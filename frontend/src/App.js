@@ -29,9 +29,6 @@ class App extends Component {
                 console.log(response);
                 this.isAuthorized = response && response.status === 'connected';
                 let stateUpdate = { 'showMainPage': this.isAuthorized, 'vkInit': true }
-                if (this.isAuthorized) {
-                    stateUpdate.mainUserId = response.session.mid;
-                }
                 this.setState(stateUpdate);
             });
         }
