@@ -55,6 +55,7 @@ class ListViewItem extends Component {
     onAddClick = () => {
         this.setState({ isLoading: true });
         this.props.addCard(this.props.card).then(() => {
+            console.log('isLoading => false ' + this.props.card.id);
             this.setState({ isLoading: false });
         });
     };
@@ -67,6 +68,7 @@ class ListViewItem extends Component {
     };
 
     render() {
+        console.log('update ' + this.props.card.id);
         let buttonProps = {
             alt: "add",
             src: addIcon,
