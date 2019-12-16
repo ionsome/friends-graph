@@ -14,7 +14,7 @@ class ListView extends Component {
   // быстрая операция
   removeCard = (card) => {
     this.props.removeBtnHandler(card);
-  }
+  };
 
   //  Медленная операция
   addCard = (card) => {
@@ -22,7 +22,7 @@ class ListView extends Component {
     // const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
     // card.root = true;
     // return wait(1500);
-  }
+  };
 
   static getDerivedStateFromProps(props, state) {
     return props;

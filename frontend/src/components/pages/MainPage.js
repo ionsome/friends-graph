@@ -14,7 +14,7 @@ class MainPage extends Component {
     }
 
     SettingsButton = () => {
-        return <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 30, bottom: 15 }}>
+        return <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 7, bottom: 1 }}>
             <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon} />
             <Dropdown.Menu>
                 <Dropdown.Header>Settings</Dropdown.Header>
@@ -27,7 +27,7 @@ class MainPage extends Component {
                 <Dropdown.Item >Clear graph</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>;
-    }
+    };
 
     render() {
         return (
