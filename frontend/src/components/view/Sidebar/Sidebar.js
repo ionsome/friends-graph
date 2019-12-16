@@ -65,17 +65,22 @@ class Sidebar extends Component {
   static getDerivedStateFromProps(props, state) {
     const delta = {};
     console.log('DerivedStateCalled');
-    if (state.userList !== props.userList) {
-      delta.userList = props.userList;
-    }
+    
+    // if (state.userList !== props.userList) {
+    //   delta.userList = props.userList;
+    // }
 
-    if (delta.userList) {
-      delta.shouldListModelUpdate = true;
-      console.log('DerivedStateUpdated');
-      return delta;
-    }
+    // if (delta.userList) {
+    //   delta.shouldListModelUpdate = true;
+    //   console.log('DerivedStateUpdated');
+    //   return delta;
+    // }
 
-    return false;
+    delta.shouldListModelUpdate = true;
+    delta.userList = props.userList;
+    console.log(delta.userList);
+    return delta;
+//    return false;
   }
 
   componentDidUpdate() {
