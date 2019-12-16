@@ -11,6 +11,7 @@ class ListViewItem extends Component {
         super(props);
         this.state = {
             isLoading: false,
+            card: this.props.card,
             img: {
                 alt: "add",
                 src: addIcon,
@@ -84,7 +85,7 @@ class ListViewItem extends Component {
             onClick: this.onAddClick
         };
 
-        if (this.props.card.root || this.state.root) {
+        if (this.state.card.root || this.state.root) {
             buttonProps = {
                 alt: "remove",
                 src: removeIcon,
@@ -101,7 +102,7 @@ class ListViewItem extends Component {
         }
 
         return (<ListGroup.Item className="d-flex flex-nowrap" >
-            <this.ItemUserLabel card={this.props.card} onItemClick={() => this.props.onItemClick(this.props.card)} />
+            <this.ItemUserLabel card={this.state.card} onItemClick={() => this.props.onItemClick(this.state.card)} />
             <this.ItemBtnLabel {...buttonProps} />
         </ListGroup.Item >);
     }

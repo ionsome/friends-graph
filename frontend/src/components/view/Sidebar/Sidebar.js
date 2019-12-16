@@ -62,6 +62,21 @@ class Sidebar extends Component {
     this.setState({ searchLine: newSearchLine, shouldListModelUpdate: true });
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const delta = {};
+
+    if (state.userList !== props.userList) {
+      delta.userList = props.userList;
+    }
+
+    if (delta.userList) {
+      delta.shouldListModelUpdate = true;
+      return delta;
+    }
+
+    return false;
+  }
+
   componentDidUpdate() {
     if (this.state.shouldListModelUpdate) {
       filterInput(this.state.searchLine,
