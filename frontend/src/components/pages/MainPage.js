@@ -13,6 +13,15 @@ class MainPage extends Component {
         };
     }
 
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.mainUserId) {
+      return props;
+    }
+
+    return false;
+  }
+
     SettingsButton = () => {
         return <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 30, bottom: 15 }}>
             <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon} />
