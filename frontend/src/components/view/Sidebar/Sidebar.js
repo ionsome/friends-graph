@@ -63,14 +63,25 @@ class Sidebar extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    console.log('derivedState called from Sidebar');
+    console.log(props);
+
     const delta = {};
 
     if (state.userList !== props.userList) {
       delta.userList = props.userList;
     }
 
+    if (state.mainUserId !== props.mainUserId) {
+      delta.mainUserId = props.mainUserId;
+    }
+
     if (delta.userList) {
       delta.shouldListModelUpdate = true;
+      return delta;
+    }
+
+    if (delta.mainUserId) {
       return delta;
     }
 
@@ -88,8 +99,8 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
-    let id = parseInt(this.props.mainUserId);
-    
+    let id = parseInt(this.state.mainUserId);
+
     if (isNaN(id))
       id = 213966324;
 
