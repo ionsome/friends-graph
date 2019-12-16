@@ -19,9 +19,6 @@ class ListView extends Component {
   //  Медленная операция
   addCard = (card) => {
     return this.props.addBtnHandler(card);
-    // const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-    // card.root = true;
-    // return wait(1500);
   };
 
   static getDerivedStateFromProps(props, state) {
