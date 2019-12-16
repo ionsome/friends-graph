@@ -17,6 +17,7 @@ class ListViewItem extends Component {
                 src: addIcon,
                 onClick: () => this.onAddClick()
             },
+            root: this.props.card.root
         };
     }
 
@@ -66,7 +67,7 @@ class ListViewItem extends Component {
     onRemoveClick = () => {
         console.log('remove');
         console.log(this.props.card);
-        this.setState({root: false});
+        this.setState({ root: false });
         this.props.removeCard(this.props.card);
     };
 
@@ -86,19 +87,18 @@ class ListViewItem extends Component {
             onClick: this.onAddClick
         };
 
-        if (this.state.card.root || this.state.root) {
-            buttonProps = {
-                alt: "remove",
-                src: removeIcon,
-                onClick: this.onRemoveClick
-            };
-        }
-
         if (this.state.isLoading) {
             buttonProps = {
                 alt: "loading",
                 src: loadingIcon,
                 onClick: () => { console.log('unavailable') }
+            };
+        }
+        else if (this.state.root) {
+            buttonProps = {
+                alt: "remove",
+                src: removeIcon,
+                onClick: this.onRemoveClick
             };
         }
 
