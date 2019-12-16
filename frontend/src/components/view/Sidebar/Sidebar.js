@@ -62,32 +62,6 @@ class Sidebar extends Component {
     this.setState({ searchLine: newSearchLine, shouldListModelUpdate: true });
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const delta = {};
-    console.log('sidebar der called:');
-    console.log(state.userList !== props.userList)
-
-    console.log(state);
-    console.log(props);
-    if (state.userList !== props.userList) {
-      delta.userList = props.userList;
-    }
-    else if (state.userlist && props.userList) {
-      if (state.userlist.length !== props.userList.length) {
-        console.log('triggered');
-        delta.userList = props.userList
-      }
-    }
-
-    if (delta.userList) {
-      delta.shouldListModelUpdate = true;
-      console.log('DerivedStateUpdated');
-      return delta;
-    }
-
-    return false;
-  }
-
   componentDidUpdate() {
     if (this.state.shouldListModelUpdate) {
       filterInput(this.state.searchLine,
