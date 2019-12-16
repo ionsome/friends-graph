@@ -29,6 +29,7 @@ class Grapharable extends Userable {
       this.addUser.bind(this),
       this.removeUser.bind(this),
       this.bindGraph.bind(this),
+      this.useAggregators.bind(this),
     );
   }
 }
