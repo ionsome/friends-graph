@@ -54,7 +54,7 @@ let filterInput = async (searchLine, userList) => {
         }]
     }
     return userList.filter(user => user.label.toLowerCase().includes(searchLine.toLowerCase()));
-}
+};
 
 const UPDATE_TIMEOUT = 400;
 
@@ -78,7 +78,7 @@ class SearchModule extends Component {
             () => this.props.updateSearchLine(value),
             value === '' ? 0 : UPDATE_TIMEOUT
         );
-    }
+    };
 
     static getDerivedStateFromProps(props, state) {
         const delta = {};

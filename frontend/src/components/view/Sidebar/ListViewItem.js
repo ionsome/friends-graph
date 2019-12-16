@@ -50,21 +50,21 @@ class ListViewItem extends Component {
                 width="20" height="20"
             />
         </Button>;
-    }
+    };
 
     onAddClick = () => {
         this.setState({ isLoading: true });
         this.props.addCard(this.props.card).then(() => {
             this.setState({ isLoading: false });
         });
-    }
+    };
 
 
     onRemoveClick = () => {
         console.log('remove');
         console.log(this.props.card);
         this.props.removeCard(this.props.card);
-    }
+    };
 
     render() {
         let buttonProps = {
