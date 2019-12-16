@@ -42,7 +42,7 @@ class App extends Component {
 
     render() {
         return <> {this.state.showMainPage ?
-            <MainPage {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} mainUserId={this.state.mainUserId} /> :
+            <MainPage {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} /> :
             <LoginPage vkInit={this.state.vkInit} {...this.props} changeIsAuthorized={this.changeIsAuthorized.bind(this)} />}
         </>
     }
