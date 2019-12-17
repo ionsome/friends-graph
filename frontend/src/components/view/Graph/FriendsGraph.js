@@ -109,9 +109,14 @@ class FriendsGraph extends Component {
     this.nodesInstance.remove(id);
   }
 
-  setHiddenById(id, value) {
+  setHiddenById(id, value, image) {
+    const delta = { 'hidden': value }
+    if (image) {
+      delta.image = image;
+    }
+
     if (this.nodesInstance.get(id)) {
-      this.nodesInstance.update({...this.nodesInstance.get(id), 'hidden' : value});
+      this.nodesInstance.update({ ...this.nodesInstance.get(id), ...delta });
     }
   }
 

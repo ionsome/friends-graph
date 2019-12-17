@@ -30,20 +30,16 @@ class Grapharable extends Userable {
   }
 
   setProfileVisibility(profile, value, notHideIfShown) {
-    console.log('profile:');
-    console.log(profile);
-
-    if (!profile)
-      return;
-    // Если профиль не скрыт и его не нужно скрывать
-    if (!profile.hidden && notHideIfShown)
-    {
-      console.log('профиль открыт, пропуск')
+    if (!profile || !profile.hidden && notHideIfShown) {
       return;
     }
     profile.hidden = !value;
-    console.log(profile.hidden);
-    this.graph.setHiddenById(profile.id, !value);
+    if (profile.image == '') {
+      profile.image = profile.hidden_image;
+      this.graph.setHiddenById(profile.id, !value, profile.hidden_image);
+    }
+    else
+      this.graph.setHiddenById(profile.id, !value, false);
   }
 
   clearUsers() {
