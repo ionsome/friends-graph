@@ -63,6 +63,7 @@ class FriendsGraph extends Component {
       events: {
         select: event => {
           let { nodes, edges } = event;
+
         },
         doubleClick: event => {
           let { nodes } = event;
@@ -114,7 +115,7 @@ class FriendsGraph extends Component {
     console.log(this.nodesInstance);
     console.log(this.nodesInstance.get(id));
     if (this.nodesInstance.get(id)) {
-      this.nodesInstance.get(id).hidden = value;
+      this.nodesInstance.update({...this.nodesInstance.get(id), 'hidden' : value});
     }
   }
 
