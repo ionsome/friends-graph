@@ -21,6 +21,16 @@ class Grapharable extends Userable {
     this.graph = graph;
   }
 
+  setProfileVisibility(profile, value, notHideIfShown) {
+    if (!profile)
+      return;
+     // Если профиль не скрыт и его не нужно скрывать
+    if (!profile.hidden && notHideIfShown)
+      return;
+    profile.hidden = !value;
+    this.graph.setHiddenById(profile.id, !value);
+  }
+  
   render() {
     return this.props.children(
       this.state.users,
