@@ -43,12 +43,9 @@ class Userable extends Component {
 
     for (const friend of friends) {
       let profile = createProfileByData(friend);
-      if (this.state.aggregators) {
-        this.addUser(profile);
-      } else if (!this.isAggregator(profile)) {
-        this.addUser(profile);
-      }
+      this.addUser(profile);
     }
+
     console.log("userlist:");
     console.log(this.state.users);
     await this.addUserRelationsWithProfiles(rootUser, friends);
@@ -80,6 +77,13 @@ class Userable extends Component {
       let respond = await vkscript_execute(`return [${usersPayload}];`);
       for (let n = 0; n < respond.length; n++) {
         let relations = respond[n].rels;
+        if (!this.state.aggregators && relations) {
+          if (this.isAggregator(relations.items.length)) {
+            this.removeUser(friends[index + n]);
+            continue;
+          }
+        }
+
         if (relations)
           await this.addUserRelationsWithIds(
             friends[index + n],
@@ -194,7 +198,9 @@ class Userable extends Component {
     this.setState({ aggregators: value });
   }
 
-  isAggregator(profile) {
+  isAggregator(friendlist_length) {
+    if (friendlist_length > 120)
+      return true;
     return false;
   }
 
