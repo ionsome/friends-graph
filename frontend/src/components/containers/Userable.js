@@ -19,6 +19,7 @@ class Userable extends Component {
     */
   async addRootUser(id) {
     let userPresents = this.isUserPresentWithId(id);
+    let user;
     if (!userPresents) {
       user = await this.createProfileById(id);
       this.addUser(user);
