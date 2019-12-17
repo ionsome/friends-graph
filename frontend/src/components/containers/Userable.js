@@ -53,7 +53,7 @@ class Userable extends Component {
       let res = createProfileByData(friend);
       // не загружать сразу
       res.hidden_image = res.image;
-      res.image = undefined;
+      res.image = '';
       res.hidden = true;
       return res;
     });
@@ -154,7 +154,7 @@ class Userable extends Component {
     }
 
 
-    if (!profile.image)
+    if (profile.image == '')
       profile.image = profile.hidden_image;
     this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
