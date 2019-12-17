@@ -109,6 +109,10 @@ class FriendsGraph extends Component {
   }
 
   setHiddenById(id, value) {
+    console.log('set hidden by id');
+    console.log(id + " " + value);
+    console.log(this.nodesInstance);
+    console.log(this.nodesInstance.get(id));
     if (this.nodesInstance.get(id)) {
       this.nodesInstance.get(id).hidden = value;
     }
