@@ -49,9 +49,9 @@ class Userable extends Component {
     let friends = await friends_get(rootUser.id);
 
     for (const friend of friends) {
-        profile = createProfileByData(friend);
-        profile.hidden = true;
-        this.addUser(profile);
+        friend = createProfileByData(friend);
+        friend.hidden = true;
+        this.addUser(friend);
     }
 
     console.log("userlist:");
