@@ -43,6 +43,7 @@ class Userable extends Component {
 
     for (const friend of friends) {
       let profile = createProfileByData(friend);
+      this.setProfileVisibility(profile, false);
       this.addUser(profile);
     }
 
@@ -63,6 +64,18 @@ class Userable extends Component {
     return false;
   }
 
+  setProfileVisibility(profile, value) {
+    profile.hidden = value;
+  }
+
+  setAmountOfFriends(profile, amount) {
+    profile.f_amount = amount;
+  }
+
+  setAmountOfMutualFriends(profile, amount) {
+    profile.mf_amount = amount;
+  }
+
   /*
         Соединяет друзей между собой и добавленными юзерами 
     */
@@ -77,18 +90,14 @@ class Userable extends Component {
       let respond = await vkscript_execute(`return [${usersPayload}];`);
       for (let n = 0; n < respond.length; n++) {
         let relations = respond[n].rels;
-        if (!this.state.aggregators && relations) {
-          if (this.isAggregator(relations.items.length)) {
-            this.removeUser(friends[index + n]);
-            continue;
-          }
-        }
 
-        if (relations)
+        if (relations) {
+          this.setAmountOfFriends(friends[index + n], relations.items.length);
           await this.addUserRelationsWithIds(
             friends[index + n],
             relations.items
           );
+        }
       }
     }
   }
@@ -115,6 +124,14 @@ class Userable extends Component {
           : { from: n, to: profile.id }
       )
       .filter(rel => !this.isRelationPresent(rel));
+
+    this.setAmountOfMutualFriends(profile, new_relations.length);
+
+    if (!this.state.aggregators && this.isAggregator(profile)) {
+      this.removeUser(profile);
+    }
+
+    this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
     return true;
   }
@@ -198,10 +215,11 @@ class Userable extends Component {
     this.setState({ aggregators: value });
   }
 
-  isAggregator(friendlist_length) {
-    if (friendlist_length > 190)
-      return true;
-    return false;
+  isAggregator(profile) {
+    if (profile.f_amount < 190 || (profile.f_amount / profile.mf_amount < 4)) {
+      return false;
+    }
+    return true;
   }
 
   render() {
