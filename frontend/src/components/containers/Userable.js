@@ -153,9 +153,6 @@ class Userable extends Component {
       this.removeUser(profile);
     }
 
-
-    if (profile.image == '')
-      profile.image = profile.hidden_image;
     this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
     return true;
