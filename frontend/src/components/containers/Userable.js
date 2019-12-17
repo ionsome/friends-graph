@@ -70,7 +70,7 @@ class Userable extends Component {
   }
 
   setProfileVisibility(profile, value, notHideIfShown) {
-    if (!user)
+    if (!profile)
       return;
      // Если профиль не скрыт и его не нужно скрывать
     if (!profile.hidden && notHideIfShown)
