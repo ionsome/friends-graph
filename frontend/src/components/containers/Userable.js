@@ -199,7 +199,7 @@ class Userable extends Component {
   }
 
   isAggregator(friendlist_length) {
-    if (friendlist_length > 120)
+    if (friendlist_length > 190)
       return true;
     return false;
   }
