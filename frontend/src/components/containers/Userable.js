@@ -67,7 +67,7 @@ class Userable extends Component {
   }
 
   addUser(profile) {
-    if (!this.isUserPresentWithId(profile.id)) {
+    if (profile && !this.isUserPresentWithId(profile.id)) {
       this.users.push(profile);
       this.setState({ users: this.users });
       return true;
