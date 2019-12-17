@@ -51,16 +51,14 @@ class Userable extends Component {
 
     friends = friends.map(friend => {
       let res = createProfileByData(friend);
+      // не загружать сразу
+      res.hidden_image = res.image;
+      res.image = undefined;
       res.hidden = true;
       return res;
     });
 
     this.addUserList(friends);
-    // for (let friend of friends) {
-    //   friend = createProfileByData(friend);
-    //   friend.hidden = true;
-    //   this.addUser(friend);
-    // }
 
     await this.addUserRelationsWithProfiles(rootUser, friends);
     await this.connectFriends(friends);
@@ -83,9 +81,6 @@ class Userable extends Component {
   }
 
   setProfileVisibility(profile, value, notHideIfShown) {
-    if (!profile)
-      return;
-    // Если профиль не скрыт и его не нужно скрывать
     if (!profile.hidden && notHideIfShown)
       return;
     profile.hidden = !value;
@@ -112,15 +107,15 @@ class Userable extends Component {
 
       let respond = await vkscript_execute(`return [${usersPayload}];`);
       for (let n = 0; n < respond.length; n++) {
-        let relations = respond[n].rels;
-        if (relations && relations.items.length > 0) {
+        let relations = respond[n].rels.items;
+        if (relations && relations.length > 0) {
           this.setAmountOfFriends(
             friends[index + n],
-            relations.items.length
+            relations.length
           );
           await this.addUserRelationsWithIds(
             friends[index + n],
-            relations.items
+            relations
           );
         }
       }
@@ -143,7 +138,6 @@ class Userable extends Component {
       if (!friends.length) return false;
     }
 
-    //let user_ids = this.users.map(elem => elem.id);
     let new_relations = friends
       .filter(n => this.users.some(e => e.id === n))
       .map(n =>
@@ -159,7 +153,9 @@ class Userable extends Component {
       this.removeUser(profile);
     }
 
-    console.log('setting visibility true');
+
+    if (!profile.image)
+      profile.image = profile.hidden_image;
     this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
     return true;
@@ -197,13 +193,12 @@ class Userable extends Component {
       }
     return false;
   }
-  profile
   /*
         Возвращает профиль юзера, если
         соответствующий был найден
     */
   isUserPresentWithId(userId) {
-    for (const anotherUser of this.state.users)
+    for (const anotherUser of this.users)
       if (userId === anotherUser.id) {
         return anotherUser;
       }
@@ -225,7 +220,7 @@ class Userable extends Component {
     let data = await users_get([id]);
     data = data[0];
     if (
-      !this.state.users.some(
+      !this.users.some(
         element => data === undefined || element.id === data.id
       )
     ) {
