@@ -23,7 +23,7 @@ class Userable extends Component {
 
     if (!userPresents) {
       user = await this.createProfileById(id);
-      this.setProfileVisibility(user, true, true);
+      user.hidden = false;
       this.addUser(user);
     }
     else {
@@ -44,22 +44,26 @@ class Userable extends Component {
     }
     rootUser.root = true;
 
-    if (rootUser.isClosed) return;
+    // не реализовано
+    //if (rootUser.isClosed) return;
 
     let friends = await friends_get(rootUser.id);
 
-    for (let friend of friends) {
-        friend = createProfileByData(friend);
-        friend.hidden = true;
-        this.addUser(friend);
-    }
+    friends = friends.map(friend => {
+      let res = createProfileByData(friend);
+      res.hidden = true;
+      return res;
+    });
 
-    console.log("userlist:");
-    console.log(this.state.users);
+    this.addUserList(friends);
+    // for (let friend of friends) {
+    //   friend = createProfileByData(friend);
+    //   friend.hidden = true;
+    //   this.addUser(friend);
+    // }
+
     await this.addUserRelationsWithProfiles(rootUser, friends);
     await this.connectFriends(friends);
-    console.log("rels:");
-    console.log(this.state.relations);
   }
 
   addUser(profile) {
@@ -69,6 +73,12 @@ class Userable extends Component {
       return true;
     }
     return false;
+  }
+
+  addUserList(profiles) {
+    let res = profiles.filter(e => e && !this.isUserPresentWithId(e.id))
+    this.users.push(...res);
+    this.setState({ users: this.users });
   }
 
   setProfileVisibility(profile, value, notHideIfShown) {
@@ -93,7 +103,7 @@ class Userable extends Component {
     */
   async connectFriends(friends) {
     for (let index = 0; index < friends.length; index += 25) {
-      let lastIndex = Math.min(friends.length, index + 25);
+      const lastIndex = Math.min(friends.length, index + 25);
       let requestedUsers = friends.slice(index, lastIndex);
       let usersPayload = requestedUsers.map(elem => {
         return `{id: ${elem.id},rels: API.friends.get({user_id: ${elem.id}})}`;
@@ -103,8 +113,11 @@ class Userable extends Component {
       for (let n = 0; n < respond.length; n++) {
         let relations = respond[n].rels;
 
-        if (relations) {
-          this.setAmountOfFriends(friends[index + n], relations.items.length);
+        if (relations && relations.length > 0) {
+          this.setAmountOfFriends(
+            friends[index + n],
+            relations.items.length
+          );
           await this.addUserRelationsWithIds(
             friends[index + n],
             relations.items
@@ -121,15 +134,18 @@ class Userable extends Component {
         Также, можно передать список id друзей через параметр friends. 
     */
   async addUserRelations(profile, friends) {
+    if (typeof friends !== 'undefined' && !friends.length)
+      return true;
+
     friends = friends || [];
-    if (!friends.length) {
+    if (friends.length) {
       friends = await friends_get(profile.id, true);
       if (!friends.length) return false;
     }
 
-    let user_ids = this.state.users.map(elem => elem.id);
+    //let user_ids = this.users.map(elem => elem.id);
     let new_relations = friends
-      .filter(n => user_ids.indexOf(n) > -1)
+      .filter(n => this.users.some(e => e.id === n))
       .map(n =>
         profile.id < n
           ? { from: profile.id, to: n }
