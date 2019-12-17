@@ -22,7 +22,7 @@ class Userable extends Component {
     let user;
     if (!userPresents) {
       user = await this.createProfileById(id);
-      this.setProfileVisibility(profile, true, true);
+      this.setProfileVisibility(user, true, true);
       this.addUser(user);
     }
     else {
@@ -187,7 +187,7 @@ class Userable extends Component {
       }
     return false;
   }
-
+profile
   /*
         Возвращает профиль юзера, если
         соответствующий был найден
