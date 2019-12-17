@@ -1,9 +1,29 @@
 import { Userable } from "./Userable";
+import { nodes, edges } from '../../consts';
 
 class Grapharable extends Userable {
+  constructor(props) {
+    super(props);
+    // нужен для хранения пользователей
+    this.users = nodes;
+
+    this.state = {
+      users: this.users, // нужен для отображения
+      relations: edges,
+      agregators: false
+    };
+  }
 
   addUser(profile) {
     if (super.addUser(profile) && this.graph) this.graph.addNodes([profile]);
+  }
+
+  addUserList(profiles) {
+    const res = profiles.filter(e => e && !this.isUserPresentWithId(e.id));
+    this.users.push(...res);
+    this.setState({ users: this.users });
+    this.graph.addNodes(res);
+    return true;
   }
 
   removeUser(profile) {
@@ -22,12 +42,19 @@ class Grapharable extends Userable {
   }
 
   setProfileVisibility(profile, value, notHideIfShown) {
+    console.log('profile:');
+    console.log(profile);
+
     if (!profile)
       return;
     // Если профиль не скрыт и его не нужно скрывать
     if (!profile.hidden && notHideIfShown)
+    {
+      console.log('профиль открыт, пропуск')
       return;
+    }
     profile.hidden = !value;
+    console.log(profile.hidden);
     this.graph.setHiddenById(profile.id, !value);
   }
 
