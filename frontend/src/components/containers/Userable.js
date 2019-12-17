@@ -76,9 +76,10 @@ class Userable extends Component {
   }
 
   addUserList(profiles) {
-    let res = profiles.filter(e => e && !this.isUserPresentWithId(e.id))
+    const res = profiles.filter(e => e && !this.isUserPresentWithId(e.id));
     this.users.push(...res);
     this.setState({ users: this.users });
+    return true;
   }
 
   setProfileVisibility(profile, value, notHideIfShown) {
@@ -112,8 +113,7 @@ class Userable extends Component {
       let respond = await vkscript_execute(`return [${usersPayload}];`);
       for (let n = 0; n < respond.length; n++) {
         let relations = respond[n].rels;
-
-        if (relations && relations.length > 0) {
+        if (relations && relations.items.length > 0) {
           this.setAmountOfFriends(
             friends[index + n],
             relations.items.length
@@ -138,7 +138,7 @@ class Userable extends Component {
       return true;
 
     friends = friends || [];
-    if (friends.length) {
+    if (!friends.length) {
       friends = await friends_get(profile.id, true);
       if (!friends.length) return false;
     }
