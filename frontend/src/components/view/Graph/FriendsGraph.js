@@ -107,11 +107,13 @@ class FriendsGraph extends Component {
   removeNodeById(id) {
     this.nodesInstance.remove(id);
   }
-  
+
   setHiddenById(id, value) {
-    this.nodesInstance.get(id).hidden = value;
+    if (this.nodesInstance.get(id)) {
+      this.nodesInstance.get(id).hidden = value;
+    }
   }
-    
+
   render() {
     return (
       <div className="vw-100 vh-100 position-fixed">
