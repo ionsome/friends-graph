@@ -143,6 +143,7 @@ class Userable extends Component {
       this.removeUser(profile);
     }
 
+    console.log('setting visibility true');
     this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
     return true;
