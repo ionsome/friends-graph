@@ -114,6 +114,9 @@ class FriendsGraph extends Component {
     }
   }
 
+  clearNodes() {
+    this.nodesInstance.clear();
+  }
   render() {
     return (
       <div className="vw-100 vh-100 position-fixed">
