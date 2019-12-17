@@ -1,18 +1,6 @@
 import { Userable } from "./Userable";
-import { nodes, edges } from '../../consts';
 
 class Grapharable extends Userable {
-  constructor(props) {
-    super(props);
-    // нужен для хранения пользователей
-    this.users = nodes;
-
-    this.state = {
-      users: this.users, // нужен для отображения
-      relations: edges,
-      agregators: false
-    };
-  }
 
   addUser(profile) {
     if (super.addUser(profile) && this.graph) this.graph.addNodes([profile]);
