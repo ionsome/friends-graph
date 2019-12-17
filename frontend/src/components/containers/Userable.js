@@ -22,14 +22,14 @@ class Userable extends Component {
     let user;
     if (!userPresents) {
       user = await this.createProfileById(id);
+      this.setProfileVisibility(profile, true, true);
       this.addUser(user);
     }
     else {
       user = userPresents;
     }
-    user.hidden = false;
     
-    //this.setProfileVisibility(profile, true, true);
+
     this.changeToRoot(user);
   }
 
@@ -52,13 +52,12 @@ class Userable extends Component {
       let profile;
       if (!profilePresents){
         profile = createProfileByData(friend);
-        profile.hidden = true;
+        this.setProfileVisibility(profile, false, true);
       }
       else {
         let profile = profilePresents;
       }
       
-      //this.setProfileVisibility(profile, false, true);
       this.addUser(profile);
     }
 
@@ -151,8 +150,7 @@ class Userable extends Component {
       this.removeUser(profile);
     }
 
-    profile.hidden = false;
-    //this.setProfileVisibility(profile, true);
+    this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
     return true;
   }
