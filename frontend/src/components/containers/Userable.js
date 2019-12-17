@@ -27,8 +27,9 @@ class Userable extends Component {
     else {
       user = userPresents;
     }
-    this.setProfileVisibility(user, true, true);
-
+    user.hidden = false;
+    
+    //this.setProfileVisibility(profile, true, true);
     this.changeToRoot(user);
   }
 
@@ -47,8 +48,17 @@ class Userable extends Component {
     let friends = await friends_get(rootUser.id);
 
     for (const friend of friends) {
-      let profile = createProfileByData(friend);
-      this.setProfileVisibility(profile, false, true);
+      let profilePresents = this.isUserPresentWithId(friend.id);
+      let profile;
+      if (!profilePresents){
+        profile = createProfileByData(friend);
+        profile.hidden = true;
+      }
+      else {
+        let profile = profilePresents;
+      }
+      
+      //this.setProfileVisibility(profile, false, true);
       this.addUser(profile);
     }
 
@@ -141,7 +151,8 @@ class Userable extends Component {
       this.removeUser(profile);
     }
 
-    this.setProfileVisibility(profile, true);
+    profile.hidden = false;
+    //this.setProfileVisibility(profile, true);
     this.addRelations(new_relations);
     return true;
   }
