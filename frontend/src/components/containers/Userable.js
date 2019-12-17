@@ -18,12 +18,15 @@ class Userable extends Component {
       Добавляет рутового юзера
     */
   async addRootUser(id) {
-    let user = this.isUserPresentWithId(id);
-    this.setProfileVisibility(user, true, true);
+    let userPresents = this.isUserPresentWithId(id);
     if (!user) {
       user = await this.createProfileById(id);
       this.addUser(user);
     }
+    else {
+      user = userPresents;
+    }
+    this.setProfileVisibility(user, true, true);
 
     this.changeToRoot(user);
   }
