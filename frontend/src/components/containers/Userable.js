@@ -20,6 +20,7 @@ class Userable extends Component {
   async addRootUser(id) {
     let userPresents = this.isUserPresentWithId(id);
     let user;
+
     if (!userPresents) {
       user = await this.createProfileById(id);
       this.setProfileVisibility(user, true, true);
@@ -28,7 +29,7 @@ class Userable extends Component {
     else {
       user = userPresents;
     }
-    
+
 
     this.changeToRoot(user);
   }
@@ -50,15 +51,11 @@ class Userable extends Component {
     for (const friend of friends) {
       let profilePresents = this.isUserPresentWithId(friend.id);
       let profile;
-      if (!profilePresents){
+      if (!profilePresents) {
         profile = createProfileByData(friend);
         this.setProfileVisibility(profile, false, true);
+        this.addUser(profile);
       }
-      else {
-        let profile = profilePresents;
-      }
-      
-      this.addUser(profile);
     }
 
     console.log("userlist:");
@@ -81,7 +78,7 @@ class Userable extends Component {
   setProfileVisibility(profile, value, notHideIfShown) {
     if (!profile)
       return;
-     // Если профиль не скрыт и его не нужно скрывать
+    // Если профиль не скрыт и его не нужно скрывать
     if (!profile.hidden && notHideIfShown)
       return;
     profile.hidden = !value;
@@ -187,7 +184,7 @@ class Userable extends Component {
       }
     return false;
   }
-profile
+  profile
   /*
         Возвращает профиль юзера, если
         соответствующий был найден
@@ -235,6 +232,9 @@ profile
   }
 
   isAggregator(profile) {
+    if (profile.root) {
+      return false;
+    }
     if (profile.f_amount < 190 || (profile.f_amount / profile.mf_amount < 4)) {
       return false;
     }
