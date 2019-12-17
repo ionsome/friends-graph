@@ -241,6 +241,12 @@ class Userable extends Component {
     return true;
   }
 
+
+  clearUsers() {
+    this.users = [];
+    this.setState({ users: this.users });
+  }
+
   render() {
     return this.props.children(
       this.state.users,
@@ -249,6 +255,7 @@ class Userable extends Component {
       this.addUser.bind(this),
       this.removeUser.bind(this),
       this.useAggregators.bind(this),
+      this.clearUsers.bind(this)
     );
   }
 }

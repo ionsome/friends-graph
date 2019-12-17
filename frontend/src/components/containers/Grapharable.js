@@ -24,13 +24,19 @@ class Grapharable extends Userable {
   setProfileVisibility(profile, value, notHideIfShown) {
     if (!profile)
       return;
-     // Если профиль не скрыт и его не нужно скрывать
+    // Если профиль не скрыт и его не нужно скрывать
     if (!profile.hidden && notHideIfShown)
       return;
     profile.hidden = !value;
     this.graph.setHiddenById(profile.id, !value);
   }
-  
+
+  clearUsers() {
+    this.users = [];
+    this.setState({ users: this.users });
+    this.graph.clearNodes();
+  }
+
   render() {
     return this.props.children(
       this.state.users,
@@ -40,6 +46,7 @@ class Grapharable extends Userable {
       this.removeUser.bind(this),
       this.bindGraph.bind(this),
       this.useAggregators.bind(this),
+      this.clearUsers.bind(this)
     );
   }
 }

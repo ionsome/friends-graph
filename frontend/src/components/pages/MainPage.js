@@ -15,7 +15,7 @@ class MainPage extends Component {
 
     SettingsButton = (props) => {
         return <Dropdown alignRight drop='up' className="position-fixed" style={{ right: 25, bottom: 18 }}>
-            <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon}/>
+            <Dropdown.Toggle as={"img"} alt="settings" className="nutIcon" src={settingsIcon} />
             <Dropdown.Menu>
                 <Dropdown.Header>Settings</Dropdown.Header>
                 <Dropdown.Item onClick={() => {
@@ -25,7 +25,7 @@ class MainPage extends Component {
                 }>
                     {this.state.aggregators ? "Disable aggregators" : "Enable aggregators"}
                 </Dropdown.Item>
-                <Dropdown.Item >Clear graph</Dropdown.Item>
+                <Dropdown.Item onClick={() => props.clearUsers()}>Clear graph</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>;
     };
@@ -33,7 +33,7 @@ class MainPage extends Component {
     render() {
         return (
             <Grapharable>
-                {(users, relations, addRootUser, addUser, removeUser, bindGraph, useAggregators) => {
+                {(users, relations, addRootUser, addUser, removeUser, bindGraph, useAggregators, clearUsers) => {
                     return (
                         <div className="main d-flex">
                             <Graph
@@ -50,7 +50,10 @@ class MainPage extends Component {
                                 addUser={addUser}
                                 removeUser={removeUser}
                             />
-                            <this.SettingsButton useAggregators={(value) => useAggregators(value)} />
+                            <this.SettingsButton
+                                useAggregators={(value) => useAggregators(value)}
+                                clearUsers={() => clearUsers()}
+                            />
                         </div>
                     );
                 }}
