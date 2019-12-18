@@ -241,7 +241,7 @@ class Userable extends Component {
     if (profile.root) {
       return false;
     }
-    if (profile.f_amount < 190 || (profile.f_amount / profile.mf_amount < 15)) {
+    if (profile.f_amount < 190 || profile.mf_amount > 5 && profile.mf_amount < 25) {
       return false;
     }
     return true;
