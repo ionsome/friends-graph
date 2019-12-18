@@ -39,13 +39,19 @@ const options = {
   },
   physics: {
     enabled: true,
-    solver: "forceAtlas2Based",
-    forceAtlas2Based: {
-      gravitationalConstant: -200,
-      springConstant: 0.03,
-      damping: 0.8,
-      springLength: 25,
-      avoidOverlap: 0
+    // solver: "forceAtlas2Based",
+    // forceAtlas2Based: {
+    //   gravitationalConstant: -200,
+    //   springConstant: 0.03,
+    //   damping: 0.8,
+    //   springLength: 25,
+    //   avoidOverlap: 0
+    // },
+    solver: "repulsion",
+    repulsion: {
+      nodeDistance: 1000,
+      springLength: 250,
+      springConstant: 0.03
     },
     maxVelocity: 200,
     minVelocity: 40,
