@@ -164,6 +164,7 @@ class Sidebar extends Component {
           href={"https://vk.com/id" + this.state.info.id}>
           Page
                 </a>
+        <p className="ml-2 mb-0">Друзей: {this.state.info.f_amount}</p>
         {this.state.info.root ? <></> : (
           <Button
             className="border-top"
