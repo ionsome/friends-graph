@@ -60,6 +60,7 @@ class Userable extends Component {
 
     this.addUserList(friends);
 
+    this.setAmountOfFriends(rootUser, friends.length);
     await this.addUserRelationsWithProfiles(rootUser, friends);
     await this.connectFriends(friends);
   }
@@ -240,7 +241,7 @@ class Userable extends Component {
     if (profile.root) {
       return false;
     }
-    if (profile.f_amount < 190 || (profile.f_amount / profile.mf_amount < 20)) {
+    if (profile.f_amount < 190 || (profile.f_amount / profile.mf_amount < 15)) {
       return false;
     }
     return true;
